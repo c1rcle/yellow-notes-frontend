@@ -1,5 +1,5 @@
-import React, { useContext } from './node_modules/react';
-import { Button } from './node_modules/react-bootstrap';
+import React, { useContext } from 'react';
+import { Button } from 'react-bootstrap';
 import RegistrationContext from '../../contexts/Registration';
 
 const FormButton = () => {

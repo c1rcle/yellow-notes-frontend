@@ -1,4 +1,4 @@
-import React, { createContext, useState } from './node_modules/react';
+import React, { createContext, useState } from 'react';
 
 const RegistrationContext = createContext();
 

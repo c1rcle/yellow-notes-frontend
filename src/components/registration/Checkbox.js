@@ -1,5 +1,5 @@
-import React, { useContext } from './node_modules/react';
-import { FormGroup, Form } from './node_modules/react-bootstrap';
+import React, { useContext } from 'react';
+import { FormGroup, Form } from 'react-bootstrap';
 import RegistrationContext from '../../contexts/Registration';
 
 const Checkbox = () => {

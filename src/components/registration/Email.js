@@ -1,6 +1,6 @@
-import React, { useContext } from './node_modules/react';
-import { FormGroup, InputGroup, Form } from './node_modules/react-bootstrap';
-import { Tooltip } from './node_modules/reactstrap';
+import React, { useContext } from 'react';
+import { FormGroup, InputGroup, Form } from 'react-bootstrap';
+import { Tooltip } from 'reactstrap';
 import RegistrationContext from '../../contexts/Registration';
 
 const Email = () => {
