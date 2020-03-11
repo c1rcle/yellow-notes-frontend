@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import userReducer from './reducer';
-import dispatchAsync from './actions';
+import dispatchAsync from './dispatchAsync';
 
 const UserContext = createContext();
 
