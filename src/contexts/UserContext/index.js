@@ -1,26 +1,13 @@
 import React, { createContext, useReducer } from 'react';
 import userReducer from './reducer';
-import { actionRegister, actionLogin } from './actions';
+import dispatchAsync from './actions';
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [user, dispatch] = useReducer(userReducer, {});
 
-  const dispatchAsync = action => {
-    switch (action.type) {
-      case 'REGISTER':
-        actionRegister(action).then(a => dispatch(a));
-        break;
-      case 'LOGIN':
-        actionLogin(action).then(a => dispatch(a));
-        break;
-      default:
-        dispatch(action);
-    }
-  };
-
-  return <UserContext.Provider value={[user, dispatchAsync]}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={[user, dispatchAsync(dispatch)]}>{children}</UserContext.Provider>;
 }
 
 export default function useUser() {
