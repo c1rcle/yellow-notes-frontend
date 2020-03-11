@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import { Form, Row, Col } from 'react-bootstrap';
+import React from './node_modules/react';
+import { Form, Row, Col } from './node_modules/react-bootstrap';
 import Email from './Email';
 import Password from './Password';
 import PasswordRepeat from './PasswordRepeat';
@@ -14,7 +14,7 @@ const Registration = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <Row className='justify-content-center'>
         <Col xs={11} lg={8} className='my-4'>
           <h1 className='display-4 text-center'>Register an account</h1>
@@ -32,7 +32,7 @@ const Registration = () => {
           </Form>
         </Col>
       </Row>
-    </Fragment>
+    </>
   );
 };
 

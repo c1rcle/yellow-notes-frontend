@@ -1,6 +1,6 @@
 import React from 'react';
-import Registration from './components/registration/Registration';
-import { RegistrationState } from './contexts/registration/RegistrationContext';
+import Registration from './components/Registration';
+import { RegistrationState } from './contexts/Registration';
 import { Container } from 'react-bootstrap';
 
 function App() {

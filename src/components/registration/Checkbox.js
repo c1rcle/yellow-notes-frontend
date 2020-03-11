@@ -1,13 +1,12 @@
-import React, { Fragment, useContext } from 'react';
-import { FormGroup, Form } from 'react-bootstrap';
-import RegistrationContext from '../../contexts/registration/RegistrationContext';
+import React, { useContext } from './node_modules/react';
+import { FormGroup, Form } from './node_modules/react-bootstrap';
+import RegistrationContext from '../../contexts/Registration';
 
 const Checkbox = () => {
-  const registrationContext = useContext(RegistrationContext);
-  const { termsAccepted, setTermsAccepted } = registrationContext;
+  const { termsAccepted, setTermsAccepted } = useContext(RegistrationContext);
 
   return (
-    <Fragment>
+    <>
       <FormGroup className='row justify-content-center my-4'>
         <Form.Check
           custom
@@ -17,7 +16,7 @@ const Checkbox = () => {
           onClick={() => setTermsAccepted(!termsAccepted)}
         />
       </FormGroup>
-    </Fragment>
+    </>
   );
 };
 

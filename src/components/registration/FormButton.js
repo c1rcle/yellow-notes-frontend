@@ -1,13 +1,12 @@
-import React, { Fragment, useContext } from 'react';
-import { Button } from 'react-bootstrap';
-import RegistrationContext from '../../contexts/registration/RegistrationContext';
+import React, { useContext } from './node_modules/react';
+import { Button } from './node_modules/react-bootstrap';
+import RegistrationContext from '../../contexts/Registration';
 
 const FormButton = () => {
-  const registrationContext = useContext(RegistrationContext);
-  const { termsAccepted } = registrationContext;
+  const { termsAccepted } = useContext(RegistrationContext);
 
   return (
-    <Fragment>
+    <>
       <Button
         variant='outline-primary'
         block
@@ -16,7 +15,7 @@ const FormButton = () => {
         <i className='fas fa-user-plus mr-1' />
         Create account
       </Button>
-    </Fragment>
+    </>
   );
 };
 

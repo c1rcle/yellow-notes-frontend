@@ -1,16 +1,15 @@
-import React, { Fragment, useContext } from 'react';
-import { FormGroup, InputGroup, Form } from 'react-bootstrap';
-import { Tooltip } from 'reactstrap';
-import RegistrationContext from '../../contexts/registration/RegistrationContext';
+import React, { useContext } from './node_modules/react';
+import { FormGroup, InputGroup, Form } from './node_modules/react-bootstrap';
+import { Tooltip } from './node_modules/reactstrap';
+import RegistrationContext from '../../contexts/Registration';
 
 const Email = () => {
-  const registrationContext = useContext(RegistrationContext);
-  const { email, onTextChanged, emailTooltip } = registrationContext;
+  const { email, onTextChanged, emailTooltip } = useContext(RegistrationContext);
 
   const emailError = 'Enter a valid e-mail address!';
 
   return (
-    <Fragment>
+    <>
       <FormGroup className='row justify-content-center'>
         <InputGroup>
           <InputGroup.Prepend>
@@ -31,7 +30,7 @@ const Email = () => {
           </Tooltip>
         </InputGroup>
       </FormGroup>
-    </Fragment>
+    </>
   );
 };
 

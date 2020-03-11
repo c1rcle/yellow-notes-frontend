@@ -1,21 +1,20 @@
-import React, { Fragment, useContext } from 'react';
-import { FormGroup, Form } from 'react-bootstrap';
-import { Tooltip } from 'reactstrap';
-import RegistrationContext from '../../contexts/registration/RegistrationContext';
+import React, { useContext } from './node_modules/react';
+import { FormGroup, Form } from './node_modules/react-bootstrap';
+import { Tooltip } from './node_modules/reactstrap';
+import RegistrationContext from '../../contexts/Registration';
 
 const PasswordRepeat = () => {
-  const registrationContext = useContext(RegistrationContext);
   const {
     password,
     passwordRepeat,
     onTextChanged,
     passwordRepeatTooltip
-  } = registrationContext;
+  } = useContext(RegistrationContext);
 
   const passwordRepeatError = 'Passwords do not match!';
 
   return (
-    <Fragment>
+    <>
       <FormGroup className='row justify-content-center'>
         <Form.Control
           required
@@ -33,7 +32,7 @@ const PasswordRepeat = () => {
           {passwordRepeatError}
         </Tooltip>
       </FormGroup>
-    </Fragment>
+    </>
   );
 };
 

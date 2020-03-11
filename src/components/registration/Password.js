@@ -1,18 +1,17 @@
-import React, { Fragment, useContext } from 'react';
-import { FormGroup, InputGroup, Form } from 'react-bootstrap';
-import { Tooltip } from 'reactstrap';
-import RegistrationContext from '../../contexts/registration/RegistrationContext';
+import React, { useContext } from './node_modules/react';
+import { FormGroup, InputGroup, Form } from './node_modules/react-bootstrap';
+import { Tooltip } from './node_modules/reactstrap';
+import RegistrationContext from '../../contexts/Registration';
 
 const Password = () => {
-  const registrationContext = useContext(RegistrationContext);
-  const { password, onTextChanged, passwordTooltip } = registrationContext;
+  const { password, onTextChanged, passwordTooltip } = useContext(RegistrationContext);
 
   const passwordError =
-    'Password must contain at least 1 upper case letter,' +
+    'Password must contain at least 1 upper and lower case letter,' +
     ' 1 numeric character and be no less than 5 characters long!';
 
   return (
-    <Fragment>
+    <>
       <FormGroup className='row justify-content-center'>
         <InputGroup>
           <InputGroup.Prepend>
@@ -34,7 +33,7 @@ const Password = () => {
           </Tooltip>
         </InputGroup>
       </FormGroup>
-    </Fragment>
+    </>
   );
 };
 
