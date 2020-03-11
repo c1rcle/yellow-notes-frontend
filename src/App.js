@@ -1,5 +1,5 @@
 import React from 'react';
-import Registration from './components/Registration';
+import Registration from './components/registration/Registration';
 import { Container } from 'react-bootstrap';
 
 function App() {
