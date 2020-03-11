@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Form, Row, FormGroup, Col, InputGroup, Button } from 'react-bootstrap';
+import { Tooltip } from 'reactstrap';
 
 const Registration = () => {
   const [user, setUser] = useState({
@@ -7,33 +8,39 @@ const Registration = () => {
     password: '',
     passwordRepeat: ''
   });
+
+  const [tooltip, setTooltip] = useState({
+    emailTooltip: false,
+    passwordTooltip: false,
+    passwordRepeatTooltip: false
+  });
+
   const [termsAccepted, setTermsAccepted] = useState(false);
 
+  const emailError = 'Enter a valid e-mail address!';
   const passwordError =
     'Password must contain at least 1 upper case letter,' +
     ' 1 numeric character and be no less than 5 characters long!';
   const passwordRepeatError = 'Passwords do not match!';
 
   const { email, password, passwordRepeat } = user;
+  const { emailTooltip, passwordTooltip, passwordRepeatTooltip } = tooltip;
 
   const onTextChanged = e => {
-    setCustomValidity(e.target);
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setTooltips(e.target);
+    setUser({ ...user, [e.target.id]: e.target.value });
   };
 
-  const setCustomValidity = target => {
-    if (target.name === 'password' || target.name === 'passwordRepeat') {
-      if (target.validity.patternMismatch) {
-        target.setCustomValidity(
-          target.name === 'password' ? passwordError : passwordRepeatError
-        );
-      } else { target.setCustomValidity(''); }
-      target.reportValidity();
+  const setTooltips = target => {
+    if (target.validity.patternMismatch || target.validity.typeMismatch) {
+      setTooltip({ ...tooltip,  [target.id + 'Tooltip']: true});
     }
+    else setTooltip({ ...tooltip,  [target.id + 'Tooltip']: false});
   };
 
   const onSubmit = e => {
     e.preventDefault();
+    e.target.className += ' was-validated';
     // TODO - register a user.
   };
 
@@ -47,7 +54,7 @@ const Registration = () => {
 
       <Row className='justify-content-center'>
         <Col xs={11} lg={6} className='my-2'>
-          <Form onSubmit={onSubmit}>
+          <Form onSubmit={onSubmit} className='needs-validation' noValidate>
             <FormGroup className='row justify-content-center'>
               <InputGroup>
                 <InputGroup.Prepend>
@@ -57,12 +64,15 @@ const Registration = () => {
                 </InputGroup.Prepend>
                 <Form.Control
                   required
-                  name='email'
+                  id='email'
                   type='email'
                   placeholder='Email address'
                   value={email}
                   onChange={onTextChanged}
                 />
+                <Tooltip target='email' isOpen={emailTooltip} placement='left'>
+                  {emailError}
+                </Tooltip>
               </InputGroup>
             </FormGroup>
 
@@ -76,12 +86,18 @@ const Registration = () => {
                 <Form.Control
                   required
                   pattern='^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$'
-                  name='password'
+                  id='password'
                   type='password'
                   placeholder='Password'
                   value={password}
                   onChange={onTextChanged}
                 />
+                <Tooltip
+                  target='password'
+                  isOpen={passwordTooltip}
+                  placement='left'>
+                  {passwordError}
+                </Tooltip>
               </InputGroup>
             </FormGroup>
 
@@ -89,12 +105,18 @@ const Registration = () => {
               <Form.Control
                 required
                 pattern={password}
-                name='passwordRepeat'
+                id='passwordRepeat'
                 type='password'
                 placeholder='Repeat Password'
                 value={passwordRepeat}
                 onChange={onTextChanged}
               />
+              <Tooltip
+                target='passwordRepeat'
+                isOpen={passwordRepeatTooltip}
+                placement='left'>
+                {passwordRepeatError}
+              </Tooltip>
             </FormGroup>
 
             <FormGroup className='row justify-content-center my-4'>
