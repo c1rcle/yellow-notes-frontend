@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { FormGroup, InputGroup, Form } from 'react-bootstrap';
 import { Tooltip } from 'reactstrap';
+import RegistrationContext from '../../contexts/registration/RegistrationContext';
 
-const Password = props => {
-  const { password, onTextChanged, passwordTooltip } = props;
+const Password = () => {
+  const registrationContext = useContext(RegistrationContext);
+  const { password, onTextChanged, passwordTooltip } = registrationContext;
 
   const passwordError =
     'Password must contain at least 1 upper case letter,' +

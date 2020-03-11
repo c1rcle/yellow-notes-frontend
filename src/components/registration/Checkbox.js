@@ -1,7 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { FormGroup, Form } from 'react-bootstrap';
+import RegistrationContext from '../../contexts/registration/RegistrationContext';
 
-const Checkbox = ({ termsAccepted, setTermsAccepted }) => {
+const Checkbox = () => {
+  const registrationContext = useContext(RegistrationContext);
+  const { termsAccepted, setTermsAccepted } = registrationContext;
+
   return (
     <Fragment>
       <FormGroup className='row justify-content-center my-4'>

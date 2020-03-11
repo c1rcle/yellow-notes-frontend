@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { FormGroup, InputGroup, Form } from 'react-bootstrap';
 import { Tooltip } from 'reactstrap';
+import RegistrationContext from '../../contexts/registration/RegistrationContext';
 
-const Email = props => {
-  const { email, onTextChanged, emailTooltip } = props;
+const Email = () => {
+  const registrationContext = useContext(RegistrationContext);
+  const { email, onTextChanged, emailTooltip } = registrationContext;
 
   const emailError = 'Enter a valid e-mail address!';
 

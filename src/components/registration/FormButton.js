@@ -1,7 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Button } from 'react-bootstrap';
+import RegistrationContext from '../../contexts/registration/RegistrationContext';
 
-const FormButton = ({ termsAccepted }) => {
+const FormButton = () => {
+  const registrationContext = useContext(RegistrationContext);
+  const { termsAccepted } = registrationContext;
+
   return (
     <Fragment>
       <Button

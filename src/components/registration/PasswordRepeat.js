@@ -1,14 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { FormGroup, Form } from 'react-bootstrap';
 import { Tooltip } from 'reactstrap';
+import RegistrationContext from '../../contexts/registration/RegistrationContext';
 
-const PasswordRepeat = props => {
+const PasswordRepeat = () => {
+  const registrationContext = useContext(RegistrationContext);
   const {
     password,
     passwordRepeat,
     onTextChanged,
     passwordRepeatTooltip
-  } = props;
+  } = registrationContext;
 
   const passwordRepeatError = 'Passwords do not match!';
 
