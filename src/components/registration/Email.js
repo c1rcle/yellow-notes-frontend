@@ -4,7 +4,7 @@ import TooltipCustom from '../common/TooltipCustom';
 
 const Email = props => {
   const emailError = 'Enter a valid e-mail address!';
-  console.log(props);
+
   return (
     <FormGroup className="row justify-content-center">
       <InputGroup>
