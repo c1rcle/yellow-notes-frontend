@@ -7,9 +7,10 @@ const FormButton = props => {
       variant='outline-primary'
       block
       type='submit'
-      disabled={props.disabled}>
-      <i className='fas fa-user-plus mr-1' />
-      Create account
+      disabled={props.disabled}
+    >
+      <i className={`fas fa-${props.icon} mr-1`} />
+      {props.title}
     </Button>
   );
 };

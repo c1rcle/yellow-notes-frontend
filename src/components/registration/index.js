@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
-import Email from './Email';
-import Password from './Password';
+import Email from '../common/Email';
+import Password from '../common/Password';
 import PasswordRepeat from './PasswordRepeat';
 import Checkbox from './Checkbox';
-import FormButton from './FormButton';
+import FormButton from '../common/FormButton';
 
 const Registration = () => {
   const [state, setState] = useState({
@@ -53,7 +53,11 @@ const Registration = () => {
                 setState({ ...state, termsAccepted: !state.termsAccepted })
               }
             />
-            <FormButton disabled={!state.termsAccepted} />
+            <FormButton
+              disabled={!state.termsAccepted}
+              icon={'user-plus'}
+              title={'Create new account'}
+            />
           </Form>
         </Col>
       </Row>
