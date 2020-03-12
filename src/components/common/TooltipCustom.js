@@ -11,12 +11,12 @@ const TooltipCustom = props => {
     throw new Error('First child has to have defined ref');
   }
   console.log('props', props);
-  const { text, isOpen, placement } = props;
+  const { text, isOpen } = props;
   const target = child.ref.current;
   return (
     <>
       {props.children || child}
-      <Overlay target={target} show={isOpen} placement={placement}>
+      <Overlay {...props} target={target} show={isOpen}>
         {props => <Tooltip {...props}>{text}</Tooltip>}
       </Overlay>
     </>
