@@ -13,12 +13,10 @@ const Login = () => {
   const { email, password } = user;
 
   const onChange = name => ({ target }) => {
-    const { validity, value } = target;
-    const isValid =
-      name === 'email' && (validity.patternMismatch || validity.typeMismatch);
+    const { value } = target;
     setUser({
       ...user,
-      [name]: { value, isValid }
+      [name]: { value, isValid: false }
     });
   };
 
