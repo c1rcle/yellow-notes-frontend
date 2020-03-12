@@ -1,30 +1,25 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import { FormGroup, Form } from 'react-bootstrap';
-import RegistrationContext from '../../contexts/Registration';
 import TooltipCustom from '../common/TooltipCustom';
 
-const PasswordRepeat = () => {
-  const { password, passwordRepeat, onTextChanged, passwordRepeatTooltip } = useContext(RegistrationContext);
-
+const PasswordRepeat = props => {
   const passwordRepeatError = 'Passwords do not match!';
 
   return (
-    <>
-      <FormGroup className="row justify-content-center">
-        <TooltipCustom text={passwordRepeatError} isOpen={passwordRepeatTooltip} placement="right">
-          <Form.Control
-            required
-            pattern={password}
-            id="passwordRepeat"
-            type="password"
-            placeholder="Repeat Password"
-            ref={useRef()}
-            value={passwordRepeat}
-            onChange={onTextChanged}
-          />
-        </TooltipCustom>
-      </FormGroup>
-    </>
+    <FormGroup className="row justify-content-center">
+      <TooltipCustom text={passwordRepeatError} isOpen={props.state.isValid} placement="right">
+        <Form.Control
+          required
+          pattern={props.pattern}
+          id="passwordRepeat"
+          type="password"
+          placeholder="Repeat Password"
+          ref={useRef()}
+          value={props.state.passwordRepeat}
+          onChange={props.onTextChanged}
+        />
+      </TooltipCustom>
+    </FormGroup>
   );
 };
 
