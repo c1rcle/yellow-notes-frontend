@@ -1,21 +1,31 @@
 import React, { Fragment, useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import Email from './common/Email';
+import Password from './common/Password';
+import FormButton from './common/FormButton';
 
 const Login = () => {
   const [user, setUser] = useState({
-    email: '',
-    password: ''
+    email: { value: '', isValid: false },
+    password: { value: '', isValid: false }
   });
 
   const { email, password } = user;
 
-  const onChange = e => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+  const onChange = name => ({ target }) => {
+    const { validity, value } = target;
+    const isValid =
+      name === 'email' && (validity.patternMismatch || validity.typeMismatch);
+    setUser({
+      ...user,
+      [name]: { value, isValid }
+    });
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    if (email === '' || password === '') alert('Please fill all fields!');
+    if (email.value === '' || password.value === '')
+      alert('Please fill all fields!');
     else {
       console.log('Launching login action...');
     }
@@ -23,49 +33,17 @@ const Login = () => {
 
   return (
     <Fragment>
-      <Row>
-        <Col md={{ span: 8, offset: 2 }} className='my-4'>
+      <Row className='justify-content-center'>
+        <Col xs={11} className='my-4'>
           <h1 className='display-4 text-center'>Welcome to Yellow Notes!</h1>
         </Col>
       </Row>
-      <Row>
-        <Col md={{ span: 6, offset: 3 }} className='my-2'>
-          <Form onSubmit={onSubmit}>
-            <Form.Group as={Row} controlId='emailField'>
-              <Form.Label column xs='2' sm='1' className='pl-4'>
-                <i className='fas fa-at'></i>
-              </Form.Label>
-              <Col xs='10' sm='11'>
-                <Form.Control
-                  name='email'
-                  value={email}
-                  onChange={onChange}
-                  type='email'
-                  placeholder='Email Address'
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId='passwordField'>
-              <Form.Label column xs='2' sm='1' className='pl-4'>
-                <i className='fas fa-hashtag'></i>
-              </Form.Label>
-              <Col xs='10' sm='11'>
-                <Form.Control
-                  name='password'
-                  value={password}
-                  onChange={onChange}
-                  type='password'
-                  placeholder='Password'
-                />
-              </Col>
-            </Form.Group>
-            <Button
-              type='submit'
-              className='btn-block'
-              variant='outline-primary'
-            >
-              <i className='fas fa-home mr-1'></i> Login
-            </Button>
+      <Row className='justify-content-center'>
+        <Col xs={11} lg={6} className='my-2'>
+          <Form onSubmit={e => onSubmit(e)} noValidate>
+            <Email onTextChanged={onChange('email')} state={email} />
+            <Password onTextChanged={onChange('password')} state={password} />
+            <FormButton disabled={false} icon={'home'} title={'Login'} />
             <hr />
             <p className='lead text-center'>
               Or{' '}

@@ -1,14 +1,23 @@
 import React from 'react';
 import Registration from './components/registration';
+import Login from './components/Login';
 import { Container } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <div className='App'>
+    <Router>
       <Container>
-        <Registration />
+        <Switch>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          <Route path='/register'>
+            <Registration />
+          </Route>
+        </Switch>
       </Container>
-    </div>
+    </Router>
   );
 }
 

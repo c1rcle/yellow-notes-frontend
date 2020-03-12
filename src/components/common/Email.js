@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { FormGroup, InputGroup, Form } from 'react-bootstrap';
-import TooltipCustom from '../common/TooltipCustom';
+import TooltipCustom from './TooltipCustom';
 
 const Email = props => {
   const emailError = 'Enter a valid e-mail address!';
@@ -16,7 +16,8 @@ const Email = props => {
         <TooltipCustom
           text={emailError}
           show={props.state.isValid}
-          placement='right'>
+          placement='right'
+        >
           <Form.Control
             required
             id='email'
