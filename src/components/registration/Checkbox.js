@@ -1,22 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FormGroup, Form } from 'react-bootstrap';
-import RegistrationContext from '../../contexts/Registration';
 
-const Checkbox = () => {
-  const { termsAccepted, setTermsAccepted } = useContext(RegistrationContext);
-
+const Checkbox = props => {
   return (
-    <>
-      <FormGroup className='row justify-content-center my-4'>
-        <Form.Check
-          custom
-          id='1'
-          type='checkbox'
-          label='I agree to the terms and conditions'
-          onClick={() => setTermsAccepted(!termsAccepted)}
-        />
-      </FormGroup>
-    </>
+    <FormGroup className='row justify-content-center my-4'>
+      <Form.Check
+        custom
+        id='1'
+        type='checkbox'
+        label='I agree to the terms and conditions'
+        onClick={props.onClick}
+      />
+    </FormGroup>
   );
 };
 

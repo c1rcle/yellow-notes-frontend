@@ -1,21 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
-import RegistrationContext from '../../contexts/Registration';
 
-const FormButton = () => {
-  const { termsAccepted } = useContext(RegistrationContext);
-
+const FormButton = props => {
   return (
-    <>
-      <Button
-        variant='outline-primary'
-        block
-        type='submit'
-        disabled={!termsAccepted}>
-        <i className='fas fa-user-plus mr-1' />
-        Create account
-      </Button>
-    </>
+    <Button
+      variant='outline-primary'
+      block
+      type='submit'
+      disabled={props.disabled}>
+      <i className='fas fa-user-plus mr-1' />
+      Create account
+    </Button>
   );
 };
 
