@@ -17,13 +17,7 @@ const Registration = () => {
   const onTextChanged = name => ({ target }) => {
     const { validity, value } = target;
     const isValid = validity.patternMismatch || validity.typeMismatch;
-    if (name === 'password') {
-      setState({
-        ...state,
-        [name]: { value, isValid },
-        passwordRepeat: { isValid: state.passwordRepeat.value === state.password.value }
-      });
-    } else setState({ ...state, [name]: { value, isValid } });
+    setState({ ...state, [name]: { value, isValid } });
   };
 
   const onSubmit = e => {
@@ -34,31 +28,24 @@ const Registration = () => {
 
   return (
     <>
-      <Row className='justify-content-center'>
-        <Col xs={11} lg={8} className='my-4'>
-          <h1 className='display-4 text-center'>Register an account</h1>
+      <Row className="justify-content-center">
+        <Col xs={11} lg={8} className="my-4">
+          <h1 className="display-4 text-center">Register an account</h1>
         </Col>
       </Row>
 
-      <Row className='justify-content-center'>
-        <Col xs={11} lg={6} className='my-2'>
-          <Form onSubmit={onSubmit} className='needs-validation' noValidate>
+      <Row className="justify-content-center">
+        <Col xs={11} lg={6} className="my-2">
+          <Form onSubmit={onSubmit} className="needs-validation" noValidate>
             <Email onTextChanged={onTextChanged('email')} state={state.email} />
-            <Password
-              onTextChanged={onTextChanged('password')}
-              state={state.password}
-            />
+            <Password onTextChanged={onTextChanged('password')} state={state.password} />
             <PasswordRepeat
               pattern={state.password.value}
               onTextChanged={onTextChanged('passwordRepeat')}
               state={state.passwordRepeat}
               isValid={state.password.isValid}
             />
-            <Checkbox
-              onClick={() =>
-                setState({ ...state, termsAccepted: !state.termsAccepted })
-              }
-            />
+            <Checkbox onClick={() => setState({ ...state, termsAccepted: !state.termsAccepted })} />
             <FormButton disabled={!state.termsAccepted} />
           </Form>
         </Col>

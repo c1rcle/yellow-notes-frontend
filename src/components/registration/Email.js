@@ -6,22 +6,19 @@ const Email = props => {
   const emailError = 'Enter a valid e-mail address!';
 
   return (
-    <FormGroup className='row justify-content-center'>
+    <FormGroup className="row justify-content-center">
       <InputGroup>
         <InputGroup.Prepend>
-          <InputGroup.Text className='bg-white'>
-            <i className='fas fa-at fa-fw m-auto' />
+          <InputGroup.Text className="bg-white">
+            <i className="fas fa-at fa-fw m-auto" />
           </InputGroup.Text>
         </InputGroup.Prepend>
-        <TooltipCustom
-          text={emailError}
-          isOpen={props.state.isValid}
-          placement='right'>
+        <TooltipCustom text={emailError} show={props.state.isValid} placement="right">
           <Form.Control
             required
-            id='email'
-            type='email'
-            placeholder='Email address'
+            id="email"
+            type="email"
+            placeholder="Email address"
             ref={useRef()}
             value={props.state.email}
             onChange={props.onTextChanged}

@@ -9,22 +9,19 @@ const Password = props => {
 
   return (
     <>
-      <FormGroup className='row justify-content-center'>
+      <FormGroup className="row justify-content-center">
         <InputGroup>
           <InputGroup.Prepend>
-            <InputGroup.Text className='bg-white'>
-              <i className='fas fa-hashtag fa-fw m-auto' />
+            <InputGroup.Text className="bg-white">
+              <i className="fas fa-hashtag fa-fw m-auto" />
             </InputGroup.Text>
           </InputGroup.Prepend>
-          <TooltipCustom
-            text={passwordError}
-            isOpen={props.state.isValid}
-            placement='right'>
+          <TooltipCustom text={passwordError} show={props.state.isValid} placement="right">
             <Form.Control
               required
-              pattern='^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$'
-              type='password'
-              placeholder='Password'
+              pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$"
+              type="password"
+              placeholder="Password"
               ref={useRef()}
               value={props.state.value}
               onChange={props.onTextChanged}
