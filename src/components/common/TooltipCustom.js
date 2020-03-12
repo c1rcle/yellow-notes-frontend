@@ -17,7 +17,7 @@ const TooltipCustom = props => {
     <>
       {props.children || child}
       <Overlay {...props} target={target} show={isOpen}>
-        {props => <Tooltip {...props}>{text}</Tooltip>}
+        {<Tooltip {...props}>{text}</Tooltip>}
       </Overlay>
     </>
   );
