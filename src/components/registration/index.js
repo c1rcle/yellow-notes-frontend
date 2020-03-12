@@ -17,7 +17,13 @@ const Registration = () => {
   const onTextChanged = name => ({ target }) => {
     const { validity, value } = target;
     const isValid = validity.patternMismatch || validity.typeMismatch;
-    setState({ ...state, [name]: { value, isValid } });
+    if (name === 'password') {
+      setState({
+        ...state,
+        [name]: { value, isValid },
+        passwordRepeat: { isValid: state.passwordRepeat.value === state.password.value }
+      });
+    } else setState({ ...state, [name]: { value, isValid } });
   };
 
   const onSubmit = e => {
@@ -43,6 +49,7 @@ const Registration = () => {
               pattern={state.password.value}
               onTextChanged={onTextChanged('passwordRepeat')}
               state={state.passwordRepeat}
+              isValid={state.password.isValid}
             />
             <Checkbox onClick={() => setState({ ...state, termsAccepted: !state.termsAccepted })} />
             <FormButton disabled={!state.termsAccepted} />
