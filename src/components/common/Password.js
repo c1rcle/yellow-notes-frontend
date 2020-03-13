@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { FormGroup, InputGroup, Form } from 'react-bootstrap';
 import TooltipCustom from '../common/TooltipCustom';
 
-const Password = props => {
+const Password = ({ state, onTextChanged }) => {
   const passwordError =
     'Password must contain at least 1 upper and lower case letter,' +
     ' 1 numeric character and be no less than 5 characters long!';
@@ -18,7 +18,7 @@ const Password = props => {
           </InputGroup.Prepend>
           <TooltipCustom
             text={passwordError}
-            show={props.state.isValid}
+            show={state.isValid}
             placement='right'>
             <Form.Control
               required
@@ -26,8 +26,8 @@ const Password = props => {
               type='password'
               placeholder='Password'
               ref={useRef()}
-              value={props.state.value}
-              onChange={props.onTextChanged}
+              value={state.value}
+              onChange={onTextChanged}
             />
           </TooltipCustom>
         </InputGroup>

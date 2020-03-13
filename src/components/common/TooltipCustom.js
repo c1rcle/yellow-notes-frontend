@@ -2,22 +2,21 @@ import React, { useRef } from 'react';
 import { Overlay, Tooltip } from 'react-bootstrap';
 
 const TooltipCustom = props => {
-  const ref = useRef();
+  const { children, text, show } = props;
 
-  let firstChild = (Array.isArray(props.children)
-    ? props.children[0]
-    : props.children) || <div ref={ref} />;
+  const ref = useRef();
+  let firstChild = (Array.isArray(children) ? children[0] : children) || (
+    <div ref={ref} />
+  );
 
   if (firstChild.ref === null) {
-    throw new Error('First child has to have defined ref');
+    throw new Error('First child has to have a defined ref!');
   }
-
-  const { text, show } = props;
   const target = firstChild.ref.current;
 
   return (
     <>
-      {props.children || firstChild}
+      {children || firstChild}
       <Overlay {...props} target={target} show={show}>
         <Tooltip {...props}>{text}</Tooltip>
       </Overlay>

@@ -8,16 +8,22 @@ import FormButton from '../common/FormButton';
 
 const Registration = () => {
   const [state, setState] = useState({
+    email: { value: '', isValid: false },
     password: { value: '', isValid: false },
     passwordRepeat: { value: '', isValid: false },
-    email: { value: '', isValid: false },
     termsAccepted: false
   });
+
+  const { email, password, passwordRepeat, termsAccepted } = state;
 
   const onTextChanged = name => ({ target }) => {
     const { validity, value } = target;
     const isValid = validity.patternMismatch || validity.typeMismatch;
     setState({ ...state, [name]: { value, isValid } });
+  };
+
+  const setTermsAccepted = () => {
+    setState({ ...state, termsAccepted: !termsAccepted });
   };
 
   const onSubmit = e => {
@@ -37,24 +43,19 @@ const Registration = () => {
       <Row className='justify-content-center'>
         <Col xs={11} lg={6} className='my-2'>
           <Form onSubmit={onSubmit} className='needs-validation' noValidate>
-            <Email onTextChanged={onTextChanged('email')} state={state.email} />
+            <Email onTextChanged={onTextChanged('email')} state={email} />
             <Password
               onTextChanged={onTextChanged('password')}
-              state={state.password}
+              state={password}
             />
             <PasswordRepeat
-              pattern={state.password.value}
+              pattern={password.value}
               onTextChanged={onTextChanged('passwordRepeat')}
-              state={state.passwordRepeat}
-              isValid={state.password.isValid}
+              state={passwordRepeat}
             />
-            <Checkbox
-              onClick={() =>
-                setState({ ...state, termsAccepted: !state.termsAccepted })
-              }
-            />
+            <Checkbox onClick={setTermsAccepted} />
             <FormButton
-              disabled={!state.termsAccepted}
+              disabled={!termsAccepted}
               icon={'user-plus'}
               title={'Create new account'}
             />

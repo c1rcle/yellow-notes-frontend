@@ -9,12 +9,8 @@ function App() {
     <Router>
       <Container>
         <Switch>
-          <Route path='/login'>
-            <Login />
-          </Route>
-          <Route path='/register'>
-            <Registration />
-          </Route>
+          <Route exact path='/' component={Login} />
+          <Route exact path='/registration' component={Registration} />
         </Switch>
       </Container>
     </Router>
