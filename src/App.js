@@ -1,6 +1,7 @@
 import React from 'react';
 import Registration from './components/registration';
 import Login from './components/Login';
+import NoteContainer from './components/notes/NoteContainer'
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -14,6 +15,9 @@ function App() {
           </Route>
           <Route path='/register'>
             <Registration />
+          </Route>
+          <Route path='/notes'>
+            <NoteContainer />
           </Route>
         </Switch>
       </Container>
