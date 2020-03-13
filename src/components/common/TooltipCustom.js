@@ -10,7 +10,7 @@ const TooltipCustom = props => {
   );
 
   if (firstChild.ref === null) {
-    throw new Error('First child has to have a defined ref!');
+    throw new Error('First child has to have a ref defined!');
   }
   const target = firstChild.ref.current;
 
