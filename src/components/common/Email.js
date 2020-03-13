@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { FormGroup, InputGroup, Form } from 'react-bootstrap';
 import TooltipCustom from './TooltipCustom';
 
-const Email = props => {
+const Email = ({ state, onTextChanged }) => {
   const emailError = 'Enter a valid e-mail address!';
 
   return (
@@ -13,19 +13,15 @@ const Email = props => {
             <i className='fas fa-at fa-fw m-auto' />
           </InputGroup.Text>
         </InputGroup.Prepend>
-        <TooltipCustom
-          text={emailError}
-          show={props.state.isValid}
-          placement='right'
-        >
+        <TooltipCustom text={emailError} show={state.isValid} placement='right'>
           <Form.Control
             required
             id='email'
             type='email'
             placeholder='Email address'
             ref={useRef()}
-            value={props.state.email}
-            onChange={props.onTextChanged}
+            value={state.email}
+            onChange={onTextChanged}
           />
         </TooltipCustom>
       </InputGroup>

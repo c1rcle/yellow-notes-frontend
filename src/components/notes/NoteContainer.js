@@ -1,5 +1,6 @@
 import React from 'react';
 import Note from './Note';
+import { Row } from 'react-bootstrap';
 
 const NoteContainer = () => {
   const userNotes = [
@@ -11,11 +12,11 @@ const NoteContainer = () => {
     }
   ];
   return (
-    <div>
+    <Row>
       {userNotes.map(note => (
         <Note content={note.content} />
       ))}
-    </div>
+    </Row>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Form } from 'react-bootstrap';
 
-const Checkbox = props => {
+const Checkbox = ({ onClick }) => {
   return (
     <FormGroup className='row justify-content-center my-4'>
       <Form.Check
@@ -9,7 +9,7 @@ const Checkbox = props => {
         id='1'
         type='checkbox'
         label='I agree to the terms and conditions'
-        onClick={props.onClick}
+        onClick={onClick}
       />
     </FormGroup>
   );
