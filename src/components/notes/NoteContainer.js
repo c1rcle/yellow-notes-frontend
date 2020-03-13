@@ -1,6 +1,6 @@
 import React from 'react';
 import Note from './Note';
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 const NoteContainer = () => {
   const userNotes = [
@@ -11,10 +11,13 @@ const NoteContainer = () => {
       content: 'Multi \nline \ntext'
     }
   ];
+
   return (
     <Row>
       {userNotes.map(note => (
-        <Note content={note.content} />
+        <Col sm={4}>
+          <Note content={note.content} />
+        </Col>
       ))}
     </Row>
   );

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
 
 const Note = props => {
   const { content } = props;
   return (
     <>
-        <Col sm={4} className="h-100 d-inline-block text-wrap multiline">
-          {content}
-        </Col>
+      <FormControl disabled='true' as='textarea' rows='5'>
+        {content}
+      </FormControl>
     </>
   );
 };
