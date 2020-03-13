@@ -1,11 +1,22 @@
-import React from 'react'
+import React from 'react';
+import Note from './Note';
 
 const NoteContainer = () => {
-    return (
-        <div>
-            NoteContainer's dummy content
-        </div>
-    )
-}
+  const userNotes = [
+    {
+      content: 'Some example text'
+    },
+    {
+      content: 'Multi \nline \ntext'
+    }
+  ];
+  return (
+    <div>
+      {userNotes.map(note => (
+        <Note content={note.content} />
+      ))}
+    </div>
+  );
+};
 
-export default NoteContainer
+export default NoteContainer;
