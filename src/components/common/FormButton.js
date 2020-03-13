@@ -1,16 +1,11 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const FormButton = props => {
+const FormButton = ({ disabled, icon, title }) => {
   return (
-    <Button
-      variant='outline-primary'
-      block
-      type='submit'
-      disabled={props.disabled}
-    >
-      <i className={`fas fa-${props.icon} mr-1`} />
-      {props.title}
+    <Button variant='outline-primary' block type='submit' disabled={disabled}>
+      <i className={`fas fa-${icon} mr-1`} />
+      {title}
     </Button>
   );
 };
