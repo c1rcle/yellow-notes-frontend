@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
-import Email from './common/Email';
-import Password from './common/Password';
-import FormButton from './common/FormButton';
 import { Link } from 'react-router-dom';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import Email from '../common/Email';
+import Password from '../common/Password';
+import FormButton from '../common/FormButton';
 
 const Login = () => {
   const [state, setState] = useState({

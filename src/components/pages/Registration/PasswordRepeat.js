@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { FormGroup, Form } from 'react-bootstrap';
-import TooltipCustom from '../common/TooltipCustom';
+import TooltipCustom from '../../common/TooltipCustom';
 
 const PasswordRepeat = ({ state, pattern, onTextChanged }) => {
   const passwordRepeatError = 'Passwords do not match!';

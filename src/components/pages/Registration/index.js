@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
-import Email from '../common/Email';
-import Password from '../common/Password';
+import Email from '../../common/Email';
+import Password from '../../common/Password';
+import FormButton from '../../common/FormButton';
 import PasswordRepeat from './PasswordRepeat';
 import Checkbox from './Checkbox';
-import FormButton from '../common/FormButton';
 
 const Registration = () => {
   const [state, setState] = useState({
