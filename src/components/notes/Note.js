@@ -1,14 +1,15 @@
 import React from 'react';
-import { FormControl } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import './notes.css';
 
 const Note = props => {
   const { content } = props;
   return (
-    <>
-      <FormControl disabled='true' as='textarea' rows='5'>
+    <div className='note-item'>
+      <Card.Body disabled='true' as='textarea' rows='5'>
         {content}
-      </FormControl>
-    </>
+      </Card.Body>
+    </div>
   );
 };
 

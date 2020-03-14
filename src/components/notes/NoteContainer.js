@@ -8,6 +8,15 @@ const NoteContainer = () => {
       content: 'Some example text'
     },
     {
+      content: 'Some example text'
+    },
+    {
+      content: 'Some example text'
+    },
+    {
+      content: 'Some example text'
+    },
+    {
       content: 'Multi \nline \ntext'
     }
   ];
@@ -15,7 +24,7 @@ const NoteContainer = () => {
   return (
     <Row>
       {userNotes.map(note => (
-        <Col sm={4}>
+        <Col sm={4} className='mt-3'>
           <Note content={note.content} />
         </Col>
       ))}
