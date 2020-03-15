@@ -5,6 +5,8 @@ import Password from '../../common/Password';
 import FormButton from '../../common/FormButton';
 import PasswordRepeat from './PasswordRepeat';
 import Checkbox from './Checkbox';
+import useUser from '../../../contexts/UserContext';
+import { Redirect } from 'react-router-dom';
 
 const Registration = () => {
   const [state, setState] = useState({
@@ -13,6 +15,8 @@ const Registration = () => {
     passwordRepeat: { value: '', isValid: false },
     termsAccepted: false
   });
+
+  const [user, dispatch] = useUser();
 
   const { email, password, passwordRepeat, termsAccepted } = state;
 
@@ -30,10 +34,16 @@ const Registration = () => {
     e.preventDefault();
     e.target.className += ' was-validated';
     // TODO - register a user.
+    dispatch({
+      type: 'REGISTER',
+      payload: { email: state.email, password: state.password }
+    });
   };
 
   return (
     <>
+      {user.email === undefined || <Redirect to='notes' />}
+
       <Row className='justify-content-center'>
         <Col xs={11} lg={8} className='my-4'>
           <h1 className='display-4 text-center'>Register an account</h1>

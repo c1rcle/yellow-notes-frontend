@@ -7,9 +7,13 @@ const Note = props => {
   return (
     <Card className='shadow-sm'>
       <Card.Body className='p-0'>
-        <Form.Control disabled as='textarea' className='note-item' rows={5}>
-          {content}
-        </Form.Control>
+        <Form.Control
+          disabled
+          as='textarea'
+          className='note-item'
+          rows={5}
+          value={content}
+        />
       </Card.Body>
     </Card>
   );
