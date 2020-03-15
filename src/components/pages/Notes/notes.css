@@ -1,0 +1,5 @@
+.note-item.form-control:disabled {
+  background-color: #f8f9fa;
+  border: none;
+  resize: none;
+}
