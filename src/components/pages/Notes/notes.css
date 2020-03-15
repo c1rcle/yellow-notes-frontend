@@ -1,6 +1,5 @@
-.note-item textarea {
-  color: black;
-  background-color: white;
-  border-color: black;
+.note-item.form-control:disabled {
+  background-color: #f8f9fa;
+  border: none;
   resize: none;
 }

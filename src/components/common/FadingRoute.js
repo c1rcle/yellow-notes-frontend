@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Fade } from 'react-bootstrap';
 import { Route } from 'react-router-dom';
 
