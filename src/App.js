@@ -11,7 +11,6 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <main style={{ marginTop: "78px" }}></main>
       <Container>
         <Switch>
           <FadingRoute exact key="0" path="/" component={Login} />

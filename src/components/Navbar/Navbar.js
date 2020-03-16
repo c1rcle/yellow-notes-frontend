@@ -1,33 +1,31 @@
 import React from "react";
-import "./Navbar.css";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button
+} from "react-bootstrap";
 
-const Navbar = props => (
-  <header className="Navbar">
-    <nav className="navbar_navigation">
-      <div></div>
-      <div>
+export default function NavBar() {
+  return (
+    <Navbar bg="info" expand="lg">
+      <Navbar.Brand href="#home">
         <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBpZD0iTGF5ZXJfMSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTEyIDUxMiIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjY0cHgiPjxnPjxwYXRoIGQ9Im00MzYgMGgtMzYwYy0xNi41NDIgMC0zMCAxMy40NTgtMzAgMzB2NDUyYzAgMTYuNTQyIDEzLjQ1OCAzMCAzMCAzMGgzNjBjMTYuNTQyIDAgMzAtMTMuNDU4IDMwLTMwdi00NTJjMC0xNi41NDItMTMuNDU4LTMwLTMwLTMwem0tMTMwIDIwdjIwaC0xMDB2LTIwem0tOTAgODBoODBjMTYuNTQyIDAgMzAtMTMuNDU4IDMwLTMwdi0xMGg4MHYzOTJoLTMwMHYtMzkyaDgwdjEwYzAgMTYuNTQyIDEzLjQ1OCAzMCAzMCAzMHptOTAtMzBjMCA1LjUxNC00LjQ4NiAxMC0xMCAxMGgtODBjLTUuNTE0IDAtMTAtNC40ODYtMTAtMTB2LTEwaDEwMHptMTQwIDQxMmMwIDUuNTE0LTQuNDg2IDEwLTEwIDEwaC0zNjBjLTUuNTE0IDAtMTAtNC40ODYtMTAtMTB2LTQ1MmMwLTUuNTE0IDQuNDg2LTEwIDEwLTEwaDExMHYyMGgtOTBjLTUuNTIzIDAtMTAgNC40NzgtMTAgMTB2NDEyYzAgNS41MjIgNC40NzcgMTAgMTAgMTBoMzIwYzUuNTIzIDAgMTAtNC40NzggMTAtMTB2LTQxMmMwLTUuNTIyLTQuNDc3LTEwLTEwLTEwaC05MHYtMjBoMTEwYzUuNTE0IDAgMTAgNC40ODYgMTAgMTB6IiBmaWxsPSIjMDAwMDAwIi8+PHBhdGggZD0ibTE0NiAxNTZjMCA1LjUyMiA0LjQ3NyAxMCAxMCAxMGgyMDBjNS41MjMgMCAxMC00LjQ3OCAxMC0xMHMtNC40NzctMTAtMTAtMTBoLTIwMGMtNS41MjIgMC0xMCA0LjQ3OC0xMCAxMHoiIGZpbGw9IiMwMDAwMDAiLz48cGF0aCBkPSJtMzU2IDE4NmgtMjAwYy01LjUyMyAwLTEwIDQuNDc4LTEwIDEwczQuNDc3IDEwIDEwIDEwaDIwMGM1LjUyMyAwIDEwLTQuNDc4IDEwLTEwcy00LjQ3Ny0xMC0xMC0xMHoiIGZpbGw9IiMwMDAwMDAiLz48cGF0aCBkPSJtMTU2IDI0NmgxMDBjNS41MjMgMCAxMC00LjQ3OCAxMC0xMHMtNC40NzctMTAtMTAtMTBoLTEwMGMtNS41MjMgMC0xMCA0LjQ3OC0xMCAxMHM0LjQ3OCAxMCAxMCAxMHoiIGZpbGw9IiMwMDAwMDAiLz48cGF0aCBkPSJtMzU2IDI2NmgtMjAwYy01LjUyMyAwLTEwIDQuNDc4LTEwIDEwczQuNDc3IDEwIDEwIDEwaDIwMGM1LjUyMyAwIDEwLTQuNDc4IDEwLTEwcy00LjQ3Ny0xMC0xMC0xMHoiIGZpbGw9IiMwMDAwMDAiLz48cGF0aCBkPSJtMzU2IDMwNmgtMjAwYy01LjUyMyAwLTEwIDQuNDc4LTEwIDEwczQuNDc3IDEwIDEwIDEwaDIwMGM1LjUyMyAwIDEwLTQuNDc4IDEwLTEwcy00LjQ3Ny0xMC0xMC0xMHoiIGZpbGw9IiMwMDAwMDAiLz48cGF0aCBkPSJtMjU2IDM0NmgtMTAwYy01LjUyMyAwLTEwIDQuNDc4LTEwIDEwczQuNDc3IDEwIDEwIDEwaDEwMGM1LjUyMyAwIDEwLTQuNDc4IDEwLTEwcy00LjQ3Ny0xMC0xMC0xMHoiIGZpbGw9IiMwMDAwMDAiLz48L2c+PC9zdmc+Cg==" />
-      </div>
-      <div className="spacer" />
-      <div className="navbar_navigation-items">
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/">My Notes</a>
-          </li>
+      </Navbar.Brand>
 
-          <li>
-            <a href="/">Log in</a>
-          </li>
-          <li>
-            <a href="/">Register</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-);
-
-export default Navbar;
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mx-auto">
+          <Nav.Link href="#notes">My notes</Nav.Link>
+          <Nav.Link href="#home">Home</Nav.Link>
+        </Nav>
+        <Nav className="ml-auto">
+          <Nav.Link href="#login">Log in</Nav.Link>
+          <Nav.Link href="#register">Register</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  );
+}
