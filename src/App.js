@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import Navigation from "./components/layout/Navigation";
 import Registration from "./components/pages/Registration";
 import Login from "./components/pages/Login";
 import Notes from "./components/pages/Notes";
 import FadingRoute from "./components/common/FadingRoute";
-import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <Router>
-      <Navbar />
+      <Navigation />
       <Container>
         <Switch>
           <FadingRoute exact key="0" path="/" component={Login} />
