@@ -1,0 +1,1 @@
+{"version":3,"sources":["notes.css"],"names":[],"mappings":"AAAA,iCACE,wBAAyB,CACzB,WAAY,CACZ,WACF","file":"main.966f56b0.chunk.css","sourcesContent":[".note-item.form-control:disabled {\r\n  background-color: #f8f9fa;\r\n  border: none;\r\n  resize: none;\r\n}\r\n"]}
