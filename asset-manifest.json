@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/yellow-notes-frontend/static/css/main.966f56b0.chunk.css",
-    "main.js": "/yellow-notes-frontend/static/js/main.4e6e2375.chunk.js",
-    "main.js.map": "/yellow-notes-frontend/static/js/main.4e6e2375.chunk.js.map",
+    "main.js": "/yellow-notes-frontend/static/js/main.6078b5a5.chunk.js",
+    "main.js.map": "/yellow-notes-frontend/static/js/main.6078b5a5.chunk.js.map",
     "runtime-main.js": "/yellow-notes-frontend/static/js/runtime-main.ca0347dc.js",
     "runtime-main.js.map": "/yellow-notes-frontend/static/js/runtime-main.ca0347dc.js.map",
     "static/css/2.a2565aac.chunk.css": "/yellow-notes-frontend/static/css/2.a2565aac.chunk.css",
     "static/js/2.130ffecc.chunk.js": "/yellow-notes-frontend/static/js/2.130ffecc.chunk.js",
     "static/js/2.130ffecc.chunk.js.map": "/yellow-notes-frontend/static/js/2.130ffecc.chunk.js.map",
     "index.html": "/yellow-notes-frontend/index.html",
-    "precache-manifest.6cbebb14a0c5a471e0ebd41ce66a8e7c.js": "/yellow-notes-frontend/precache-manifest.6cbebb14a0c5a471e0ebd41ce66a8e7c.js",
+    "precache-manifest.fe8b28357f740dbe5236a75f93c7d363.js": "/yellow-notes-frontend/precache-manifest.fe8b28357f740dbe5236a75f93c7d363.js",
     "service-worker.js": "/yellow-notes-frontend/service-worker.js",
     "static/css/2.a2565aac.chunk.css.map": "/yellow-notes-frontend/static/css/2.a2565aac.chunk.css.map",
     "static/css/main.966f56b0.chunk.css.map": "/yellow-notes-frontend/static/css/main.966f56b0.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.a2565aac.chunk.css",
     "static/js/2.130ffecc.chunk.js",
     "static/css/main.966f56b0.chunk.css",
-    "static/js/main.4e6e2375.chunk.js"
+    "static/js/main.6078b5a5.chunk.js"
   ]
 }

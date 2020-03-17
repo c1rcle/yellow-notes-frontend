@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "82cd410741a5762a689ecebeb8e86dba",
+    "revision": "677f8f129e2db51607c8ce09c756dd70",
     "url": "/yellow-notes-frontend/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/yellow-notes-frontend/static/css/2.a2565aac.chunk.css"
   },
   {
-    "revision": "b2b21896708982d80b53",
+    "revision": "66840b87d662d9925eca",
     "url": "/yellow-notes-frontend/static/css/main.966f56b0.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/yellow-notes-frontend/static/js/2.130ffecc.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b2b21896708982d80b53",
-    "url": "/yellow-notes-frontend/static/js/main.4e6e2375.chunk.js"
+    "revision": "66840b87d662d9925eca",
+    "url": "/yellow-notes-frontend/static/js/main.6078b5a5.chunk.js"
   },
   {
     "revision": "1de72f40d487212f2fd7",
