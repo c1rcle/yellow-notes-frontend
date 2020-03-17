@@ -30,7 +30,7 @@ const Login = () => {
 
   return (
     <>
-      {user.email === undefined || <Redirect to='notes' />}
+      {user.isUserLoggedIn && <Redirect to='notes' />}
 
       <Row className='justify-content-center'>
         <Col xs={11} className='my-4'>
@@ -42,15 +42,8 @@ const Login = () => {
         <Col xs={11} lg={6} className='my-2'>
           <Form onSubmit={onSubmit} noValidate>
             <Email onTextChanged={onTextChanged('email')} state={email} />
-            <Password
-              onTextChanged={onTextChanged('password')}
-              state={password}
-            />
-            <FormButton
-              disabled={submitDisabled}
-              icon={'home'}
-              title={'Login'}
-            />
+            <Password onTextChanged={onTextChanged('password')} state={password} />
+            <FormButton disabled={submitDisabled} icon={'home'} title={'Login'} />
 
             <hr />
             <p className='lead text-center'>

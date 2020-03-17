@@ -10,18 +10,18 @@ import { UserProvider } from './contexts/UserContext';
 
 function App() {
   return (
-    <Router>
-      <Navigation />
-      <Container>
-        <UserProvider>
+    <UserProvider>
+      <Router>
+        <Navigation />
+        <Container>
           <Switch>
             <FadingRoute exact key='0' path='/' component={Login} />
             <FadingRoute exact key='1' path='/registration' component={Registration} />
             <FadingRoute exact key='2' path='/notes' component={Notes} />
           </Switch>
-        </UserProvider>
-      </Container>
-    </Router>
+        </Container>
+      </Router>
+    </UserProvider>
   );
 }
 

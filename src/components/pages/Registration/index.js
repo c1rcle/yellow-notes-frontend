@@ -42,7 +42,7 @@ const Registration = () => {
 
   return (
     <>
-      {user.email === undefined || <Redirect to='notes' />}
+      {user.isUserLoggedIn && <Redirect to='notes' />}
 
       <Row className='justify-content-center'>
         <Col xs={11} lg={8} className='my-4'>
@@ -54,21 +54,14 @@ const Registration = () => {
         <Col xs={11} lg={6} className='my-2'>
           <Form onSubmit={onSubmit} className='needs-validation' noValidate>
             <Email onTextChanged={onTextChanged('email')} state={email} />
-            <Password
-              onTextChanged={onTextChanged('password')}
-              state={password}
-            />
+            <Password onTextChanged={onTextChanged('password')} state={password} />
             <PasswordRepeat
               pattern={password.value}
               onTextChanged={onTextChanged('passwordRepeat')}
               state={passwordRepeat}
             />
             <Checkbox onClick={setTermsAccepted} />
-            <FormButton
-              disabled={!termsAccepted}
-              icon={'user-plus'}
-              title={'Create new account'}
-            />
+            <FormButton disabled={!termsAccepted} icon={'user-plus'} title={'Create new account'} />
           </Form>
         </Col>
       </Row>
