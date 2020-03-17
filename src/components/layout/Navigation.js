@@ -3,14 +3,15 @@ import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
 import useUser from '../../contexts/UserContext';
 
-const Navigation = props => {
+const Navigation = () => {
   const [{ isUserLoggedIn, email }, dispatch] = useUser();
 
   return (
     <Navbar variant='light' bg='light' expand='sm'>
       <Container className='justify-content-center'>
         <Navbar.Brand className='w-50 mr-auto'>
-          <i className='fas fa-quote-right' /> Yellow Notes {isUserLoggedIn && ' - Hello, ' + email}
+          <i className='fas fa-quote-right' />{' '}
+          <span className='lead'>{isUserLoggedIn ? `Hello, ${email}!` : 'Yellow Notes'}</span>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls='navbar-nav' />
@@ -28,13 +29,13 @@ const Navigation = props => {
             {isUserLoggedIn ? (
               <Button variant={`outline-danger`} onClick={() => dispatch({ type: 'LOGOUT' })}>
                 <i className={`fas fa-sign-out-alt mr-1`} />
-                {'Sign out'}
+                Sign out
               </Button>
             ) : (
               <Link to='/'>
                 <Button variant={`outline-primary`}>
                   <i className={`fas fa-sign-in-alt mr-1`} />
-                  {'Sign in'}
+                  Sign in
                 </Button>
               </Link>
             )}

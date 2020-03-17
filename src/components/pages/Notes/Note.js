@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Form } from 'react-bootstrap';
-import './notes.css';
+import '../../../styles/notes.css';
 
 const Note = props => {
   const { content } = props;

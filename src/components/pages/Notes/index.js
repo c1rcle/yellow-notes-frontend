@@ -36,7 +36,7 @@ function AddNote() {
   };
 
   return (
-    <ListGroup className='mt-3 mb-3'>
+    <ListGroup className='mt-3 mb-3 shadow-sm'>
       <ListGroupItem>
         <Form className='d-flex' onSubmit={handleSubmit}>
           <Form.Control
@@ -45,8 +45,8 @@ function AddNote() {
             value={note}
             onChange={e => setNote(e.target.value)}
           />
-          <Button className='btn-lg ml-3 p-0' type='submit'>
-            <i className='fas fa-plus mr-2 ml-2' />
+          <Button variant='outline-info' type='submit' className='ml-3'>
+            <i className='fas fa-plus' />
           </Button>
         </Form>
       </ListGroupItem>
