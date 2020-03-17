@@ -6,8 +6,6 @@ import useUser from '../../contexts/UserContext';
 const Navigation = props => {
   const [{ isUserLoggedIn, email }, dispatch] = useUser();
 
-  console.log(props);
-
   return (
     <Navbar variant='light' bg='light' expand='sm'>
       <Container className='justify-content-center'>

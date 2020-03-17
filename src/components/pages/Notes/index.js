@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom';
 
 const Notes = () => {
   const [user] = useUser();
-  console.log(user);
   return (
     <>
       <AddNote />
@@ -33,7 +32,6 @@ function AddNote() {
     event.preventDefault();
     if (note === '') return;
     dispatch({ type: 'ADD_NOTE', payload: { content: note } });
-    console.log(note);
     setNote('');
   };
 

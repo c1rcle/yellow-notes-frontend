@@ -36,7 +36,7 @@ const Registration = () => {
     // TODO - register a user.
     dispatch({
       type: 'REGISTER',
-      payload: { email: state.email, password: state.password }
+      payload: { email: state.email.value, password: state.password.value }
     });
   };
 
