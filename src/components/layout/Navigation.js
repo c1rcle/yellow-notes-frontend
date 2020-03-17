@@ -6,12 +6,16 @@ import useUser from '../../contexts/UserContext';
 const Navigation = () => {
   const [{ isUserLoggedIn, email }, dispatch] = useUser();
 
+  const trimEmail = () => {
+    return email.split('@')[0];
+  };
+
   return (
     <Navbar variant='light' bg='light' expand='lg'>
       <Container className='justify-content-center'>
         <Navbar.Brand className='w-50 mr-auto'>
           <i className='fas fa-quote-right' />{' '}
-          <span className='lead'>{isUserLoggedIn ? `Hello, ${email}!` : 'Yellow Notes'}</span>
+          <span className='lead'>{isUserLoggedIn ? `Hello, ${trimEmail()}!` : 'Yellow Notes'}</span>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls='navbar-nav' />
