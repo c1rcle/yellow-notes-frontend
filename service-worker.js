@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/yellow-notes-frontend/precache-manifest.a5e00c28c38b2710f3563599adf2068b.js"
+  "/yellow-notes-frontend/precache-manifest.6cbebb14a0c5a471e0ebd41ce66a8e7c.js"
 );
 
 self.addEventListener('message', (event) => {
