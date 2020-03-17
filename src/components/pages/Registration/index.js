@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 import Email from '../../common/Email';
 import Password from '../../common/Password';
 import FormButton from '../../common/FormButton';
 import PasswordRepeat from './PasswordRepeat';
 import Checkbox from './Checkbox';
 import useUser from '../../../contexts/UserContext';
-import { Redirect } from 'react-router-dom';
 
 const Registration = () => {
   const [state, setState] = useState({
@@ -33,11 +33,12 @@ const Registration = () => {
   const onSubmit = e => {
     e.preventDefault();
     e.target.className += ' was-validated';
-    // TODO - register a user.
-    dispatch({
-      type: 'REGISTER',
-      payload: { email: state.email.value, password: state.password.value }
-    });
+    if (e.target.checkValidity()) {
+      dispatch({
+        type: 'REGISTER',
+        payload: { email: state.email.value, password: state.password.value }
+      });
+    }
   };
 
   return (
