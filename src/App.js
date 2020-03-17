@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { HashRouter as Router, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Navigation from './components/layout/Navigation';
 import Registration from './components/pages/Registration';
