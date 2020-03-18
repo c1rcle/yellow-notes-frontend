@@ -1,3 +1,4 @@
+// TODO API
 //import yellowNotesApi from '../../apis/yellowNotesApi';
 
 export default registerAction = async action => {
@@ -11,6 +12,7 @@ export default registerAction = async action => {
 
   let response;
   try {
+    // TODO API
     response = {
       status: 200,
       data: { email: action.payload.email }
@@ -24,7 +26,6 @@ export default registerAction = async action => {
     throw new Error('Registration request has did not succeed! ', response);
 
   action.payload = response.data;
-  //action.payload.notes || (action.payload.notes = []);
-  console.log(action.payload);
+
   return action;
 };
