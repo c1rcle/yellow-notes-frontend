@@ -1,53 +1,24 @@
-const actionRegister = async action => {
-  // await ...
-  delete action.payload.password;
-  action.payload.notes = [];
-  return action;
-};
-
-const actionLogin = async action => {
-  // await ...
-  delete action.payload.password;
-  action.payload.notes = [
-    {
-      id: 0,
-      content: 'Some example text'
-    },
-    {
-      id: 1,
-      content: 'Some example text'
-    },
-    {
-      id: 2,
-      content: 'Some example text'
-    },
-    {
-      id: 3,
-      content: 'Some example text'
-    },
-    {
-      id: 4,
-      content: 'Multi \nline \ntext'
-    }
-  ];
-  return action;
-};
-
-const actionAddNote = async action => {
-  // await ...
-  return action;
-};
+//import yellowNotesApi from '../../apis/yellowNotesApi';
+import registerAction from './actions/registerAction';
+import loginAction from './actions/loginAction';
+import addNoteAction from './actions/addNoteAction';
 
 const dispatchAsync = dispatch => action => {
   switch (action.type) {
     case 'REGISTER':
-      actionRegister(action).then(a => dispatch(a));
+      registerAction(action)
+        .then(a => dispatch(a))
+        .catch(err => console.log(err));
       break;
     case 'LOGIN':
-      actionLogin(action).then(a => dispatch(a));
+      loginAction(action)
+        .then(a => dispatch(a))
+        .catch(err => console.log(err));
       break;
     case 'ADD_NOTE':
-      actionAddNote(action).then(a => dispatch(a));
+      addNoteAction(action)
+        .then(a => dispatch(a))
+        .catch(err => console.log(err));
       break;
     default:
       dispatch(action);
