@@ -1,7 +1,7 @@
 // TODO API
 //import yellowNotesApi from '../../apis/yellowNotesApi';
 
-export default registerAction = async action => {
+const registerAction = async action => {
   if (
     !action.payload ||
     !action.payload.password ||
@@ -29,3 +29,5 @@ export default registerAction = async action => {
 
   return action;
 };
+
+export default registerAction;
