@@ -17,32 +17,30 @@ const Navigation = () => {
           <i className='fas fa-quote-right' />{' '}
           <span className='lead'>{isUserLoggedIn ? `Hello, ${trimEmail()}!` : 'Yellow Notes'}</span>
         </Navbar.Brand>
-
-        <Navbar.Toggle aria-controls='navbar-nav' />
-        <Navbar.Collapse id='navbar-nav' className='w-100'>
+        {isUserLoggedIn ? (
+          <Navbar.Toggle aria-controls='navbar-nav' />
+        ) : (
+          <Link to='/' className='ml-auto justify-content-end'>
+            <Button variant={`outline-primary`} className='w-100'>
+              <i className={`fas fa-sign-in-alt mr-1`} />
+              Sign in
+            </Button>
+          </Link>
+        )}
+        {isUserLoggedIn && (
           <Nav className='w-100 justify-content-center my-2'>
-            {isUserLoggedIn && (
-              <Button variant='outline-success'>
-                <i className='fas fa-bars mr-1' />
-                Text
-              </Button>
-            )}
+            <Button variant='outline-success'>
+              <i className='fas fa-bars mr-1' />
+              Text
+            </Button>
           </Nav>
-
-          <Nav className='w-100 ml-auto justify-content-end my-2'>
-            {isUserLoggedIn ? (
-              <Button variant={`outline-danger`} onClick={() => dispatch({ type: 'LOGOUT' })}>
-                <i className={`fas fa-sign-out-alt mr-1`} />
-                Sign out
-              </Button>
-            ) : (
-              <Link to='/'>
-                <Button variant={`outline-primary`}>
-                  <i className={`fas fa-sign-in-alt mr-1`} />
-                  Sign in
-                </Button>
-              </Link>
-            )}
+        )}
+        <Navbar.Collapse id='navbar-nav' className='w-100'>
+          <Nav className='w-100 ml-auto justify-content-end'>
+            <Button variant={`outline-danger`} onClick={() => dispatch({ type: 'LOGOUT' })}>
+              <i className={`fas fa-sign-out-alt mr-1`} />
+              Sign out
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
