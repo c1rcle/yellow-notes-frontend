@@ -26,6 +26,11 @@ const Registration = () => {
     setState({ ...state, [name]: { value, isValid } });
   };
 
+  const onBlur = name => () => {
+    if (state[name].wasBlurred) return;
+    setState({ ...state, [name]: { ...state[name], wasBlurred: true } });
+  };
+
   const setTermsAccepted = () => {
     setState({ ...state, termsAccepted: !termsAccepted });
   };
@@ -54,11 +59,16 @@ const Registration = () => {
       <Row className='justify-content-center'>
         <Col xs={11} lg={6} className='my-2'>
           <Form onSubmit={onSubmit} className='needs-validation' noValidate>
-            <Email onTextChanged={onTextChanged('email')} state={email} />
-            <Password onTextChanged={onTextChanged('password')} state={password} />
+            <Email onTextChanged={onTextChanged('email')} onBlur={onBlur('email')} state={email} />
+            <Password
+              onTextChanged={onTextChanged('password')}
+              onBlur={onBlur('password')}
+              state={password}
+            />
             <PasswordRepeat
               pattern={password.value}
               onTextChanged={onTextChanged('passwordRepeat')}
+              onBlur={onBlur('passwordRepeat')}
               state={passwordRepeat}
             />
             <Checkbox onClick={setTermsAccepted} />

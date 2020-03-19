@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { FormGroup, InputGroup, Form } from 'react-bootstrap';
 import TooltipCustom from '../../common/TooltipCustom';
 
-const PasswordRepeat = ({ state, pattern, onTextChanged }) => {
+const PasswordRepeat = ({ state, pattern, onTextChanged, onBlur }) => {
   const passwordRepeatError = 'Passwords do not match!';
 
   return (
@@ -15,7 +15,7 @@ const PasswordRepeat = ({ state, pattern, onTextChanged }) => {
         </InputGroup.Prepend>
         <TooltipCustom
           text={passwordRepeatError}
-          show={!!state.value && pattern !== state.value}
+          show={state.wasBlurred && !!state.value && pattern !== state.value}
           placement='right'>
           <Form.Control
             required
@@ -26,6 +26,7 @@ const PasswordRepeat = ({ state, pattern, onTextChanged }) => {
             ref={useRef()}
             value={state.value}
             onChange={onTextChanged}
+            onBlur={onBlur}
           />
         </TooltipCustom>
       </InputGroup>
