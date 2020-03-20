@@ -12,31 +12,37 @@ const Navigation = () => {
 
   return (
     <Navbar variant='light' bg='light' expand='lg'>
-      <Container className='justify-content-center'>
-        <Navbar.Brand className='w-50 mr-auto'>
+      <Container className='d-inline-flex container-fluid justify-content-lg-around justify-content-between'>
+        <Navbar.Brand>
           <i className='fas fa-quote-right' />{' '}
           <span className='lead'>{isUserLoggedIn ? `Hello, ${trimEmail()}!` : 'Yellow Notes'}</span>
         </Navbar.Brand>
         {isUserLoggedIn ? (
           <>
-            <Nav className='w-100 ml-auto justify-content-center'>
-              <Button variant='outline-success'>
+            <Nav>
+              <Button className='w-100' variant='outline-success'>
                 <i className='fas fa-bars mr-1' />
                 Text
               </Button>
             </Nav>
-            <Navbar.Toggle aria-controls='navbar-nav' />
-            <Navbar.Collapse id='navbar-nav' className='w-100'>
-              <Nav className='w-100 ml-auto justify-content-end'>
-                <Button variant={`outline-danger`} onClick={() => dispatch({ type: 'LOGOUT' })}>
+            <Nav className='d-lg-none'>
+              <Navbar.Toggle aria-controls='navbar-nav' />
+            </Nav>
+            <Nav className=' d-lg-none w-100' />
+            <Nav className='flex-fill flex-lg-grow-0'>
+              <Navbar.Collapse id='navbar-nav' className='w-100 justify-content-end'>
+                <Button
+                  className='w-100'
+                  variant={`outline-danger`}
+                  onClick={() => dispatch({ type: 'LOGOUT' })}>
                   <i className={`fas fa-sign-out-alt mr-1`} />
                   Sign out
                 </Button>
-              </Nav>
-            </Navbar.Collapse>
+              </Navbar.Collapse>
+            </Nav>
           </>
         ) : (
-          <Link to='/' className='ml-auto justify-content-end'>
+          <Link to='/' className=''>
             <Button variant={`outline-primary`} className='w-100'>
               <i className={`fas fa-sign-in-alt mr-1`} />
               Sign in
