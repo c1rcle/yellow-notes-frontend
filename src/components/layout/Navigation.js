@@ -18,7 +18,23 @@ const Navigation = () => {
           <span className='lead'>{isUserLoggedIn ? `Hello, ${trimEmail()}!` : 'Yellow Notes'}</span>
         </Navbar.Brand>
         {isUserLoggedIn ? (
-          <Navbar.Toggle aria-controls='navbar-nav' />
+          <>
+            <Nav className='w-100 ml-auto justify-content-center'>
+              <Button variant='outline-success'>
+                <i className='fas fa-bars mr-1' />
+                Text
+              </Button>
+            </Nav>
+            <Navbar.Toggle aria-controls='navbar-nav' />
+            <Navbar.Collapse id='navbar-nav' className='w-100'>
+              <Nav className='w-100 ml-auto justify-content-end'>
+                <Button variant={`outline-danger`} onClick={() => dispatch({ type: 'LOGOUT' })}>
+                  <i className={`fas fa-sign-out-alt mr-1`} />
+                  Sign out
+                </Button>
+              </Nav>
+            </Navbar.Collapse>
+          </>
         ) : (
           <Link to='/' className='ml-auto justify-content-end'>
             <Button variant={`outline-primary`} className='w-100'>
@@ -27,22 +43,6 @@ const Navigation = () => {
             </Button>
           </Link>
         )}
-        {isUserLoggedIn && (
-          <Nav className='w-100 justify-content-center my-2'>
-            <Button variant='outline-success'>
-              <i className='fas fa-bars mr-1' />
-              Text
-            </Button>
-          </Nav>
-        )}
-        <Navbar.Collapse id='navbar-nav' className='w-100'>
-          <Nav className='w-100 ml-auto justify-content-end'>
-            <Button variant={`outline-danger`} onClick={() => dispatch({ type: 'LOGOUT' })}>
-              <i className={`fas fa-sign-out-alt mr-1`} />
-              Sign out
-            </Button>
-          </Nav>
-        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
