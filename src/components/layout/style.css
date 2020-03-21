@@ -1,0 +1,3 @@
+.navbar-collapse .navbar-nav {
+  flex-direction: row-reverse;
+}

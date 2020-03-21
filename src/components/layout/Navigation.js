@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useUser from '../../contexts/UserContext';
+import './style.css';
 
 const Navigation = () => {
   const [{ isUserLoggedIn, email }, dispatch] = useUser();
@@ -12,43 +13,46 @@ const Navigation = () => {
 
   return (
     <Navbar variant='light' bg='light' expand='lg'>
-      <Container className='d-inline-flex container-fluid justify-content-lg-around justify-content-between'>
-        <Navbar.Brand>
+      <Container className='justify-content-center'>
+        <Navbar.Brand className='w-50 mr-auto'>
           <i className='fas fa-quote-right' />{' '}
           <span className='lead'>{isUserLoggedIn ? `Hello, ${trimEmail()}!` : 'Yellow Notes'}</span>
         </Navbar.Brand>
-        {isUserLoggedIn ? (
-          <>
-            <Nav>
-              <Button className='w-100' variant='outline-success'>
+
+        {isUserLoggedIn && (
+          <Button variant='outline-success' className='d-lg-none mr-2'>
+            <i className='fas fa-bars mr-1' />
+            Text
+          </Button>
+        )}
+
+        <Navbar.Toggle aria-controls='navbar-nav' />
+        <Navbar.Collapse id='navbar-nav' className='w-100'>
+          <Nav className='w-100 justify-content-center my-2'>
+            {isUserLoggedIn && (
+              <Button variant='outline-success' className='d-none d-lg-block'>
                 <i className='fas fa-bars mr-1' />
                 Text
               </Button>
-            </Nav>
-            <Nav className='d-lg-none'>
-              <Navbar.Toggle aria-controls='navbar-nav' />
-            </Nav>
-            <Nav className=' d-lg-none w-100' />
-            <Nav className='flex-fill flex-lg-grow-0'>
-              <Navbar.Collapse id='navbar-nav' className='w-100 justify-content-end'>
-                <Button
-                  className='w-100'
-                  variant={`outline-danger`}
-                  onClick={() => dispatch({ type: 'LOGOUT' })}>
-                  <i className={`fas fa-sign-out-alt mr-1`} />
-                  Sign out
+            )}
+          </Nav>
+
+          <Nav className='w-100 ml-auto justify-content-end row-reverse'>
+            {isUserLoggedIn ? (
+              <Button variant={`outline-danger`} onClick={() => dispatch({ type: 'LOGOUT' })}>
+                <i className={`fas fa-sign-out-alt mr-1`} />
+                Sign out
+              </Button>
+            ) : (
+              <Link to='/'>
+                <Button variant={`outline-primary`}>
+                  <i className={`fas fa-sign-in-alt mr-1`} />
+                  Sign in
                 </Button>
-              </Navbar.Collapse>
-            </Nav>
-          </>
-        ) : (
-          <Link to='/' className=''>
-            <Button variant={`outline-primary`} className='w-100'>
-              <i className={`fas fa-sign-in-alt mr-1`} />
-              Sign in
-            </Button>
-          </Link>
-        )}
+              </Link>
+            )}
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
