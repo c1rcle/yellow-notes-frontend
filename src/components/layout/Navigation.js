@@ -37,7 +37,7 @@ const Navigation = () => {
             )}
           </Nav>
 
-          <Nav className='w-100 ml-auto justify-content-end'>
+          <Nav className='w-100 ml-auto justify-content-end my-2'>
             {isUserLoggedIn ? (
               <Button variant={`outline-danger`} onClick={() => dispatch({ type: 'LOGOUT' })}>
                 <i className={`fas fa-sign-out-alt mr-1`} />
