@@ -18,29 +18,34 @@ const Navigation = () => {
           <span className='lead'>{isUserLoggedIn ? `Hello, ${trimEmail()}!` : 'Yellow Notes'}</span>
         </Navbar.Brand>
 
+        {isUserLoggedIn && (
+          <Button variant='outline-success' className='d-lg-none mr-2'>
+            <i className='fas fa-bars mr-1' />
+            Text
+          </Button>
+        )}
+
         <Navbar.Toggle aria-controls='navbar-nav' />
         <Navbar.Collapse id='navbar-nav' className='w-100'>
-          <Nav className='w-100 justify-content-center my-2'>
-            {isUserLoggedIn && (
-              <Button variant='outline-success'>
+          {isUserLoggedIn && (
+            <Nav className='w-100 justify-content-center'>
+              <Button variant='outline-success' className='d-none d-lg-block'>
                 <i className='fas fa-bars mr-1' />
                 Text
               </Button>
-            )}
-          </Nav>
+            </Nav>
+          )}
 
-          <Nav className='w-100 ml-auto justify-content-end my-2'>
+          <Nav className='w-100 ml-auto justify-content-end mt-2 mt-lg-0 flex-lg-row flex-row-reverse'>
             {isUserLoggedIn ? (
               <Button variant={`outline-danger`} onClick={() => dispatch({ type: 'LOGOUT' })}>
                 <i className={`fas fa-sign-out-alt mr-1`} />
                 Sign out
               </Button>
             ) : (
-              <Link to='/'>
-                <Button variant={`outline-primary`}>
-                  <i className={`fas fa-sign-in-alt mr-1`} />
-                  Sign in
-                </Button>
+              <Link to='/' className='btn btn-outline-primary'>
+                <i className={`fas fa-sign-in-alt mr-1`} />
+                Sign in
               </Link>
             )}
           </Nav>
