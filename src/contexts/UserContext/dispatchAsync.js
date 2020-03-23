@@ -15,6 +15,10 @@ const dispatchAsync = dispatch => action => {
         .then(a => dispatch(a))
         .catch(err => console.log(err));
       break;
+    case 'LOGOUT':
+      localStorage.removeItem('token');
+      dispatch(action);
+      break;
     case 'ADD_NOTE':
       addNoteAction(action)
         .then(a => dispatch(a))

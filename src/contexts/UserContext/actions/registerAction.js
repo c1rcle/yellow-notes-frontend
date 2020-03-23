@@ -1,5 +1,5 @@
 // TODO API - uncomment
-//import yellowNotesApi from '../../apis/yellowNotesApi';
+import yellowNotesApi from '../../../apis/yellowNotesApi';
 
 const registerAction = async action => {
   if (
@@ -12,15 +12,12 @@ const registerAction = async action => {
 
   let response;
   try {
-    // TODO API - remove and uncomment
-    response = {
-      status: 200,
-      data: { email: action.payload.email }
-    };
-    //response = await yellowNotesApi.post('user/register', { ...action.payload });
+    console.log({ ...action.payload });
+    response = await yellowNotesApi.post('users/register', { ...action.payload });
   } catch (e) {
     throw new Error('Registration request has did not succeed! ', response);
   }
+  console.log(response);
 
   if (response.status !== 200)
     throw new Error('Registration request has did not succeed! ', response);

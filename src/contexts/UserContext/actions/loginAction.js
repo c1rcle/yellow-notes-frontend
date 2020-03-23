@@ -1,5 +1,4 @@
-// TODO API - uncomment
-//import yellowNotesApi from '../../apis/yellowNotesApi';
+import yellowNotesApi from '../../../apis/yellowNotesApi';
 
 const loginAction = async action => {
   // TODO API - remove
@@ -36,12 +35,7 @@ const loginAction = async action => {
 
   let response;
   try {
-    // TODO API - remove and uncomment
-    response = {
-      status: 200,
-      data: { email: action.payload.email, notes: sampleNotes }
-    };
-    //response = await yellowNotesApi.post('user/register', { ...action.payload });
+    response = await yellowNotesApi.post('users/authenticate', action.payload);
   } catch (e) {
     throw new Error('Registration request has did not succeed! ', response);
   }
@@ -49,7 +43,10 @@ const loginAction = async action => {
   if (response.status !== 200)
     throw new Error('Registration request has did not succeed! ', response);
 
-  return { ...action, payload: response.data };
+  localStorage.setItem('token', response.data.token);
+  console.log(response);
+
+  return { ...action, payload: { ...action.payload, notes: sampleNotes } };
 };
 
 export default loginAction;
