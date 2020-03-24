@@ -25,28 +25,26 @@ const loginAction = async action => {
     }
   ];
 
-  if (
-    !action.payload ||
-    !action.payload.password ||
-    !action.payload.email ||
-    Object.keys(action.payload).length !== 2
-  )
-    throw new Error('Registration request has invalid parameters!');
+  const { payload } = action;
+  const { email, password } = payload;
+
+  if (!payload || !password || !email || Object.keys(action.payload).length !== 2)
+    throw new Error('Login request has invalid parameters!');
 
   let response;
   try {
-    response = await yellowNotesApi.post('users/authenticate', action.payload);
+    response = await yellowNotesApi.post('users/authenticate', payload);
   } catch (e) {
-    throw new Error('Registration request has did not succeed! ', response);
+    throw new Error('Login request has did not succeed! ', response);
   }
 
-  if (response.status !== 200)
-    throw new Error('Registration request has did not succeed! ', response);
+  if (response.status !== 200) {
+    return { type: 'LOGIN_FAILED' };
+  }
 
   localStorage.setItem('token', response.data.token);
-  console.log(response);
 
-  return { ...action, payload: { ...action.payload, notes: sampleNotes } };
+  return { ...action, payload: { email, notes: sampleNotes } };
 };
 
 export default loginAction;

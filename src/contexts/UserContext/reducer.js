@@ -2,8 +2,12 @@ export default (state = { isUserLoggedIn: false }, { type, payload }) => {
   switch (type) {
     case 'REGISTER':
       return { ...payload, isUserLoggedIn: true };
+    case 'REGISTER_FAILED':
+      return { isUserLoggedIn: false };
     case 'LOGIN':
       return { ...payload, isUserLoggedIn: true };
+    case 'LOGIN_FAILED':
+      return { isUserLoggedIn: false };
     case 'ADD_NOTE':
       let newId = 0;
       if (!!state.notes)
