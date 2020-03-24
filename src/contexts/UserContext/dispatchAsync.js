@@ -2,9 +2,15 @@
 import registerAction from './actions/registerAction';
 import loginAction from './actions/loginAction';
 import addNoteAction from './actions/addNoteAction';
+import checkTokenAction from './actions/checkTokenAction';
 
 const dispatchAsync = dispatch => action => {
   switch (action.type) {
+    case 'CHECK_TOKEN':
+      checkTokenAction(action)
+        .then(a => dispatch(a))
+        .catch(err => console.log(err));
+      break;
     case 'REGISTER':
       registerAction(action)
         .then(a => dispatch(a))

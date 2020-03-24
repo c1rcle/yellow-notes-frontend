@@ -35,7 +35,8 @@ const loginAction = async action => {
   try {
     response = await yellowNotesApi.post('users/authenticate', payload);
   } catch (e) {
-    throw new Error('Login request has did not succeed! ', response);
+    response = { status: 400 };
+    console.error(e);
   }
 
   if (response.status !== 200) {

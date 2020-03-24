@@ -10,9 +10,9 @@ const registerAction = async action => {
   try {
     response = await yellowNotesApi.post('users/register', { ...payload });
   } catch (e) {
-    throw new Error('Registration request has did not succeed! ', response);
+    response = { status: 400 };
+    console.error(e);
   }
-  console.log(response);
 
   if (response.status !== 200) {
     return { type: 'REGISTER_FAILED' };
