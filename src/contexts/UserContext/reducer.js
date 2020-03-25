@@ -7,13 +7,19 @@ export default (state = { isUserLoggedIn: false }, { type, payload }) => {
     case 'REGISTER_FAILED':
       // TODO: Real output
       alert('That email is already occupied, you imposter!');
-      return { isUserLoggedIn: false, hasRegistrationFailed: true };
+      return {
+        isUserLoggedIn: false,
+        errorMessage: { type: 'REGISTER', text: 'Email is occupied!' }
+      };
     case 'LOGIN':
       return { ...payload, isUserLoggedIn: true };
     case 'LOGIN_FAILED':
       // TODO: Real output
       alert('Your login is no good!');
-      return { isUserLoggedIn: false, hasRegistrationFailed: true };
+      return {
+        isUserLoggedIn: false,
+        errorMessage: { type: 'LOGIN', text: 'Wrong email / password!' }
+      };
     case 'ADD_NOTE':
       let newId = 0;
       if (!!state.notes)
