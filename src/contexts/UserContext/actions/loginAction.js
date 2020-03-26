@@ -26,9 +26,7 @@ const loginAction = async action => {
   ];
 
   const { payload } = action;
-  const { email, password } = payload;
-
-  if (!payload || !password || !email || Object.keys(action.payload).length !== 2)
+  if (!payload || !payload.password || !payload.email || Object.keys(payload).length !== 2)
     throw new Error('Login request has invalid parameters!');
 
   let response;
@@ -45,7 +43,7 @@ const loginAction = async action => {
 
   localStorage.setItem('token', response.data.token);
 
-  return { ...action, payload: { email, notes: sampleNotes } };
+  return { ...action, payload: { email: payload.email, notes: sampleNotes } };
 };
 
 export default loginAction;

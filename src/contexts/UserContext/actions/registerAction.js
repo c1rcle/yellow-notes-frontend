@@ -2,8 +2,8 @@ import yellowNotesApi from '../../../apis/yellowNotesApi';
 
 const registerAction = async action => {
   const { payload } = action;
-  const { email, password } = payload;
-  if (!payload || !password || !email || Object.keys(payload).length !== 2)
+
+  if (!payload || !payload.password || !payload.email || Object.keys(payload).length !== 2)
     throw new Error('Registration request has invalid parameters!');
 
   let response;
@@ -20,7 +20,7 @@ const registerAction = async action => {
 
   localStorage.setItem('token', response.data.token);
 
-  return { ...action, payload: { email } };
+  return { ...action, payload: { email: payload.email } };
 };
 
 export default registerAction;
