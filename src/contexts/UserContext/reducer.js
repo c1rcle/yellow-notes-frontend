@@ -1,24 +1,24 @@
 export default (state = { isUserLoggedIn: false }, { type, payload }) => {
   switch (type) {
     case 'CHECK_TOKEN':
-      return { isUserLoggedIn: false, ...payload };
+      return { isUserLoggedIn: !!payload, ...payload };
     case 'REGISTER':
       return { ...payload, isUserLoggedIn: true };
     case 'REGISTER_FAILED':
-      // TODO: Real output
-      alert('That email is already occupied, you imposter!');
+      // TODO: Real output - to be handeled in component
+      alert('That email is already occupied!');
       return {
         isUserLoggedIn: false,
-        errorMessage: { type: 'REGISTER', text: 'Email is occupied!' }
+        error: { type: 'REGISTER', message: 'Email is occupied!' }
       };
     case 'LOGIN':
       return { ...payload, isUserLoggedIn: true };
     case 'LOGIN_FAILED':
-      // TODO: Real output
-      alert('Your login is no good!');
+      // TODO: Real output - to be handeled in component
+      alert('Wrong email or password!');
       return {
         isUserLoggedIn: false,
-        errorMessage: { type: 'LOGIN', text: 'Wrong email / password!' }
+        error: { type: 'LOGIN', message: 'Wrong email / password!' }
       };
     case 'ADD_NOTE':
       let newId = 0;
