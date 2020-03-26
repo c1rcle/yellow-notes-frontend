@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert } from 'react-bootstrap';
 import useUser from '../../contexts/UserContext';
 
-const ErrorAlert = props => {
+const ErrorAlert = () => {
   const [user, dispatch] = useUser();
 
   if (user.error) {

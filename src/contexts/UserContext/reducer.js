@@ -9,14 +9,14 @@ export default (state = { isUserLoggedIn: false }, { type, payload }) => {
     case 'REGISTER_FAILED':
       return {
         isUserLoggedIn: false,
-        error: { type: 'REGISTER', message: 'Email is occupied!' }
+        error: { type: 'REGISTER', message: 'This email is already registered!' }
       };
     case 'LOGIN':
       return { ...payload, isUserLoggedIn: true };
     case 'LOGIN_FAILED':
       return {
         isUserLoggedIn: false,
-        error: { type: 'LOGIN', message: 'Wrong email / password!' }
+        error: { type: 'LOGIN', message: 'Wrong email or password!' }
       };
     case 'CLEAR_ERROR':
       return { ...state, error: null };
