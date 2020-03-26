@@ -2,6 +2,8 @@ export default (state = { isUserLoggedIn: false }, { type, payload }) => {
   switch (type) {
     case 'CHECK_TOKEN':
       return { isUserLoggedIn: !!payload, ...payload };
+    case 'LOADING_START':
+      return { ...state, isLoading: true };
     case 'REGISTER':
       return { ...payload, isUserLoggedIn: true };
     case 'REGISTER_FAILED':

@@ -72,7 +72,12 @@ const Registration = () => {
               state={passwordRepeat}
             />
             <Checkbox onClick={setTermsAccepted} />
-            <FormButton disabled={!termsAccepted} icon={'user-plus'} title={'Create new account'} />
+            <FormButton
+              disabled={!termsAccepted}
+              icon={'user-plus'}
+              title={'Create new account'}
+              isLoading={user.isLoading}
+            />
           </Form>
         </Col>
       </Row>

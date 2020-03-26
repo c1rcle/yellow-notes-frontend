@@ -43,7 +43,12 @@ const Login = () => {
           <Form onSubmit={onSubmit} noValidate>
             <Email onTextChanged={onTextChanged('email')} state={email} />
             <Password onTextChanged={onTextChanged('password')} state={password} />
-            <FormButton disabled={submitDisabled} icon={'home'} title={'Login'} />
+            <FormButton
+              disabled={submitDisabled}
+              icon={'home'}
+              title={'Login'}
+              isLoading={user.isLoading}
+            />
 
             <hr />
             <p className='lead text-center'>
