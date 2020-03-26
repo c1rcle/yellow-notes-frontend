@@ -7,6 +7,7 @@ import Login from './components/pages/Login';
 import Notes from './components/pages/Notes';
 import FadingRoute from './components/common/FadingRoute';
 import { UserProvider } from './contexts/UserContext';
+import ErrorAlert from './components/common/ErrorAlert';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Router>
         <Navigation />
         <Container>
+          <ErrorAlert />
           <Switch>
             <FadingRoute exact key='0' path='/' component={Login} />
             <FadingRoute exact key='1' path='/registration' component={Registration} />
