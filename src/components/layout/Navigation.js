@@ -10,6 +10,8 @@ const Navigation = () => {
     return email.split('@')[0];
   };
 
+  if (!isUserLoggedIn && !!localStorage.getItem('token')) dispatch({ type: 'CHECK_TOKEN' });
+
   return (
     <Navbar variant='light' bg='light' expand='lg'>
       <Container className='justify-content-center'>
