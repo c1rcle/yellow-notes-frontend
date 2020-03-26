@@ -9,6 +9,7 @@ import FadingRoute from './components/common/FadingRoute';
 import { UserProvider } from './contexts/UserContext';
 
 function App() {
+  console.log(process.env.NODE_ENV);
   return (
     <UserProvider>
       <Router>
