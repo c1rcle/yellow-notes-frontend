@@ -14,11 +14,10 @@ const addNoteAction = async action => {
     };
     //response = await yellowNotesApi.post('user/note', { ...action.payload });
   } catch (e) {
-    throw new Error('Registration request has did not succeed! ', response);
+    throw new Error('Add note action has failed! ', response);
   }
 
-  if (response.status !== 200)
-    throw new Error('Registration request has did not succeed! ', response);
+  if (response.status !== 200) throw new Error('Add note action has failed! ', response);
 
   return { ...action, payload: response.data };
 };
