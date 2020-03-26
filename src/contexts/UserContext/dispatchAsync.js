@@ -29,7 +29,6 @@ const dispatchAsync = dispatch => action => {
       dispatch(action);
       break;
     case 'ADD_NOTE':
-      dispatch({ type: 'LOADING_START' });
       addNoteAction(action)
         .then(a => dispatch(a))
         .catch(err => console.log(err));
