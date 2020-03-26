@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import Email from '../common/Email';
 import Password from '../common/Password';
+import Spinner from '../common/Spinner';
 import FormButton from '../common/FormButton';
 import useUser from '../../contexts/UserContext';
 
@@ -43,7 +44,12 @@ const Login = () => {
           <Form onSubmit={onSubmit} noValidate>
             <Email onTextChanged={onTextChanged('email')} state={email} />
             <Password onTextChanged={onTextChanged('password')} state={password} />
-            <FormButton disabled={submitDisabled} icon={'home'} title={'Login'} />
+            <FormButton
+              disabled={submitDisabled}
+              icon={'home'}
+              title={'Login'}
+              isLoading={user.isLoading}
+            />
 
             <hr />
             <p className='lead text-center'>
