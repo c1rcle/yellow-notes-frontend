@@ -7,8 +7,6 @@ export default (state = { isUserLoggedIn: false }, { type, payload }) => {
     case 'REGISTER':
       return { ...payload, isUserLoggedIn: true };
     case 'REGISTER_FAILED':
-      // TODO: Real output - to be handled in component
-      alert('That email is already occupied!');
       return {
         isUserLoggedIn: false,
         error: { type: 'REGISTER', message: 'Email is occupied!' }
@@ -16,12 +14,12 @@ export default (state = { isUserLoggedIn: false }, { type, payload }) => {
     case 'LOGIN':
       return { ...payload, isUserLoggedIn: true };
     case 'LOGIN_FAILED':
-      // TODO: Real output - to be handled in component
-      alert('Wrong email or password!');
       return {
         isUserLoggedIn: false,
         error: { type: 'LOGIN', message: 'Wrong email / password!' }
       };
+    case 'CLEAR_ERROR':
+      return { ...state, error: null };
     case 'ADD_NOTE':
       let newId = 0;
       if (!!state.notes)
