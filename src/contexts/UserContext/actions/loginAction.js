@@ -1,6 +1,6 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
 
-const loginAction = async action => {
+const loginAction = async (action, dispatch) => {
   // TODO API - remove
   const sampleNotes = [
     {
@@ -28,6 +28,8 @@ const loginAction = async action => {
   const { payload } = action;
   if (!payload || !payload.password || !payload.email || Object.keys(payload).length !== 2)
     throw new Error('Login request has invalid parameters!');
+
+  dispatch({ type: 'LOADING_START' });
 
   let response;
   try {
