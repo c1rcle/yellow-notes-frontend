@@ -7,20 +7,18 @@ import checkTokenAction from './actions/checkTokenAction';
 const dispatchAsync = dispatch => action => {
   switch (action.type) {
     case 'CHECK_TOKEN':
-      dispatch({ type: 'LOADING_START' });
-      checkTokenAction(action)
+      checkTokenAction(action, dispatch)
         .then(a => dispatch(a))
         .catch(err => console.log(err));
       break;
     case 'REGISTER':
-      dispatch({ type: 'LOADING_START' });
-      registerAction(action)
+      registerAction(action, dispatch)
         .then(a => dispatch(a))
         .catch(err => console.log(err));
       break;
     case 'LOGIN':
       dispatch({ type: 'LOADING_START' });
-      loginAction(action)
+      loginAction(action, dispatch)
         .then(a => dispatch(a))
         .catch(err => console.log(err));
       break;
@@ -29,7 +27,7 @@ const dispatchAsync = dispatch => action => {
       dispatch(action);
       break;
     case 'ADD_NOTE':
-      addNoteAction(action)
+      addNoteAction(action, dispatch)
         .then(a => dispatch(a))
         .catch(err => console.log(err));
       break;

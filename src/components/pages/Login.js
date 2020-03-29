@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import Email from '../common/Email';
@@ -7,26 +7,34 @@ import FormButton from '../common/FormButton';
 import useUser from '../../contexts/UserContext';
 
 const Login = () => {
-  const [user, dispatch] = useUser();
-
   const [state, setState] = useState({
     email: '',
     password: ''
   });
-
   const { email, password } = state;
+
+  const [user, dispatch] = useUser();
+
+  const onTextChanged = name => ({ target }) => {
+    setState(state => ({ ...state, [name]: target.value }));
+  };
 
   const submitDisabled = email === '' || password === '';
 
-  const onTextChanged = name => ({ target }) => {
-    setState({ ...state, [name]: target.value });
-  };
-
   const onSubmit = e => {
     e.preventDefault();
-    //Todo - validation.
-    if (!submitDisabled) dispatch({ type: 'LOGIN', payload: { ...state } });
+    if (e.target.checkValidity()) {
+      dispatch({ type: 'LOGIN', payload: { ...state } });
+    } else {
+      dispatch({ type: 'LOGIN_FAILED' });
+    }
   };
+
+  useEffect(() => {
+    if (user.error && user.error.type === 'LOGIN') {
+      setState(state => ({ ...state, password: '' }));
+    }
+  }, [user.error]);
 
   return (
     <>
@@ -41,8 +49,8 @@ const Login = () => {
       <Row className='justify-content-center'>
         <Col xs={11} lg={6} className='my-2'>
           <Form onSubmit={onSubmit} noValidate>
-            <Email onTextChanged={onTextChanged('email')} state={email} />
-            <Password onTextChanged={onTextChanged('password')} state={password} />
+            <Email onTextChanged={onTextChanged('email')} state={{ value: email }} />
+            <Password onTextChanged={onTextChanged('password')} state={{ value: password }} />
             <FormButton
               disabled={submitDisabled}
               icon={'home'}
