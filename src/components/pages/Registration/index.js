@@ -23,16 +23,16 @@ const Registration = () => {
   const onTextChanged = name => ({ target }) => {
     const { validity, value } = target;
     const isValid = validity.patternMismatch || validity.typeMismatch;
-    setState({ ...state, [name]: { value, isValid } });
+    setState(state => ({ ...state, [name]: { value, isValid } }));
   };
 
   const onBlur = name => () => {
     if (state[name].wasBlurred) return;
-    setState({ ...state, [name]: { ...state[name], wasBlurred: true } });
+    setState(state => ({ ...state, [name]: { ...state[name], wasBlurred: true } }));
   };
 
   const setTermsAccepted = () => {
-    setState({ ...state, termsAccepted: !termsAccepted });
+    setState(state => ({ ...state, termsAccepted: !termsAccepted }));
   };
 
   const onSubmit = e => {

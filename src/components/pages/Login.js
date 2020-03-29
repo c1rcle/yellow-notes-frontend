@@ -16,14 +16,13 @@ const Login = () => {
   const [user, dispatch] = useUser();
 
   const onTextChanged = name => ({ target }) => {
-    setState({ ...state, [name]: target.value });
+    setState(state => ({ ...state, [name]: target.value }));
   };
 
   const submitDisabled = email === '' || password === '';
 
   const onSubmit = e => {
     e.preventDefault();
-    e.target.className += ' was-validated';
     if (e.target.checkValidity()) {
       dispatch({ type: 'LOGIN', payload: { ...state } });
     } else {
@@ -33,7 +32,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user.error && user.error.type === 'LOGIN') {
-      setState({ ...state, password: '' });
+      setState(state => ({ ...state, password: '' }));
     }
   }, [user.error]);
 
