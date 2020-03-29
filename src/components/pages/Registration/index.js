@@ -23,7 +23,6 @@ const Registration = () => {
   const onTextChanged = name => ({ target }) => {
     const { validity, value } = target;
     const isInvalid = validity.patternMismatch || validity.typeMismatch;
-    console.log(name, isInvalid);
     setState(state => ({ ...state, [name]: { value, isInvalid } }));
   };
 
