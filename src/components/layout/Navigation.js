@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useUser from '../../contexts/UserContext';
@@ -10,7 +10,10 @@ const Navigation = () => {
     return email.split('@')[0];
   };
 
-  if (!isUserLoggedIn && !!localStorage.getItem('token')) dispatch({ type: 'CHECK_TOKEN' });
+  useEffect(() => {
+    if (!isUserLoggedIn && !!localStorage.getItem('token')) dispatch({ type: 'CHECK_TOKEN' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Navbar variant='light' bg='light' expand='lg'>

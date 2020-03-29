@@ -1,10 +1,12 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
 
-const registerAction = async action => {
+const registerAction = async (action, dispatch) => {
   const { payload } = action;
 
   if (!payload || !payload.password || !payload.email || Object.keys(payload).length !== 2)
     throw new Error('Registration request has invalid parameters!');
+
+  dispatch({ type: 'LOADING_START' });
 
   let response;
   try {

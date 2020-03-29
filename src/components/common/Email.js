@@ -13,7 +13,10 @@ const Email = ({ state, onTextChanged, onBlur }) => {
             <i className='fas fa-at fa-fw m-auto' />
           </InputGroup.Text>
         </InputGroup.Prepend>
-        <TooltipCustom text={emailError} show={state.wasBlurred && state.isValid} placement='right'>
+        <TooltipCustom
+          text={emailError}
+          show={state.wasBlurred && state.isInvalid}
+          placement='right'>
           <Form.Control
             required
             id='email'

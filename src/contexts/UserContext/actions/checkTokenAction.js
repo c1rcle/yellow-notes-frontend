@@ -1,26 +1,18 @@
 import decode from 'jwt-decode';
 //import yellowNotesApi from '../../../apis/yellowNotesApi';
 
-const checkTokenAction = async action => {
+const checkTokenAction = async (action, dispatch) => {
   const token = localStorage.getItem('token');
 
-  if (!token) return action;
+  if (!token) throw new Error('Token expired');
 
   const decodedToken = decode(token);
 
-  if (decodedToken.exp < new Date().getTime() / 1000 || !decodedToken.email) {
+  if (!decodedToken || decodedToken.exp < new Date().getTime() / 1000 || !decodedToken.email) {
     localStorage.removeItem('token');
-    return;
+    throw new Error('Token expired');
   }
-
-  // let response;
-  // try {
-  //   response = await cinemaBack.get('users/');
-  // } catch (e) {
-  //   response = { status: 400 };
-  //   console.error(e);
-  // }
-  // localStorage.setItem('token', response.data.token);
+  dispatch({ type: 'LOADING_START' });
 
   return { ...action, payload: { isUserLoggedIn: true, email: decodedToken.email } };
 };
