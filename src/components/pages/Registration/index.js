@@ -10,9 +10,9 @@ import useUser from '../../../contexts/UserContext';
 
 const Registration = () => {
   const [state, setState] = useState({
-    email: { value: '', isValid: false },
-    password: { value: '', isValid: false },
-    passwordRepeat: { value: '', isValid: false },
+    email: { value: '', isInvalid: true },
+    password: { value: '', isInvalid: true },
+    passwordRepeat: { value: '', isInvalid: true },
     termsAccepted: false
   });
 
@@ -22,8 +22,9 @@ const Registration = () => {
 
   const onTextChanged = name => ({ target }) => {
     const { validity, value } = target;
-    const isValid = validity.patternMismatch || validity.typeMismatch;
-    setState(state => ({ ...state, [name]: { value, isValid } }));
+    const isInvalid = validity.patternMismatch || validity.typeMismatch;
+    console.log(name, isInvalid);
+    setState(state => ({ ...state, [name]: { value, isInvalid } }));
   };
 
   const onBlur = name => () => {
@@ -46,6 +47,13 @@ const Registration = () => {
     }
   };
 
+  const tooltipTextTermsError = 'You need to accept terms to create an account!';
+  const tooltipTermsEnabled = !(
+    termsAccepted ||
+    email.isInvalid ||
+    password.isInvalid ||
+    passwordRepeat.isInvalid
+  );
   return (
     <>
       {user.isUserLoggedIn && <Redirect to='notes' />}
@@ -71,12 +79,17 @@ const Registration = () => {
               onBlur={onBlur('passwordRepeat')}
               state={passwordRepeat}
             />
-            <Checkbox onClick={setTermsAccepted} />
+            <Checkbox
+              onClick={setTermsAccepted}
+              tooltipText={tooltipTextTermsError}
+              tooltipEnabled={tooltipTermsEnabled}
+            />
             <FormButton
               disabled={!termsAccepted}
               icon={'user-plus'}
               title={'Create new account'}
               isLoading={user.isLoading}
+              tooltipText={tooltipTextTermsError}
             />
           </Form>
         </Col>

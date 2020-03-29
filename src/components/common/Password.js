@@ -18,7 +18,7 @@ const Password = ({ state, onTextChanged, onBlur }) => {
           </InputGroup.Prepend>
           <TooltipCustom
             text={passwordError}
-            show={state.wasBlurred && state.isValid}
+            show={state.wasBlurred && state.isInvalid}
             placement='right'>
             <Form.Control
               required
