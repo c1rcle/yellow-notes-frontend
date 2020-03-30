@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useUser from '../../contexts/UserContext';
+import '../../styles/navbar.css';
 
 const Navigation = () => {
   const [{ isUserLoggedIn, email }, dispatch] = useUser();

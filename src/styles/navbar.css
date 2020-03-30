@@ -1,0 +1,10 @@
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar button.navbar-toggler {
+  border: none;
+  padding-right: 0rem;
+}
