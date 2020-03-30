@@ -1,7 +1,6 @@
 //import yellowNotesApi from '../../apis/yellowNotesApi';
 import registerAction from './actions/registerAction';
 import loginAction from './actions/loginAction';
-import addNoteAction from './actions/addNoteAction';
 import checkTokenAction from './actions/checkTokenAction';
 
 const dispatchAsync = dispatch => action => {
@@ -25,11 +24,6 @@ const dispatchAsync = dispatch => action => {
     case 'LOGOUT':
       localStorage.removeItem('token');
       dispatch(action);
-      break;
-    case 'ADD_NOTE':
-      addNoteAction(action, dispatch)
-        .then(a => dispatch(a))
-        .catch(err => console.log(err));
       break;
     default:
       dispatch(action);
