@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useUser from '../../contexts/UserContext';
+import '../../styles/navbar.css';
 
 const Navigation = () => {
   const [{ isUserLoggedIn, email }, dispatch] = useUser();
@@ -19,8 +20,10 @@ const Navigation = () => {
     <Navbar variant='light' bg='light' expand='lg'>
       <Container className='justify-content-center'>
         <Navbar.Brand className='w-50 mr-auto'>
-          <i className='fas fa-quote-right' />{' '}
-          <span className='lead'>{isUserLoggedIn ? `Hello, ${trimEmail()}!` : 'Yellow Notes'}</span>
+          <i className='fas fa-quote-right text-primary' />{' '}
+          <span className={'lead ' + (isUserLoggedIn || 'font-weight-bold')}>
+            {isUserLoggedIn ? `Hello, ${trimEmail()}!` : 'Yellow Notes'}
+          </span>
         </Navbar.Brand>
 
         {isUserLoggedIn && (
@@ -41,7 +44,7 @@ const Navigation = () => {
             </Nav>
           )}
 
-          <Nav className='w-100 ml-auto justify-content-end mt-2 mt-lg-0 flex-lg-row flex-row-reverse'>
+          <Nav className='w-100 ml-auto justify-content-end mt-2 mt-lg-0 flex-lg-row flex-row'>
             {isUserLoggedIn ? (
               <Button variant={`outline-danger`} onClick={() => dispatch({ type: 'LOGOUT' })}>
                 <i className={`fas fa-sign-out-alt mr-1`} />
