@@ -19,7 +19,7 @@ const Navigation = () => {
     <Navbar variant='light' bg='light' expand='lg'>
       <Container className='justify-content-center'>
         <Navbar.Brand className='w-50 mr-auto'>
-          <i className='fas fa-quote-right' />{' '}
+          <i className='fas fa-quote-right text-primary' />{' '}
           <span className='lead'>{isUserLoggedIn ? `Hello, ${trimEmail()}!` : 'Yellow Notes'}</span>
         </Navbar.Brand>
 
