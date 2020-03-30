@@ -5,7 +5,7 @@ import dispatchAsync from './dispatchAsync';
 const NotesContext = createContext();
 
 export function NotesProvider({ children }) {
-  const [notes, dispatch] = useReducer(notesReducer, {});
+  const [notes, dispatch] = useReducer(notesReducer, { notes: [], isLoading: false });
 
   return (
     <NotesContext.Provider value={[notes, dispatchAsync(dispatch)]}>
