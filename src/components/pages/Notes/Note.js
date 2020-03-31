@@ -5,12 +5,12 @@ import NoteDialog from './NoteDialog';
 
 const Note = props => {
   const [dialogVisible, setDialogVisible] = useState(false);
-  const showDialog = e => setDialogVisible(!dialogVisible);
+  const toggleDialog = e => setDialogVisible(!dialogVisible);
 
   const { content } = props;
   return (
     <>
-      <Card className='shadow-sm' onClick={e => showDialog(e)}>
+      <Card className='shadow-sm' onClick={e => toggleDialog(e)}>
         <Card.Body className='p-0'>
           <Form.Control
             disabled
@@ -22,7 +22,12 @@ const Note = props => {
           />
         </Card.Body>
       </Card>
-      <NoteDialog body={content} closeDialog={showDialog} dialogVisible={dialogVisible} />
+      <NoteDialog
+        mode={'edit'}
+        body={content}
+        closeDialog={toggleDialog}
+        dialogVisible={dialogVisible}
+      />
     </>
   );
 };
