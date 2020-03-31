@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import useUser from '../../../contexts/UserContext';
 
-const NoteDialog = ({ mode, dialogVisible, closeDialog, body }) => {
+const NoteDialog = ({ mode, dialogVisible, closeDialog, note }) => {
   const [show, setShow] = useState(dialogVisible);
 
   const didMountRef = useRef(false);
@@ -10,7 +10,11 @@ const NoteDialog = ({ mode, dialogVisible, closeDialog, body }) => {
     if (didMountRef.current) {
       setShow(dialogVisible);
     } else didMountRef.current = true;
-  }, [setShow, dialogVisible]);
+
+    if (mode === 'edit') {
+      setFormData({ title: note.title, content: note.content });
+    }
+  }, [setShow, dialogVisible, mode, note]);
 
   const onClose = e => closeDialog && closeDialog(e);
 

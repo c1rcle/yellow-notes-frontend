@@ -8,23 +8,24 @@ const Note = props => {
   const toggleDialog = e => setDialogVisible(!dialogVisible);
 
   const { content } = props;
+
+  // TODO - note title prop
+  const title = 'Note Tilte';
   return (
     <>
-      <Card className='shadow-sm' onClick={e => toggleDialog(e)}>
-        <Card.Body className='p-0'>
-          <Form.Control
-            disabled
-            as='textarea'
-            className='note-item'
-            rows={5}
-            value={content}
-            style={{ cursor: 'pointer' }}
-          />
+      <Card
+        style={{ backgroundColor: '#f8f9fa', cursor: 'pointer' }}
+        className='shadow-sm'
+        onClick={e => toggleDialog(e)}
+      >
+        <Card.Body>
+          <Card.Title>{title}</Card.Title>
+          <Form.Control disabled as='textarea' className='note-item p-0' rows={5} value={content} />
         </Card.Body>
       </Card>
       <NoteDialog
         mode={'edit'}
-        body={content}
+        note={{ title, content }}
         closeDialog={toggleDialog}
         dialogVisible={dialogVisible}
       />
