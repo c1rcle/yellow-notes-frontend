@@ -59,7 +59,7 @@ const NoteDialog = ({ dialogVisible, closeDialog, note }) => {
   return (
     <Modal show={show} onHide={onClose}>
       <Form onSubmit={e => onSubmit(e)}>
-        <Modal.Header>
+        <Modal.Header closeButton>
           <Modal.Title>
             <Form.Control
               name='title'
