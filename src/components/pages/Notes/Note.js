@@ -24,7 +24,6 @@ const Note = props => {
         </Card.Body>
       </Card>
       <NoteDialog
-        mode={'edit'}
         note={{ title, content }}
         closeDialog={toggleDialog}
         dialogVisible={dialogVisible}

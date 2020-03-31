@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import useUser from '../../../contexts/UserContext';
+import PropTypes from 'prop-types';
 
-const NoteDialog = ({ mode, dialogVisible, closeDialog, note }) => {
+const NoteDialog = ({ dialogVisible, closeDialog, note }) => {
   const [show, setShow] = useState(dialogVisible);
 
   const didMountRef = useRef(false);
@@ -11,10 +12,10 @@ const NoteDialog = ({ mode, dialogVisible, closeDialog, note }) => {
       setShow(dialogVisible);
     } else didMountRef.current = true;
 
-    if (mode === 'edit') {
+    if (note) {
       setFormData({ title: note.title, content: note.content });
     }
-  }, [setShow, dialogVisible, mode, note]);
+  }, [setShow, dialogVisible, note]);
 
   const onClose = e => closeDialog && closeDialog(e);
 
@@ -30,12 +31,14 @@ const NoteDialog = ({ mode, dialogVisible, closeDialog, note }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (mode === 'create') {
-      dispatch({
-        type: 'ADD_NOTE',
-        payload: { content }
-      });
-    } else if (mode === 'edit') {
+    if (!note) {
+      if (title !== '' && content !== '') {
+        dispatch({
+          type: 'ADD_NOTE',
+          payload: { content }
+        });
+      }
+    } else {
       // TODO - edit note action
       console.log('edited');
     }
@@ -54,7 +57,7 @@ const NoteDialog = ({ mode, dialogVisible, closeDialog, note }) => {
   };
 
   return (
-    <Modal show={show} onHide={() => setShow(false)}>
+    <Modal show={show} onHide={onClose}>
       <Form onSubmit={e => onSubmit(e)}>
         <Modal.Header>
           <Modal.Title>
@@ -74,9 +77,10 @@ const NoteDialog = ({ mode, dialogVisible, closeDialog, note }) => {
             onChange={e => onChange(e)}
             as='textarea'
             rows='3'
+            placeholder='Note Content'
           />
         </Modal.Body>
-        {mode === 'create' ? (
+        {!note ? (
           <Modal.Footer>
             <Button variant='secondary' onClick={onClose}>
               Cancel
@@ -101,6 +105,12 @@ const NoteDialog = ({ mode, dialogVisible, closeDialog, note }) => {
       </Form>
     </Modal>
   );
+};
+
+NoteDialog.propTypes = {
+  dialogVisible: PropTypes.bool.isRequired,
+  closeDialog: PropTypes.func.isRequired,
+  note: PropTypes.object
 };
 
 export default NoteDialog;

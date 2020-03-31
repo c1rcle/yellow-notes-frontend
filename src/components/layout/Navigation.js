@@ -72,7 +72,7 @@ const Navigation = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <NoteDialog mode={'create'} closeDialog={toggleDialog} dialogVisible={dialogVisible} />
+      <NoteDialog closeDialog={toggleDialog} dialogVisible={dialogVisible} />
     </>
   );
 };
