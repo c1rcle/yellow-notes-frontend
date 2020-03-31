@@ -8,3 +8,13 @@
   border: none;
   padding-right: 0;
 }
+
+.navbar-brand {
+  user-select: none;
+}
+
+.overflow-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
