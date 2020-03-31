@@ -9,7 +9,7 @@ const Notes = () => {
   return (
     <>
       <AddNote />
-      <Row>
+      <Row className='mb-5'>
         {user.isUserLoggedIn || <Redirect to='/' />}
         {!user.notes ||
           user.notes.map(note => (
