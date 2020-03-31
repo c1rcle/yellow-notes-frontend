@@ -18,7 +18,7 @@ const Navigation = () => {
 
   return (
     <Navbar variant='light' bg='light' expand='lg'>
-      <Container className='justify-content-center'>
+      <Container className='justify-content-center lead '>
         <Navbar.Brand className='w-50 mr-auto overflow-ellipsis'>
           <i className='fas fa-quote-right text-primary' />{' '}
           <span className={'lead font-weight-bold'}>
