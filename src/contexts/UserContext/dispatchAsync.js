@@ -16,7 +16,6 @@ const dispatchAsync = dispatch => action => {
         .catch(err => console.log(err));
       break;
     case 'LOGIN':
-      dispatch({ type: 'LOADING_START' });
       loginAction(action, dispatch)
         .then(a => dispatch(a))
         .catch(err => console.log(err));

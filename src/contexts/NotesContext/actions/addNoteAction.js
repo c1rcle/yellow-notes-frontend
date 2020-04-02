@@ -1,13 +1,16 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
 
-const addNoteAction = async action => {
+const addNoteAction = async (action, dispatch) => {
   if (!action.payload || !action.payload.content || Object.keys(action.payload).length !== 1)
     throw new Error('Note creation request has invalid parameters!');
 
   const note = { title: '', ...action.payload };
+
+  dispatch({ type: 'LOADING_START' });
+
   let response;
   try {
-    response = await yellowNotesApi.post('notes', note);
+    response = await yellowNotesApi().post('notes', note);
   } catch (e) {
     throw new Error('Add note action has failed! ', response);
   }
