@@ -1,23 +1,19 @@
-// TODO API - uncomment
-//import yellowNotesApi from '../../apis/yellowNotesApi';
+import yellowNotesApi from '../../../apis/yellowNotesApi';
 
 const addNoteAction = async action => {
   if (!action.payload || !action.payload.content || Object.keys(action.payload).length !== 1)
     throw new Error('Registration request has invalid parameters!');
-
+  const note = { variant: 'text', title: '', ...action.payload };
   let response;
   try {
-    // TODO API - remove and uncomment
-    response = {
-      status: 200,
-      data: { content: action.payload.content }
-    };
-    //response = await yellowNotesApi.post('user/note', { ...action.payload });
+    response = await yellowNotesApi.post('notes', note);
   } catch (e) {
     throw new Error('Add note action has failed! ', response);
   }
 
-  if (response.status !== 200) throw new Error('Add note action has failed! ', response);
+  if (response.status !== 201) throw new Error('Add note action has failed! ', response);
+
+  response.data.modificationDate = Date(Date.now());
 
   return { ...action, payload: response.data };
 };
