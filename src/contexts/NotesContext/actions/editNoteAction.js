@@ -1,6 +1,6 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
 
-const addNoteAction = async action => {
+const editNoteAction = async action => {
   if (!action.payload || !action.payload.noteId || Object.keys(action.payload).length <= 1)
     throw new Error('Edit note request has invalid parameters!');
 
@@ -19,4 +19,4 @@ const addNoteAction = async action => {
   return { ...action, payload: note };
 };
 
-export default addNoteAction;
+export default editNoteAction;
