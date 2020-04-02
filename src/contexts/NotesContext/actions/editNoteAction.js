@@ -4,7 +4,7 @@ const addNoteAction = async action => {
   if (!action.payload || !action.payload.noteId || Object.keys(action.payload).length <= 1)
     throw new Error('Edit note request has invalid parameters!');
 
-  const note = { variant: 'text', ...action.payload };
+  const note = { ...action.payload };
   let response;
   try {
     response = await yellowNotesApi.put('notes/' + action.payload.noteId, note);
