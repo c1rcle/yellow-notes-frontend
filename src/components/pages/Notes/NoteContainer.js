@@ -9,7 +9,7 @@ const NoteContainer = () => {
     <Row className='pb-5'>
       {!notes ||
         notes.map(note => (
-          <Col lg={4} className='mt-3' key={note.id}>
+          <Col lg={4} className='mt-3' key={note.noteId}>
             <Note {...note} />
           </Col>
         ))}

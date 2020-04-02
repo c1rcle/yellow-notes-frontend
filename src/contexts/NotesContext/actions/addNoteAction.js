@@ -2,7 +2,8 @@ import yellowNotesApi from '../../../apis/yellowNotesApi';
 
 const addNoteAction = async action => {
   if (!action.payload || !action.payload.content || Object.keys(action.payload).length !== 1)
-    throw new Error('Registration request has invalid parameters!');
+    throw new Error('Note creation request has invalid parameters!');
+
   const note = { variant: 'text', title: '', ...action.payload };
   let response;
   try {
