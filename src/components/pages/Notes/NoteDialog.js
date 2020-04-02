@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import useUser from '../../../contexts/UserContext';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
 
 const NoteDialog = ({ dialogVisible, closeDialog, note }) => {
   const [show, setShow] = useState(dialogVisible);
@@ -91,6 +92,10 @@ const NoteDialog = ({ dialogVisible, closeDialog, note }) => {
           </Modal.Footer>
         ) : (
           <Modal.Footer>
+            <Form.Label style={{ marginRight: 'auto', fontSize: '0.95rem' }}>
+              <i className='far fa-calendar-alt pr-1' />
+              <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
+            </Form.Label>
             <Button variant='secondary' onClick={onClose}>
               Close
             </Button>

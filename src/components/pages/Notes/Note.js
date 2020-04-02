@@ -9,8 +9,9 @@ const Note = props => {
 
   const { content } = props;
 
-  // TODO - note title prop
+  // TODO - note title and timestamp props
   const title = 'Note Tilte';
+  const timestamp = Date.now();
   return (
     <>
       <Card
@@ -24,7 +25,7 @@ const Note = props => {
         </Card.Body>
       </Card>
       <NoteDialog
-        note={{ title, content }}
+        note={{ title, content, timestamp }}
         closeDialog={toggleDialog}
         dialogVisible={dialogVisible}
       />
