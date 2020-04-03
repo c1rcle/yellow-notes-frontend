@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Form } from 'react-bootstrap';
-import '../../../styles/notes.css';
+import '../../../styles/notes.css'
 import useNotes from '../../../contexts/NotesContext';
 
 const Note = ({ note }) => {
@@ -10,8 +10,7 @@ const Note = ({ note }) => {
   return (
     <>
       <Card
-        style={{ backgroundColor: '#f8f9fa', cursor: 'pointer' }}
-        className='shadow-sm'
+        className='shadow-sm note-card'
         onClick={() => openDialog({ ...note })}>
         <Card.Body>
           <Card.Title>{note.title}</Card.Title>

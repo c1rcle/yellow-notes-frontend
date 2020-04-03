@@ -19,9 +19,6 @@ const NoteDialog = () => {
   const onSubmit = e => {
     e.preventDefault();
     if (!note) {
-      if (!title) {
-        return; // TODO: add invalid note error
-      }
       dispatch({
         type: 'ADD_NOTE',
         payload: { ...formData }
@@ -30,7 +27,6 @@ const NoteDialog = () => {
       if (!title) {
         return; // TODO: add invalid note error
       }
-      console.log(formData);
       if (Object.keys(formData).length > 1 && formData.noteId)
         dispatch({
           type: 'EDIT_NOTE',
