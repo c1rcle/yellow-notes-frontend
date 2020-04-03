@@ -9,7 +9,8 @@ const NoteContainer = () => {
   const [{ notes }, dispatch] = useNotes();
 
   useEffect(() => {
-    if (user.isUserLoggedIn) dispatch({ type: 'GET_NOTES' }); // eslint-disable-next-line
+    if (user.isUserLoggedIn)
+      dispatch({ type: 'GET_NOTES', payload: { takeCount: 100, skipCount: 0 } }); // eslint-disable-next-line
   }, [user.isUserLoggedIn]);
 
   return (

@@ -5,7 +5,7 @@ const addNoteAction = async (action, dispatch) => {
 
   let response;
   try {
-    response = await yellowNotesApi().get('notes', { headers: { ...action.payload } });
+    response = await yellowNotesApi().get('notes', { params: { ...action.payload } });
   } catch (e) {
     throw new Error('Get notes action has failed! ', response);
   }
