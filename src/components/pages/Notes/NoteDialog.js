@@ -5,10 +5,7 @@ import Moment from 'react-moment';
 
 const NoteDialog = () => {
   const [, dispatch, { dialogVisible, closeDialog, note }] = useNotes();
-  const [formData, setFormData] = useState({
-    title: '',
-    content: ''
-  });
+  const [formData, setFormData] = useState({ title: '', content: '' });
   const { title, content } = formData;
 
   useEffect(() => {
@@ -23,7 +20,7 @@ const NoteDialog = () => {
     e.preventDefault();
     if (!note) {
       if (!title) {
-        return;
+        return; // TODO: add invalid note error
       }
       dispatch({
         type: 'ADD_NOTE',
@@ -31,12 +28,19 @@ const NoteDialog = () => {
       });
     } else {
       if (!title) {
-        return;
+        return; // TODO: add invalid note error
       }
-      dispatch({
-        type: 'EDIT_NOTE',
-        payload: { ...formData }
-      });
+      console.log(formData);
+      if (Object.keys(formData).length > 1 && formData.noteId)
+        dispatch({
+          type: 'EDIT_NOTE',
+          payload: {
+            ...Object.keys(formData)
+              .filter(key => formData[key] !== note[key])
+              .reduce((res, key) => ({ ...res, [key]: formData[key] }), {}),
+            noteId: note.noteId
+          }
+        });
     }
 
     setFormData(() => ({

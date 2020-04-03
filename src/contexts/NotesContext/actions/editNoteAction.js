@@ -1,7 +1,8 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
 
 const editNoteAction = async (action, dispatch) => {
-  if (!action.payload || !action.payload.noteId || Object.keys(action.payload).length <= 1)
+  console.log(action);
+  if (!action.payload || !action.payload.noteId)
     throw new Error('Edit note request has invalid parameters!');
 
   const note = { ...action.payload };
