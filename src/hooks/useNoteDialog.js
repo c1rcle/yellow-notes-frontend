@@ -5,7 +5,6 @@ function useNoteDialog() {
   const [note, setNote] = useState(undefined);
 
   const openDialog = note => {
-    console.log('ydy');
     setDialogVisible(true);
     setNote(() => note);
   };

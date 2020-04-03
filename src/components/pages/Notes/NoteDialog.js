@@ -12,22 +12,17 @@ const NoteDialog = () => {
   const { title, content } = formData;
 
   useEffect(() => {
-    console.log(dialogVisible, note);
     dialogVisible && note && setFormData(() => ({ ...note }));
   }, [dialogVisible, note]);
 
-  const onClose = () => closeDialog();
-
   const onChange = e => {
-    if (e.target) console.log(e.target, e.target.name, e.target.value);
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log({ ...formData });
     if (!note) {
-      if (title !== '' && content !== '') {
+      if (!!title) {
         dispatch({
           type: 'ADD_NOTE',
           payload: { ...formData }
@@ -44,20 +39,19 @@ const NoteDialog = () => {
       title: '',
       content: ''
     }));
-    onClose(e);
+    closeDialog();
   };
 
   const onDelete = e => {
-    // TODO - delete note action
     dispatch({
       type: 'REMOVE_NOTE',
       payload: { ...formData }
     });
-    onClose();
+    closeDialog();
   };
 
   return (
-    <Modal show={dialogVisible} onHide={onClose}>
+    <Modal show={dialogVisible} onHide={closeDialog}>
       <Form onSubmit={onSubmit}>
         <Modal.Header closeButton>
           <Modal.Title>
@@ -82,7 +76,7 @@ const NoteDialog = () => {
         </Modal.Body>
         {!note ? (
           <Modal.Footer>
-            <Button variant='secondary' onClick={onClose}>
+            <Button variant='secondary' onClick={closeDialog}>
               Cancel
             </Button>
             <Button variant='primary' type='submit'>
@@ -95,7 +89,7 @@ const NoteDialog = () => {
               <i className='far fa-calendar-alt pr-1' />
               <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
             </Form.Label>
-            <Button variant='secondary' onClick={onClose}>
+            <Button variant='secondary' onClick={closeDialog}>
               Close
             </Button>
             <Button variant='danger' onClick={onDelete}>
