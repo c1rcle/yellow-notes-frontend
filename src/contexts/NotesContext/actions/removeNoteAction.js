@@ -1,7 +1,7 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
 
 const removeNoteAction = async (action, dispatch) => {
-  if (!action.payload || !action.payload.noteId || Object.keys(action.payload).length !== 1)
+  if (!action.payload || !action.payload.noteId)
     throw new Error('Note deletion request has invalid parameters!');
 
   dispatch({ type: 'LOADING_START' });

@@ -1,65 +1,64 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import useUser from '../../../contexts/UserContext';
-import PropTypes from 'prop-types';
+import useNotes from '../../../contexts/NotesContext';
 import Moment from 'react-moment';
 
-const NoteDialog = ({ dialogVisible, closeDialog, note }) => {
-  const [show, setShow] = useState(dialogVisible);
-
-  const didMountRef = useRef(false);
-  useEffect(() => {
-    if (didMountRef.current) {
-      setShow(dialogVisible);
-    } else didMountRef.current = true;
-
-    if (note) {
-      setFormData({ title: note.title, content: note.content });
-    }
-  }, [setShow, dialogVisible, note]);
-
-  const onClose = e => closeDialog && closeDialog(e);
-
-  const [, dispatch] = useUser();
+const NoteDialog = () => {
+  const [, dispatch, { dialogVisible, closeDialog, note }] = useNotes();
   const [formData, setFormData] = useState({
     title: '',
     content: ''
   });
-
   const { title, content } = formData;
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+  useEffect(() => {
+    console.log(dialogVisible, note);
+    dialogVisible && note && setFormData(() => ({ ...note }));
+  }, [dialogVisible, note]);
+
+  const onClose = () => closeDialog();
+
+  const onChange = e => {
+    if (e.target) console.log(e.target, e.target.name, e.target.value);
+    e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const onSubmit = e => {
     e.preventDefault();
+    console.log({ ...formData });
     if (!note) {
       if (title !== '' && content !== '') {
         dispatch({
           type: 'ADD_NOTE',
-          payload: { content }
+          payload: { ...formData }
         });
       }
     } else {
-      // TODO - edit note action
-      console.log('edited');
+      dispatch({
+        type: 'EDIT_NOTE',
+        payload: { ...formData }
+      });
     }
 
-    setFormData({
+    setFormData(() => ({
       title: '',
       content: ''
-    });
+    }));
     onClose(e);
   };
 
   const onDelete = e => {
     // TODO - delete note action
-    console.log('deleted');
-    onClose(e);
+    dispatch({
+      type: 'REMOVE_NOTE',
+      payload: { ...formData }
+    });
+    onClose();
   };
 
   return (
-    <Modal show={show} onHide={onClose}>
-      <Form onSubmit={e => onSubmit(e)}>
+    <Modal show={dialogVisible} onHide={onClose}>
+      <Form onSubmit={onSubmit}>
         <Modal.Header closeButton>
           <Modal.Title>
             <Form.Control
@@ -99,7 +98,7 @@ const NoteDialog = ({ dialogVisible, closeDialog, note }) => {
             <Button variant='secondary' onClick={onClose}>
               Close
             </Button>
-            <Button variant='danger' onClick={() => onDelete()}>
+            <Button variant='danger' onClick={onDelete}>
               Remove
             </Button>
             <Button variant='primary' type='submit'>
@@ -110,12 +109,6 @@ const NoteDialog = ({ dialogVisible, closeDialog, note }) => {
       </Form>
     </Modal>
   );
-};
-
-NoteDialog.propTypes = {
-  dialogVisible: PropTypes.bool.isRequired,
-  closeDialog: PropTypes.func.isRequired,
-  note: PropTypes.object
 };
 
 export default NoteDialog;

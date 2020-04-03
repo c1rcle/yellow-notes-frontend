@@ -17,7 +17,7 @@ const NoteContainer = () => {
       {!notes ||
         notes.map(note => (
           <Col lg={4} className='mt-3' key={note.noteId}>
-            <Note {...note} />
+            <Note note={note} />
           </Col>
         ))}
     </Row>
