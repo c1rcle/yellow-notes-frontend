@@ -5,9 +5,16 @@ import dispatchAsync from './dispatchAsync';
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-  const [user, dispatch] = useReducer(userReducer, {});
+  const [user, dispatch] = useReducer(userReducer, {
+    email: null,
+    isLoading: false,
+    isUserLoggedIn: false,
+    error: null
+  });
 
-  return <UserContext.Provider value={[user, dispatchAsync(dispatch)]}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={[user, dispatchAsync(dispatch)]}>{children}</UserContext.Provider>
+  );
 }
 
 export default function useUser() {

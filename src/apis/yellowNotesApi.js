@@ -5,10 +5,11 @@ if (process.env.NODE_ENV === 'development') {
   url = 'https://localhost:5001/';
 }
 
-export default axios.create({
-  baseURL: url,
-  timeout: 10000,
-  headers: localStorage.getItem('token')
-    ? { Authorization: 'Bearer ' + localStorage.getItem('token') }
-    : {}
-});
+export default () =>
+  axios.create({
+    baseURL: url,
+    timeout: 10000,
+    headers: localStorage.getItem('token')
+      ? { Authorization: 'Bearer ' + localStorage.getItem('token') }
+      : {}
+  });

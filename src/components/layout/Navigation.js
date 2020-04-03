@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import useUser from '../../contexts/UserContext';
 import '../../styles/navbar.css';
-import NoteDialog from '../pages/Notes/NoteDialog';
+import useNotes from '../../contexts/NotesContext';
 
 const Navigation = () => {
   const [{ isUserLoggedIn, email }, dispatch] = useUser();
 
-  const [dialogVisible, setDialogVisible] = useState(false);
-  const toggleDialog = e => setDialogVisible(!dialogVisible);
+  const [, , { openDialog }] = useNotes();
 
   const trimEmail = () => {
     return email.split('@')[0];
@@ -36,8 +35,7 @@ const Navigation = () => {
             <Button
               variant='outline-success'
               className='d-lg-none mr-2'
-              onClick={e => toggleDialog(e)}
-            >
+              onClick={() => openDialog()}>
               <i className='fas fa-bars mr-1' />
               Text
             </Button>
@@ -45,7 +43,7 @@ const Navigation = () => {
 
           {isUserLoggedIn && (
             <Nav className='w-25 justify-content-center d-none d-lg-flex'>
-              <Button variant='outline-success' className='' onClick={e => toggleDialog(e)}>
+              <Button variant='outline-success' className='' onClick={() => openDialog()}>
                 <i className='fas fa-bars mr-1' />
                 Text
               </Button>
@@ -75,7 +73,6 @@ const Navigation = () => {
           )}
         </Container>
       </Navbar>
-      <NoteDialog closeDialog={toggleDialog} dialogVisible={dialogVisible} />
     </>
   );
 };
