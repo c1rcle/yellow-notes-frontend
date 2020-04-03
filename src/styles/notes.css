@@ -2,4 +2,10 @@
   background-color: #f8f9fa;
   border: none;
   resize: none;
+  cursor: pointer;
+}
+
+div .note-card {
+  background-color: #f8f9fa;
+  cursor: pointer;
 }

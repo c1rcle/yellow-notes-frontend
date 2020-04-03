@@ -1,7 +1,4 @@
-export default (
-  state = { email: null, isLoading: false, isUserLoggedIn: false, error: null },
-  { type, payload }
-) => {
+export default (state, { type, payload }) => {
   switch (type) {
     case 'CHECK_TOKEN':
       return { ...state, ...payload };
@@ -23,11 +20,6 @@ export default (
       };
     case 'CLEAR_ERROR':
       return { ...state, error: null };
-    case 'ADD_NOTE':
-      let newId = 0;
-      if (!!state.notes)
-        newId = state.notes.length === 0 ? 0 : state.notes[state.notes.length - 1].id + 1;
-      return { ...state, notes: [...(state.notes || []), { ...payload, id: newId }] };
     case 'LOGOUT':
       return { isUserLoggedIn: false };
     default:
