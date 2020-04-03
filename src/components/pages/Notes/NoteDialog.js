@@ -22,13 +22,17 @@ const NoteDialog = () => {
   const onSubmit = e => {
     e.preventDefault();
     if (!note) {
-      if (!!title) {
-        dispatch({
-          type: 'ADD_NOTE',
-          payload: { ...formData }
-        });
+      if (!title) {
+        return;
       }
+      dispatch({
+        type: 'ADD_NOTE',
+        payload: { ...formData }
+      });
     } else {
+      if (!title) {
+        return;
+      }
       dispatch({
         type: 'EDIT_NOTE',
         payload: { ...formData }

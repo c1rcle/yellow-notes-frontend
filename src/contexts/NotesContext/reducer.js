@@ -9,13 +9,14 @@ export default (state, { type, payload }) => {
     }
 
     case 'ADD_NOTE': {
-      return { ...state, notes: [...state.notes, { ...payload }], isLoading: false };
+      return { ...state, notes: [{ ...payload }, ...state.notes], isLoading: false };
     }
 
     case 'EDIT_NOTE': {
       if (!state.notes.some(n => n.noteId === payload.noteId)) return state;
-      const notes = state.notes.map(n => (n.noteId === payload.noteId ? { ...n, ...payload } : n));
-      return { ...state, notes, isLoading: false };
+      const note = { ...state.notes.find(n => n.noteId === payload.noteId), ...payload };
+      const notes = state.notes.filter(n => n.noteId !== payload.noteId);
+      return { ...state, notes: [note, ...notes], isLoading: false };
     }
 
     case 'REMOVE_NOTE': {
