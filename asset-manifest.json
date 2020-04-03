@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/yellow-notes-frontend/static/css/main.7e627595.chunk.css",
-    "main.js": "/yellow-notes-frontend/static/js/main.75ff1626.chunk.js",
-    "main.js.map": "/yellow-notes-frontend/static/js/main.75ff1626.chunk.js.map",
+    "main.css": "/yellow-notes-frontend/static/css/main.ff6dfb32.chunk.css",
+    "main.js": "/yellow-notes-frontend/static/js/main.01f9865a.chunk.js",
+    "main.js.map": "/yellow-notes-frontend/static/js/main.01f9865a.chunk.js.map",
     "runtime-main.js": "/yellow-notes-frontend/static/js/runtime-main.ca0347dc.js",
     "runtime-main.js.map": "/yellow-notes-frontend/static/js/runtime-main.ca0347dc.js.map",
     "static/css/2.a2565aac.chunk.css": "/yellow-notes-frontend/static/css/2.a2565aac.chunk.css",
-    "static/js/2.87bf9abc.chunk.js": "/yellow-notes-frontend/static/js/2.87bf9abc.chunk.js",
-    "static/js/2.87bf9abc.chunk.js.map": "/yellow-notes-frontend/static/js/2.87bf9abc.chunk.js.map",
+    "static/js/2.dc8b60a8.chunk.js": "/yellow-notes-frontend/static/js/2.dc8b60a8.chunk.js",
+    "static/js/2.dc8b60a8.chunk.js.map": "/yellow-notes-frontend/static/js/2.dc8b60a8.chunk.js.map",
     "index.html": "/yellow-notes-frontend/index.html",
-    "precache-manifest.64c3b222797d9244a0d22b51868470c4.js": "/yellow-notes-frontend/precache-manifest.64c3b222797d9244a0d22b51868470c4.js",
+    "precache-manifest.d3f422e885368ae9c20ea819dad37993.js": "/yellow-notes-frontend/precache-manifest.d3f422e885368ae9c20ea819dad37993.js",
     "service-worker.js": "/yellow-notes-frontend/service-worker.js",
     "static/css/2.a2565aac.chunk.css.map": "/yellow-notes-frontend/static/css/2.a2565aac.chunk.css.map",
-    "static/css/main.7e627595.chunk.css.map": "/yellow-notes-frontend/static/css/main.7e627595.chunk.css.map",
-    "static/js/2.87bf9abc.chunk.js.LICENSE.txt": "/yellow-notes-frontend/static/js/2.87bf9abc.chunk.js.LICENSE.txt"
+    "static/css/main.ff6dfb32.chunk.css.map": "/yellow-notes-frontend/static/css/main.ff6dfb32.chunk.css.map",
+    "static/js/2.dc8b60a8.chunk.js.LICENSE.txt": "/yellow-notes-frontend/static/js/2.dc8b60a8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ca0347dc.js",
     "static/css/2.a2565aac.chunk.css",
-    "static/js/2.87bf9abc.chunk.js",
-    "static/css/main.7e627595.chunk.css",
-    "static/js/main.75ff1626.chunk.js"
+    "static/js/2.dc8b60a8.chunk.js",
+    "static/css/main.ff6dfb32.chunk.css",
+    "static/js/main.01f9865a.chunk.js"
   ]
 }
