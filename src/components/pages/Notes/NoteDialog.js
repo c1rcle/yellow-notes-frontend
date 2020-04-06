@@ -12,16 +12,16 @@ const NoteDialog = () => {
     dialogVisible && note && setFormData(() => ({ ...note }));
   }, [dialogVisible, note]);
 
-  const onChange = e => {
+  const onChange = (e) => {
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (!note) {
       dispatch({
         type: 'ADD_NOTE',
-        payload: { ...formData }
+        payload: { ...formData },
       });
     } else {
       if (!title) {
@@ -32,24 +32,24 @@ const NoteDialog = () => {
           type: 'EDIT_NOTE',
           payload: {
             ...Object.keys(formData)
-              .filter(key => formData[key] !== note[key])
+              .filter((key) => formData[key] !== note[key])
               .reduce((res, key) => ({ ...res, [key]: formData[key] }), {}),
-            noteId: note.noteId
-          }
+            noteId: note.noteId,
+          },
         });
     }
 
     setFormData(() => ({
       title: '',
-      content: ''
+      content: '',
     }));
     closeDialog();
   };
 
-  const onDelete = e => {
+  const onDelete = (e) => {
     dispatch({
       type: 'REMOVE_NOTE',
-      payload: { ...formData }
+      payload: { ...formData },
     });
     closeDialog();
   };
@@ -62,9 +62,10 @@ const NoteDialog = () => {
             <Form.Control
               name='title'
               value={title}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               type='text'
               placeholder='Note Title'
+              tabindex='1'
             />
           </Modal.Title>
         </Modal.Header>
@@ -72,18 +73,19 @@ const NoteDialog = () => {
           <Form.Control
             name='content'
             value={content}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             as='textarea'
             rows='3'
             placeholder='Note Content'
+            tabindex='2'
           />
         </Modal.Body>
         {!note ? (
           <Modal.Footer>
-            <Button variant='secondary' onClick={closeDialog}>
+            <Button variant='secondary' onClick={closeDialog} tabindex='3'>
               Cancel
             </Button>
-            <Button variant='primary' type='submit'>
+            <Button variant='primary' type='submit' tabindex='4'>
               Create
             </Button>
           </Modal.Footer>
@@ -93,13 +95,13 @@ const NoteDialog = () => {
               <i className='far fa-calendar-alt pr-1' />
               <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
             </Form.Label>
-            <Button variant='secondary' onClick={closeDialog}>
+            <Button variant='secondary' onClick={closeDialog} tabindex='3'>
               Close
             </Button>
-            <Button variant='danger' onClick={onDelete}>
+            <Button variant='danger' onClick={onDelete} tabindex='4'>
               Remove
             </Button>
-            <Button variant='primary' type='submit'>
+            <Button variant='primary' type='submit' tabindex='5'>
               Save
             </Button>
           </Modal.Footer>
