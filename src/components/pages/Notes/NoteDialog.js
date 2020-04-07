@@ -82,10 +82,10 @@ const NoteDialog = () => {
         </Modal.Body>
         {!note ? (
           <Modal.Footer>
-            <Button variant='secondary' onClick={closeDialog} tabIndex='3'>
+            <Button variant='outline-secondary' onClick={closeDialog} tabIndex='3'>
               Cancel
             </Button>
-            <Button variant='primary' type='submit' tabIndex='4'>
+            <Button variant='outline-primary' type='submit' tabIndex='4'>
               Create
             </Button>
           </Modal.Footer>
@@ -95,13 +95,13 @@ const NoteDialog = () => {
               <i className='far fa-calendar-alt pr-1' />
               <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
             </Form.Label>
-            <Button variant='secondary' onClick={closeDialog} tabIndex='3'>
+            <Button variant='outline-secondary' onClick={closeDialog} tabIndex='3'>
               Close
             </Button>
-            <Button variant='danger' onClick={onDelete} tabIndex='4'>
+            <Button variant='outline-danger' onClick={onDelete} tabIndex='4'>
               Remove
             </Button>
-            <Button variant='primary' type='submit' tabIndex='5'>
+            <Button variant='outline-primary' type='submit' tabIndex='5'>
               Save
             </Button>
           </Modal.Footer>
