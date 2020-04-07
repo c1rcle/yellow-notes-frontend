@@ -35,7 +35,7 @@ const NoteDialog = () => {
               .filter(key => formData[key] !== note[key])
               .reduce((res, key) => ({ ...res, [key]: formData[key] }), {}),
             noteId: note.noteId
-          },
+          }
         });
     }
 
