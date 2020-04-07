@@ -1,6 +1,6 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
 
-const addNoteAction = async (action, dispatch) => {
+const getNoteAction = async (action, dispatch) => {
   dispatch({ type: 'LOADING_START' });
 
   let response;
@@ -12,7 +12,17 @@ const addNoteAction = async (action, dispatch) => {
 
   if (response.status !== 200) throw new Error('Get notes action has failed! ', response);
 
-  return { ...action, payload: response.data };
+  const loadedCount = action.payload.skipCount + action.payload.takeCount;
+  const serverCount = response.data.count;
+
+  return {
+    ...action,
+    payload: {
+      loadedCount: loadedCount < serverCount ? loadedCount : serverCount,
+      serverCount,
+      notes: response.data.notes
+    }
+  };
 };
 
-export default addNoteAction;
+export default getNoteAction;
