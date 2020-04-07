@@ -15,7 +15,7 @@ const Note = ({ note }) => {
         <Card.Body>
           <Card.Title>{note.title}</Card.Title>
           <Form.Control
-            disabled
+            readOnly
             as='textarea'
             className='note-item p-0'
             rows={5}
