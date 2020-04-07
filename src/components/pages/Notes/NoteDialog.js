@@ -65,7 +65,7 @@ const NoteDialog = () => {
               onChange={(e) => onChange(e)}
               type='text'
               placeholder='Note Title'
-              tabindex='1'
+              tabIndex='1'
             />
           </Modal.Title>
         </Modal.Header>
@@ -77,15 +77,15 @@ const NoteDialog = () => {
             as='textarea'
             rows='3'
             placeholder='Note Content'
-            tabindex='2'
+            tabIndex='2'
           />
         </Modal.Body>
         {!note ? (
           <Modal.Footer>
-            <Button variant='secondary' onClick={closeDialog} tabindex='3'>
+            <Button variant='secondary' onClick={closeDialog} tabIndex='3'>
               Cancel
             </Button>
-            <Button variant='primary' type='submit' tabindex='4'>
+            <Button variant='primary' type='submit' tabIndex='4'>
               Create
             </Button>
           </Modal.Footer>
@@ -95,13 +95,13 @@ const NoteDialog = () => {
               <i className='far fa-calendar-alt pr-1' />
               <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
             </Form.Label>
-            <Button variant='secondary' onClick={closeDialog} tabindex='3'>
+            <Button variant='secondary' onClick={closeDialog} tabIndex='3'>
               Close
             </Button>
-            <Button variant='danger' onClick={onDelete} tabindex='4'>
+            <Button variant='danger' onClick={onDelete} tabIndex='4'>
               Remove
             </Button>
-            <Button variant='primary' type='submit' tabindex='5'>
+            <Button variant='primary' type='submit' tabIndex='5'>
               Save
             </Button>
           </Modal.Footer>
