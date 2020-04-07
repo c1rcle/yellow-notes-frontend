@@ -12,13 +12,20 @@ const getNoteAction = async (action, dispatch) => {
 
   if (response.status !== 200) throw new Error('Get notes action has failed! ', response);
 
-  const loadedCount = action.payload.skipCount + action.payload.takeCount;
+  let loadedCount = action.payload.skipCount + action.payload.takeCount;
   const serverCount = response.data.count;
+
+  if (serverCount !== 0) {
+    console.log('constrain to server count', serverCount);
+    loadedCount = loadedCount < serverCount ? loadedCount : serverCount;
+  }
+
+  console.log('loaded count', loadedCount);
 
   return {
     ...action,
     payload: {
-      loadedCount: loadedCount < serverCount ? loadedCount : serverCount,
+      loadedCount,
       serverCount,
       notes: response.data.notes
     }

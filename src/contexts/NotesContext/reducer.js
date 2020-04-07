@@ -5,6 +5,7 @@ export default (state, { type, payload }) => {
     }
 
     case 'GET_NOTES': {
+      console.log(state, payload)
       return { ...state, ...payload, isLoading: false };
     }
 
