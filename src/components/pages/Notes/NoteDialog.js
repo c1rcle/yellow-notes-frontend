@@ -12,16 +12,16 @@ const NoteDialog = () => {
     dialogVisible && note && setFormData(() => ({ ...note }));
   }, [dialogVisible, note]);
 
-  const onChange = (e) => {
+  const onChange = e => {
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     if (!note) {
       dispatch({
         type: 'ADD_NOTE',
-        payload: { ...formData },
+        payload: { ...formData }
       });
     } else {
       if (!title) {
@@ -32,24 +32,24 @@ const NoteDialog = () => {
           type: 'EDIT_NOTE',
           payload: {
             ...Object.keys(formData)
-              .filter((key) => formData[key] !== note[key])
+              .filter(key => formData[key] !== note[key])
               .reduce((res, key) => ({ ...res, [key]: formData[key] }), {}),
-            noteId: note.noteId,
-          },
+            noteId: note.noteId
+          }
         });
     }
 
     setFormData(() => ({
       title: '',
-      content: '',
+      content: ''
     }));
     closeDialog();
   };
 
-  const onDelete = (e) => {
+  const onDelete = e => {
     dispatch({
       type: 'REMOVE_NOTE',
-      payload: { ...formData },
+      payload: { ...formData }
     });
     closeDialog();
   };
@@ -62,7 +62,7 @@ const NoteDialog = () => {
             <Form.Control
               name='title'
               value={title}
-              onChange={(e) => onChange(e)}
+              onChange={e => onChange(e)}
               type='text'
               placeholder='Note Title'
               tabIndex='1'
@@ -73,7 +73,7 @@ const NoteDialog = () => {
           <Form.Control
             name='content'
             value={content}
-            onChange={(e) => onChange(e)}
+            onChange={e => onChange(e)}
             as='textarea'
             rows='3'
             placeholder='Note Content'
