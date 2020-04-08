@@ -1,11 +1,8 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment } from 'react';
 import { ListGroup, Button, Row, Col } from 'react-bootstrap';
-import ItemContext from '../../../contexts/NotesContext/ItemContext';
 
 const Task = props => {
-  const itemContext = useContext(ItemContext);
-  const { checkTask, removeTask } = itemContext;
-  const { task } = props;
+  const { task, checkTask, removeTask } = props;
 
   return (
     <Fragment>

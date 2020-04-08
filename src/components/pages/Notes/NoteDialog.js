@@ -3,7 +3,6 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import useNotes from '../../../contexts/NotesContext';
 import Moment from 'react-moment';
 import TodoItem from './ToDoItem';
-import { ItemState } from '../../../contexts/NotesContext/ItemContext';
 
 const NoteDialog = () => {
   const emptyNote = { title: '', content: '', variant: 0 };
@@ -18,6 +17,7 @@ const NoteDialog = () => {
       (isNoteNew
         ? setFormData(() => ({ ...emptyNote, ...note }))
         : setFormData(() => ({ ...note })));
+    // eslint-disable-next-line
   }, [dialogVisible, note]);
 
   const onChange = e => {
@@ -47,10 +47,7 @@ const NoteDialog = () => {
         });
     }
 
-    setFormData(() => ({
-      title: '',
-      content: ''
-    }));
+    setFormData(() => ({ ...emptyNote }));
     closeDialog();
   };
 
@@ -90,9 +87,13 @@ const NoteDialog = () => {
               tabIndex='2'
             />
           ) : (
-            <ItemState>
-              <TodoItem />
-            </ItemState>
+            <TodoItem
+              name='content'
+              value={content}
+              onChange={e => onChange(e)}
+              rows='3'
+              tabIndex='2'
+            />
           )}
         </Modal.Body>
         {isNoteNew ? (
