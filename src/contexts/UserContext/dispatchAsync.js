@@ -8,7 +8,7 @@ const dispatchAsync = dispatch => action => {
     case 'CHECK_TOKEN':
       checkTokenAction(action, dispatch)
         .then(a => dispatch(a))
-        .catch(err => console.log(err));
+        .catch(err => err.message === 'Token expired' || console.log(err));
       break;
     case 'REGISTER':
       registerAction(action, dispatch)
