@@ -24,7 +24,7 @@ const NoteDialog = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (!note) {
+    if (isNoteNew) {
       dispatch({
         type: 'ADD_NOTE',
         payload: { ...formData }
