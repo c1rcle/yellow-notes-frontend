@@ -2,14 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import useNotes from '../../../contexts/NotesContext';
 import Moment from 'react-moment';
+import Todo from './Todo';
 
 const NoteDialog = () => {
+  const emptyNote = { title: '', content: '', variant: 0 };
   const [, dispatch, { dialogVisible, closeDialog, note }] = useNotes();
-  const [formData, setFormData] = useState({ title: '', content: '' });
+  const [formData, setFormData] = useState({ ...emptyNote });
   const { title, content } = formData;
 
+  const isNoteNew = !note || note.noteId === undefined;
+
   useEffect(() => {
-    dialogVisible && note && setFormData(() => ({ ...note }));
+    dialogVisible &&
+      (isNoteNew
+        ? setFormData(() => ({ ...emptyNote, ...note }))
+        : setFormData(() => ({ ...note })));
+    // eslint-disable-next-line
   }, [dialogVisible, note]);
 
   const onChange = e => {
@@ -18,7 +26,7 @@ const NoteDialog = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (!note) {
+    if (isNoteNew) {
       dispatch({
         type: 'ADD_NOTE',
         payload: { ...formData }
@@ -39,10 +47,7 @@ const NoteDialog = () => {
         });
     }
 
-    setFormData(() => ({
-      title: '',
-      content: ''
-    }));
+    setFormData(() => ({ ...emptyNote }));
     closeDialog();
   };
 
@@ -65,25 +70,38 @@ const NoteDialog = () => {
               onChange={e => onChange(e)}
               type='text'
               placeholder='Note Title'
+              tabIndex='1'
             />
           </Modal.Title>
         </Modal.Header>
+
         <Modal.Body>
-          <Form.Control
-            name='content'
-            value={content}
-            onChange={e => onChange(e)}
-            as='textarea'
-            rows='3'
-            placeholder='Note Content'
-          />
+          {formData.variant === 0 ? (
+            <Form.Control
+              name='content'
+              value={content}
+              onChange={e => onChange(e)}
+              as='textarea'
+              rows='3'
+              placeholder='Note Content'
+              tabIndex='2'
+            />
+          ) : (
+            <Todo
+              name='content'
+              value={content}
+              onChange={e => onChange(e)}
+              rows='3'
+              tabIndex='2'
+            />
+          )}
         </Modal.Body>
-        {!note ? (
+        {isNoteNew ? (
           <Modal.Footer>
-            <Button variant='secondary' onClick={closeDialog}>
+            <Button variant='outline-secondary' onClick={closeDialog} tabIndex='3'>
               Cancel
             </Button>
-            <Button variant='primary' type='submit'>
+            <Button variant='outline-primary' type='submit' tabIndex='4'>
               Create
             </Button>
           </Modal.Footer>
@@ -93,13 +111,13 @@ const NoteDialog = () => {
               <i className='far fa-calendar-alt pr-1' />
               <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
             </Form.Label>
-            <Button variant='secondary' onClick={closeDialog}>
+            <Button variant='outline-secondary' onClick={closeDialog} tabIndex='3'>
               Close
             </Button>
-            <Button variant='danger' onClick={onDelete}>
+            <Button variant='outline-danger' onClick={onDelete} tabIndex='4'>
               Remove
             </Button>
-            <Button variant='primary' type='submit'>
+            <Button variant='outline-primary' type='submit' tabIndex='5'>
               Save
             </Button>
           </Modal.Footer>

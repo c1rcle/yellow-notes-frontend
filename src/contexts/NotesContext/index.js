@@ -6,7 +6,12 @@ import useNoteDialog from '../../hooks/useNoteDialog';
 const NotesContext = createContext();
 
 export function NotesProvider({ children }) {
-  const [notes, dispatch] = useReducer(notesReducer, { count: 0, notes: [], isLoading: false });
+  const [notes, dispatch] = useReducer(notesReducer, {
+    loadedCount: 0,
+    serverCount: -1,
+    notes: [],
+    isLoading: false
+  });
 
   const noteDialog = useNoteDialog();
 

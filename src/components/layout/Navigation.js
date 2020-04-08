@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import useUser from '../../contexts/UserContext';
-import '../../styles/navbar.css';
 import useNotes from '../../contexts/NotesContext';
 
 const Navigation = () => {
@@ -43,9 +42,13 @@ const Navigation = () => {
 
           {isUserLoggedIn && (
             <Nav className='w-25 justify-content-center d-none d-lg-flex'>
-              <Button variant='outline-success' className='' onClick={() => openDialog()}>
+              <Button variant='outline-success' className='mr-2' onClick={() => openDialog()}>
                 <i className='fas fa-bars mr-1' />
                 Text
+              </Button>
+              <Button variant='outline-success' onClick={() => openDialog({ variant: 1 })}>
+                <i className='fas fa-bars mr-1' />
+                Todo
               </Button>
             </Nav>
           )}
