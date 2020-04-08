@@ -12,7 +12,7 @@ const getNoteAction = async (action, dispatch) => {
 
   if (response.status !== 200) throw new Error('Get notes action has failed! ', response);
 
-  let loadedCount = action.payload.skipCount + action.payload.takeCount;
+  const loadedCount = action.payload.skipCount + action.payload.takeCount;
   const serverCount = response.data.count;
 
   return {
