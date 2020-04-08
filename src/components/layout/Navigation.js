@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import useUser from '../../contexts/UserContext';
-import '../../styles/navbar.css';
 import useNotes from '../../contexts/NotesContext';
 
 const Navigation = () => {

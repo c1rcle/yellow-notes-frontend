@@ -1,15 +1,12 @@
-.note-item.form-control:read-only {
-  background-color: #f8f9fa;
-  border: none;
-  resize: none;
-  cursor: pointer;
-}
-
-.note-item.form-control:focus {
-  box-shadow: none;
-}
-
 div .note-card {
   background-color: #f8f9fa;
-  cursor: pointer;
+  cursor: auto;
+}
+
+.note-card .card-header {
+  background-color: transparent;
+}
+
+.note-card .card-footer {
+  background-color: transparent;
 }

@@ -15,7 +15,7 @@ const NoteContainer = () => {
   }, [user.isUserLoggedIn]);
 
   return (
-    <Masonry>
+    <Masonry enableResizableChildren={true} className='pb-3'>
       {!notes ||
         notes.map(note => (
           <Col lg={4} className='mt-3' key={note.noteId}>
