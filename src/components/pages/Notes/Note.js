@@ -10,11 +10,16 @@ const Note = ({ note }) => {
   const [, , { openDialog }] = useNotes();
   const [expanded, setExpanded] = useState(false);
   const todoListDiv = content =>
-    JSON.parse(content).map(i => <div key={i.noteId}>{content}bbbbbbbbbbbbbbbbbbb</div>);
+    JSON.parse(content).map(i => (
+      <div key={i.id}>
+        {<i className={`fas fa-${i.checked ? 'check' : 'times'} fa-fw`} />}
+        {i.content}
+      </div>
+    ));
   const contentDiv = note => {
     return (
       <div className={`content-${expanded ? 'expanded' : 'collapsed'}`}>
-        {note.variant === 0 ? note.content : todoListDiv}
+        {note.variant === 0 ? note.content : todoListDiv(note.content)}
       </div>
     );
   };
