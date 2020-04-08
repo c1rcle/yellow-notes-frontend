@@ -26,20 +26,20 @@ const NoteContainer = () => {
   };
 
   return (
-    <Row className='pb-5'>
-      <InfiniteScroll
-        datalength={notes.length}
-        loadMore={loadNextNotes}
-        hasMore={loadedCount < serverCount}
-        loader={<div key={1}>loading...</div>}>
+    <InfiniteScroll
+      datalength={notes.length}
+      loadMore={loadNextNotes}
+      hasMore={loadedCount < serverCount}
+      loader={<div key={1}>loading...</div>}>
+      <Row className='pb-5'>
         {!notes ||
           notes.map(note => (
             <Col lg={4} className='mt-3' key={note.noteId}>
               <Note note={note} />
             </Col>
           ))}
-      </InfiniteScroll>
-    </Row>
+      </Row>
+    </InfiniteScroll>
   );
 };
 
