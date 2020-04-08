@@ -5,8 +5,8 @@ export default (state, { type, payload }) => {
     }
 
     case 'GET_NOTES': {
-      console.log(state, payload)
-      return { ...state, ...payload, isLoading: false };
+      const notes = [...new Set([...state.notes, ...payload.notes])]
+      return { ...state, ...payload, notes, isLoading: false };
     }
 
     case 'ADD_NOTE': {

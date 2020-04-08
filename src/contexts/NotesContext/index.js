@@ -8,7 +8,7 @@ const NotesContext = createContext();
 export function NotesProvider({ children }) {
   const [notes, dispatch] = useReducer(notesReducer, {
     loadedCount: 0,
-    serverCount: 0,
+    serverCount: -1,
     notes: [],
     isLoading: false
   });
@@ -16,7 +16,7 @@ export function NotesProvider({ children }) {
   const noteDialog = useNoteDialog();
 
   return (
-    <NotesContext.Provider value={[notes, dispatchAsync(dispatch), noteDialog]}>
+    <NotesContext.Provider value={[notes, dispatchAsync(notes, dispatch), noteDialog]}>
       {children}
     </NotesContext.Provider>
   );

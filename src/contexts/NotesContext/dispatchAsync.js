@@ -3,10 +3,10 @@ import addNoteAction from './actions/addNoteAction';
 import editNoteAction from './actions/editNoteAction';
 import removeNoteAction from './actions/removeNoteAction';
 
-const dispatchAsync = dispatch => action => {
+const dispatchAsync = (state, dispatch) => action => {
   switch (action.type) {
     case 'GET_NOTES': {
-      getNotesAction(action, dispatch)
+      getNotesAction(state, action, dispatch)
         .then(a => dispatch(a))
         .catch(err => console.log(err));
       break;
