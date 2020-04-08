@@ -4,20 +4,36 @@ import Masonry from 'react-masonry-component';
 import useUser from '../../../contexts/UserContext';
 import useNotes from '../../../contexts/NotesContext';
 import Note from './Note';
+import InfiniteScroll from 'react-infinite-scroller';
 import EmptyContainer from './EmptyContainer';
 
 const NoteContainer = () => {
   const [user] = useUser();
-  const [{ notes }, dispatch] = useNotes();
+  const [{ notes, isLoading, loadedCount, serverCount }, dispatch] = useNotes();
 
   useEffect(() => {
     if (user.isUserLoggedIn)
-      dispatch({ type: 'GET_NOTES', payload: { takeCount: 100, skipCount: 0 } }); // eslint-disable-next-line
+      dispatch({ type: 'GET_NOTES', payload: { takeCount: 9, skipCount: 0 } }); // eslint-disable-next-line
   }, [user.isUserLoggedIn]);
 
+  const loadNextNotes = () => {
+    if (isLoading) return;
+
+    if (loadedCount < serverCount || serverCount === -1) {
+      dispatch({
+        type: 'GET_NOTES',
+        payload: { takeCount: 6, skipCount: loadedCount }
+      });
+    }
+  };
+
   return (
-    <>
-    {notes.length === 0 && <EmptyContainer />}
+    <InfiniteScroll
+      datalength={notes.length}
+      loadMore={loadNextNotes}
+      hasMore={loadedCount < serverCount}
+      loader={<div key={1}>loading...</div>}>
+      {notes.length === 0 && <EmptyContainer />}
       <Masonry enableResizableChildren={true} className='pb-3'>
         {notes &&
           notes.map(note => (
@@ -26,7 +42,7 @@ const NoteContainer = () => {
             </Col>
           ))}
       </Masonry>
-    </>
+    </InfiniteScroll>
   );
 };
 
