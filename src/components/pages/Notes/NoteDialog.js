@@ -2,15 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import useNotes from '../../../contexts/NotesContext';
 import Moment from 'react-moment';
+import Todo from './Todo';
 
 const NoteDialog = () => {
+  const emptyNote = { title: '', content: '', variant: 0 };
   const [, dispatch, { dialogVisible, closeDialog, note }] = useNotes();
-  const [formData, setFormData] = useState({ title: '', content: '' });
+  const [formData, setFormData] = useState({ ...emptyNote });
   const { title, content } = formData;
+
+  const isNoteNew = !note || note.noteId === undefined;
 
   useEffect(() => {
     dialogVisible &&
-      (note ? setFormData(() => ({ ...note })) : setFormData(() => ({ title: '', content: '' })));
+      (isNoteNew
+        ? setFormData(() => ({ ...emptyNote, ...note }))
+        : setFormData(() => ({ ...note })));
+    // eslint-disable-next-line
   }, [dialogVisible, note]);
 
   const onChange = e => {
@@ -19,7 +26,7 @@ const NoteDialog = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (!note) {
+    if (isNoteNew) {
       dispatch({
         type: 'ADD_NOTE',
         payload: { ...formData }
@@ -40,10 +47,7 @@ const NoteDialog = () => {
         });
     }
 
-    setFormData(() => ({
-      title: '',
-      content: ''
-    }));
+    setFormData(() => ({ ...emptyNote }));
     closeDialog();
   };
 
@@ -70,18 +74,29 @@ const NoteDialog = () => {
             />
           </Modal.Title>
         </Modal.Header>
+
         <Modal.Body>
-          <Form.Control
-            name='content'
-            value={content}
-            onChange={e => onChange(e)}
-            as='textarea'
-            rows='3'
-            placeholder='Note Content'
-            tabIndex='2'
-          />
+          {formData.variant === 0 ? (
+            <Form.Control
+              name='content'
+              value={content}
+              onChange={e => onChange(e)}
+              as='textarea'
+              rows='3'
+              placeholder='Note Content'
+              tabIndex='2'
+            />
+          ) : (
+            <Todo
+              name='content'
+              value={content}
+              onChange={e => onChange(e)}
+              rows='3'
+              tabIndex='2'
+            />
+          )}
         </Modal.Body>
-        {!note ? (
+        {isNoteNew ? (
           <Modal.Footer>
             <Button variant='outline-secondary' onClick={closeDialog} tabIndex='3'>
               Cancel

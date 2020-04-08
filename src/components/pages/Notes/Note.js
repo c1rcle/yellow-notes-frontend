@@ -9,6 +9,20 @@ import 'simplebar/dist/simplebar.min.css';
 const Note = ({ note }) => {
   const [, , { openDialog }] = useNotes();
   const [expanded, setExpanded] = useState(false);
+  const todoListDiv = content =>
+    JSON.parse(content).map(i => (
+      <div key={i.id}>
+        {<i className={`fas fa-${i.checked ? 'check' : 'times'} fa-fw`} />}
+        {i.content}
+      </div>
+    ));
+  const contentDiv = note => {
+    return (
+      <div className={`content-${expanded ? 'expanded' : 'collapsed'}`}>
+        {note.variant === 0 ? note.content : todoListDiv(note.content)}
+      </div>
+    );
+  };
 
   return (
     <Card className='shadow-sm note-card '>
@@ -20,11 +34,9 @@ const Note = ({ note }) => {
       </Card.Header>
       <Card.Body>
         {expanded ? (
-          <SimpleBar className='scrollbar'>
-            <div className='content-expanded'>{note.content}</div>
-          </SimpleBar>
+          <SimpleBar className='scrollbar'>{contentDiv(note)}</SimpleBar>
         ) : (
-          <div className='content-collapsed'>{note.content}</div>
+          contentDiv(note)
         )}
       </Card.Body>
       {expanded && (
