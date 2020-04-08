@@ -4,13 +4,18 @@ import useNotes from '../../../contexts/NotesContext';
 import Moment from 'react-moment';
 
 const NoteDialog = () => {
+  const emptyNote = { title: '', content: '', variant: 0 };
   const [, dispatch, { dialogVisible, closeDialog, note }] = useNotes();
-  const [formData, setFormData] = useState({ title: '', content: '' });
+  const [formData, setFormData] = useState({ ...emptyNote });
   const { title, content } = formData;
+
+  const isNoteNew = !note || note.noteId === undefined;
 
   useEffect(() => {
     dialogVisible &&
-      (note ? setFormData(() => ({ ...note })) : setFormData(() => ({ title: '', content: '' })));
+      (isNoteNew
+        ? setFormData(() => ({ ...emptyNote, ...note }))
+        : setFormData(() => ({ ...note })));
   }, [dialogVisible, note]);
 
   const onChange = e => {
@@ -81,7 +86,7 @@ const NoteDialog = () => {
             tabIndex='2'
           />
         </Modal.Body>
-        {!note ? (
+        {isNoteNew ? (
           <Modal.Footer>
             <Button variant='outline-secondary' onClick={closeDialog} tabIndex='3'>
               Cancel
