@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import useNotes from '../../../contexts/NotesContext';
 import Moment from 'react-moment';
-import TodoItem from './Todo/TodoItem';
+import Todo from './Todo';
 
 const NoteDialog = () => {
   const emptyNote = { title: '', content: '', variant: 0 };
@@ -87,7 +87,7 @@ const NoteDialog = () => {
               tabIndex='2'
             />
           ) : (
-            <TodoItem
+            <Todo
               name='content'
               value={content}
               onChange={e => onChange(e)}

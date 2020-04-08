@@ -48,7 +48,7 @@ const Navigation = () => {
               </Button>
               <Button variant='outline-success' onClick={() => openDialog({ variant: 1 })}>
                 <i className='fas fa-bars mr-1' />
-                ToDo list
+                Todo
               </Button>
             </Nav>
           )}
