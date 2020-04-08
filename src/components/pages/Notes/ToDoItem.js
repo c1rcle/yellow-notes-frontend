@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { Card, Form, ListGroup, Button, InputGroup } from 'react-bootstrap';
 import Task from './Task';
-import ItemContext from '../../../context/NotesContext/ItemContext';
+import ItemContext from '../../../contexts/NotesContext/ItemContext';
 
 const TodoItem = props => {
   const itemContext = useContext(ItemContext);

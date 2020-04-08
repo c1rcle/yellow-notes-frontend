@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import useNotes from '../../../contexts/NotesContext';
 import Moment from 'react-moment';
+import TodoItem from './ToDoItem';
+import { ItemState } from '../../../contexts/NotesContext/ItemContext';
 
 const NoteDialog = () => {
   const emptyNote = { title: '', content: '', variant: 0 };
@@ -75,16 +77,23 @@ const NoteDialog = () => {
             />
           </Modal.Title>
         </Modal.Header>
+
         <Modal.Body>
-          <Form.Control
-            name='content'
-            value={content}
-            onChange={e => onChange(e)}
-            as='textarea'
-            rows='3'
-            placeholder='Note Content'
-            tabIndex='2'
-          />
+          {formData.variant === 0 ? (
+            <Form.Control
+              name='content'
+              value={content}
+              onChange={e => onChange(e)}
+              as='textarea'
+              rows='3'
+              placeholder='Note Content'
+              tabIndex='2'
+            />
+          ) : (
+            <ItemState>
+              <TodoItem />
+            </ItemState>
+          )}
         </Modal.Body>
         {isNoteNew ? (
           <Modal.Footer>

@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from 'react';
 import { ListGroup, Button, Row, Col } from 'react-bootstrap';
-import ItemContext from '../../../context/NotesContext/ItemContext';
+import ItemContext from '../../../contexts/NotesContext/ItemContext';
 
 const Task = props => {
   const itemContext = useContext(ItemContext);
