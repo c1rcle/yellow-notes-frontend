@@ -10,3 +10,23 @@ div .note-card {
 .note-card .card-footer {
   background-color: transparent;
 }
+
+.scrollbar {
+  max-height: 40vh;
+}
+
+.content-expanded {
+  max-height: 40vh;
+  margin-right: 1rem;
+}
+
+.content-collapsed {
+  user-select: none;
+  max-height: 25vh;
+  margin-right: 1rem;
+  overflow: hidden;
+}
+
+.timestamp {
+  font-size: '0.95rem';
+}

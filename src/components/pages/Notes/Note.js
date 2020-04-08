@@ -1,16 +1,17 @@
-import React from 'react';
-import { Card, Form, Button } from 'react-bootstrap';
-import '../../../styles/notes.css';
+import React, { useState } from 'react';
+import { Card, Button } from 'react-bootstrap';
+import SimpleBar from 'simplebar-react';
 import useNotes from '../../../contexts/NotesContext';
-import { useState } from 'react';
 import Moment from 'react-moment';
+import '../../../styles/notes.css';
+import 'simplebar/dist/simplebar.min.css';
 
 const Note = ({ note }) => {
   const [, , { openDialog }] = useNotes();
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Card className='shadow-sm note-card'>
+    <Card className='shadow-sm note-card '>
       <Card.Header className='d-flex justify-content-between'>
         <Card.Title className='my-auto overflow-ellipsis'>{note.title}</Card.Title>
         <Button variant='outline-primary' onClick={() => setExpanded(!expanded)}>
@@ -18,11 +19,17 @@ const Note = ({ note }) => {
         </Button>
       </Card.Header>
       <Card.Body>
-        <div className='content'>{note.content}</div>
+        {expanded ? (
+          <SimpleBar className='scrollbar'>
+            <div className='content-expanded'>{note.content}</div>
+          </SimpleBar>
+        ) : (
+          <div className='content-collapsed'>{note.content}</div>
+        )}
       </Card.Body>
       {expanded && (
         <Card.Footer className='d-flex justify-content-between'>
-          <div style={{ fontSize: '0.95rem' }} className='my-auto'>
+          <div className='my-auto timestamp'>
             <i className='far fa-calendar-alt pr-1' />
             <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
           </div>
