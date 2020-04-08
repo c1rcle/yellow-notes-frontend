@@ -49,6 +49,16 @@ const Navigation = () => {
               </Button>
             </Nav>
           )}
+
+          {isUserLoggedIn && (
+            <Nav className='w-25 justify-content-center d-none d-lg-flex'>
+              <Button variant='outline-success' className='' onClick={() => openDialog()}>
+                <i className='fas fa-bars mr-1' />
+                ToDo list
+              </Button>
+            </Nav>
+          )}
+
           {isUserLoggedIn ? (
             <>
               <Navbar.Toggle aria-controls='navbar-nav' />
