@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import useNotes from '../../../contexts/NotesContext';
 import Moment from 'react-moment';
-import TodoItem from './ToDoItem';
+import TodoItem from './Todo/TodoItem';
 
 const NoteDialog = () => {
   const emptyNote = { title: '', content: '', variant: 0 };
