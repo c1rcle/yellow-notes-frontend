@@ -9,7 +9,8 @@ const NoteDialog = () => {
   const { title, content } = formData;
 
   useEffect(() => {
-    dialogVisible && note && setFormData(() => ({ ...note }));
+    dialogVisible &&
+      (note ? setFormData(() => ({ ...note })) : setFormData(() => ({ title: '', content: '' })));
   }, [dialogVisible, note]);
 
   const onChange = e => {
