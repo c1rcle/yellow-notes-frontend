@@ -10,10 +10,8 @@ const NoteContainer = () => {
   const [{ notes, isLoading, loadedCount, serverCount }, dispatch] = useNotes();
 
   useEffect(() => {
-    if (user.isUserLoggedIn) {
-      dispatch({ type: 'GET_NOTES', payload: { takeCount: 20, skipCount: 0 } });
-    }
-    // eslint-disable-next-line
+    if (user.isUserLoggedIn)
+      dispatch({ type: 'GET_NOTES', payload: { takeCount: 20, skipCount: 0 } }); // eslint-disable-next-line
   }, [user.isUserLoggedIn]);
 
   const loadNextNotes = () => {
@@ -44,4 +42,5 @@ const NoteContainer = () => {
     </Row>
   );
 };
+
 export default NoteContainer;
