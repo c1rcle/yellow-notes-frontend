@@ -59,8 +59,12 @@ const NoteDialog = () => {
     closeDialog();
   };
 
+  const onCtrlEnter = e => {
+    if (e.ctrlKey && e.keyCode === 13) onSubmit(e);
+  }
+
   return (
-    <Modal show={dialogVisible} onHide={closeDialog}>
+    <Modal show={dialogVisible} onHide={closeDialog} onKeyDown={e => onCtrlEnter(e)}>
       <Form onSubmit={onSubmit}>
         <Modal.Header closeButton>
           <Modal.Title>
