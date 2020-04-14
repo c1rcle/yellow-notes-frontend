@@ -12,13 +12,13 @@ const NoteDialog = () => {
 
   const isNoteNew = !note || note.noteId === undefined;
 
-  useEffect(() => {
+  const updateNote = () => {
     dialogVisible &&
       (isNoteNew
         ? setFormData(() => ({ ...emptyNote, ...note }))
         : setFormData(() => ({ ...note })));
-    // eslint-disable-next-line
-  }, [dialogVisible, note]);
+  };
+  useEffect(updateNote, [dialogVisible, note]);
 
   const onChange = e => {
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });

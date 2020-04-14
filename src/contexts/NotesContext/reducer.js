@@ -31,7 +31,12 @@ export default (state, { type, payload }) => {
     }
 
     case 'CLEAR_NOTES': {
-      return { count: 0, notes: [], isLoading: false };
+      return {
+        loadedCount: 0,
+        serverCount: -1,
+        notes: [],
+        isLoading: false
+      };
     }
 
     default:
