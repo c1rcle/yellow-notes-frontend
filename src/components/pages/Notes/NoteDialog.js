@@ -67,7 +67,7 @@ const NoteDialog = () => {
     <Modal show={dialogVisible} onHide={closeDialog} onKeyDown={e => onCtrlEnter(e)}>
       <Form onSubmit={onSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title>
+          <Modal.Title style={{ width: '100%' }}>
             <Form.Control
               name='title'
               value={title}
