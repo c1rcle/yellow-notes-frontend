@@ -26,8 +26,8 @@ const Note = ({ note }) => {
 
   return (
     <Card className='shadow-sm note-card '>
-      <Card.Header className='d-flex justify-content-between'>
-        <Card.Title className='my-auto overflow-ellipsis'>{note.title}</Card.Title>
+      <Card.Header className='d-flex justify-content-between border'>
+        <Card.Title className='my-auto overflow-ellipsis p-1 border'>{note.title}</Card.Title>
         <Button variant='outline-primary' onClick={() => setExpanded(!expanded)}>
           <i className={'fas fa-' + (expanded ? 'compress-alt' : 'expand-alt')} />
         </Button>
