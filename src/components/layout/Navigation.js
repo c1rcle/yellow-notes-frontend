@@ -13,10 +13,10 @@ const Navigation = () => {
     return email.split('@')[0];
   };
 
-  useEffect(() => {
+  const checkToken = () => {
     if (!isUserLoggedIn && !!localStorage.getItem('token')) dispatch({ type: 'CHECK_TOKEN' });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
+  useEffect(checkToken, []);
 
   return (
     <>
