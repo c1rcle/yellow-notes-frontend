@@ -63,6 +63,11 @@ const NoteDialog = () => {
     if (e.ctrlKey && e.keyCode === 13) onSubmit(e);
   }
 
+  const dialogStyle = {
+    borderWidth: '0 0 2px 0',
+    borderRadius: '0'
+  }
+
   return (
     <Modal show={dialogVisible} onHide={closeDialog} onKeyDown={e => onCtrlEnter(e)}>
       <Form onSubmit={onSubmit}>
@@ -75,6 +80,7 @@ const NoteDialog = () => {
               type='text'
               placeholder='Note Title'
               tabIndex='1'
+              style={dialogStyle}
             />
           </Modal.Title>
         </Modal.Header>
@@ -89,6 +95,7 @@ const NoteDialog = () => {
               rows='3'
               placeholder='Note Content'
               tabIndex='2'
+              style={dialogStyle}
             />
           ) : (
             <Todo
