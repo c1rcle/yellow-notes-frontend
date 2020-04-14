@@ -9,13 +9,20 @@ import 'simplebar/dist/simplebar.min.css';
 const Note = ({ note }) => {
   const [, , { openDialog }] = useNotes();
   const [expanded, setExpanded] = useState(false);
-  const todoListDiv = content =>
-    JSON.parse(content).map(i => (
+  const todoListDiv = content => {
+    let parsedContent;
+    try {
+      parsedContent = JSON.parse(content);
+    } catch (error) {
+      parsedContent = [];
+    }
+    return parsedContent.map(i => (
       <div key={i.id}>
         {<i className={`fas fa-${i.checked ? 'check' : 'times'} fa-fw`} />}
         {i.content}
       </div>
     ));
+  };
   const contentDiv = note => {
     return (
       <div className={`content-${expanded ? 'expanded' : 'collapsed'}`}>
