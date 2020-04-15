@@ -4,24 +4,25 @@ import useNotes from '../../../../contexts/NotesContext';
 import Moment from 'react-moment';
 
 const NoteDialogButtons = props => {
-  const { onDelete } = props;
+  const { onDelete, children } = props;
   const [, , { closeDialog, note }] = useNotes();
 
   const isNoteNew = !note || note.noteId === undefined;
 
   return (
-    <>
+    <Modal.Footer>
+      {children}
       {isNoteNew ? (
-        <Modal.Footer>
+        <>
           <Button variant='outline-secondary' onClick={closeDialog} tabIndex='3'>
             Cancel
           </Button>
           <Button variant='outline-primary' type='submit' tabIndex='4'>
             Create
           </Button>
-        </Modal.Footer>
+        </>
       ) : (
-        <Modal.Footer>
+        <>
           <Form.Label style={{ marginRight: 'auto', fontSize: '0.95rem' }}>
             <i className='far fa-calendar-alt pr-1' />
             <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
@@ -35,9 +36,9 @@ const NoteDialogButtons = props => {
           <Button variant='outline-primary' type='submit' tabIndex='5'>
             Save
           </Button>
-        </Modal.Footer>
+        </>
       )}
-    </>
+    </Modal.Footer>
   );
 };
 
