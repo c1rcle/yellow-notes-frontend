@@ -3,8 +3,13 @@ import { Form, Button, Modal } from 'react-bootstrap';
 import Moment from 'react-moment';
 import ColorPicker from '../../../common/ColorPicker';
 
-const DialogEditFooter = ({ onDelete, note }) => {
+const NoteDialogEditFooter = props => {
+  const { formData, setFormData, onDelete, note } = props;
   const [showPicker, setShowPicker] = useState(false);
+
+  const onColorChange = color => {
+    setFormData({ ...formData, color: color });
+  };
 
   return (
     <Modal.Footer>
@@ -12,7 +17,11 @@ const DialogEditFooter = ({ onDelete, note }) => {
         <i className='far fa-calendar-alt pr-1' />
         <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
       </Form.Label>
-      <ColorPicker show={showPicker} placement='bottom'>
+      <ColorPicker
+        color={formData.color}
+        onColorChange={onColorChange}
+        show={showPicker}
+        placement='bottom'>
         <Button
           variant='outline-secondary'
           onClick={() => setShowPicker(!showPicker)}
@@ -31,4 +40,4 @@ const DialogEditFooter = ({ onDelete, note }) => {
   );
 };
 
-export default DialogEditFooter;
+export default NoteDialogEditFooter;

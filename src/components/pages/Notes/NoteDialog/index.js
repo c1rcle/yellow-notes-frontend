@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import useNotes from '../../../../contexts/NotesContext';
 import NoteDialogForm from './NoteDialogForm';
-import NoteDialogButtons from './NoteDialogButtons';
+import NoteDialogCreateFooter from './NoteDialogCreateFooter';
+import NoteDialogEditFooter from './NoteDialogEditFooter';
 
 const NoteDialog = () => {
-  const emptyNote = { title: '', content: '', variant: 0 };
+  const emptyNote = { title: '', content: '', variant: 0, color: '#d9e3f0' };
 
   const [, dispatch, { dialogVisible, closeDialog, note }] = useNotes();
   const [formData, setFormData] = useState({ ...emptyNote });
@@ -56,7 +57,16 @@ const NoteDialog = () => {
   return (
     <Modal show={dialogVisible} onHide={closeDialog} enforceFocus={false}>
       <NoteDialogForm onSubmit={onSubmit} formData={formData} setFormData={setFormData}>
-        <NoteDialogButtons onDelete={onDelete} />
+        {isNoteNew ? (
+          <NoteDialogCreateFooter closeDialog={closeDialog} />
+        ) : (
+          <NoteDialogEditFooter
+            onDelete={onDelete}
+            note={note}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        )}
       </NoteDialogForm>
     </Modal>
   );

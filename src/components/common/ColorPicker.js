@@ -1,15 +1,15 @@
 import React, { useRef } from 'react';
 import { Overlay, Popover } from 'react-bootstrap';
 import { BlockPicker } from 'react-color';
-import { useState } from 'react';
 import '../../styles/colorpicker.css';
 
 const ColorPicker = props => {
-  const { children, show } = props;
-  const [color, setColor] = useState('#f8f9fa');
+  const { children, show, color, onColorChange } = props;
 
-  const onColorChange = color => {
-    setColor(color.hex);
+  const defaultColors = ['#d9e3f0', '#f47373', '#697689', '#dce775', '#37d67a'];
+
+  const onChangeComplete = color => {
+    onColorChange(color.hex);
   };
 
   const ref = useRef();
@@ -24,8 +24,13 @@ const ColorPicker = props => {
     <>
       {children || firstChild}
       <Overlay {...props} target={target} show={show}>
-        <Popover content={true} on>
-          <BlockPicker color={color} onChangeComplete={onColorChange} triangle='hide' />
+        <Popover content={true}>
+          <BlockPicker
+            color={color}
+            colors={defaultColors}
+            onChangeComplete={onChangeComplete}
+            triangle='hide'
+          />
         </Popover>
       </Overlay>
     </>

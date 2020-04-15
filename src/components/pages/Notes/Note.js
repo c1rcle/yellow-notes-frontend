@@ -9,6 +9,7 @@ import 'simplebar/dist/simplebar.min.css';
 const Note = ({ note }) => {
   const [, , { openDialog }] = useNotes();
   const [expanded, setExpanded] = useState(false);
+  
   const todoListDiv = content => {
     let parsedContent;
     try {
@@ -23,6 +24,7 @@ const Note = ({ note }) => {
       </div>
     ));
   };
+
   const contentDiv = note => {
     return (
       <div className={`content-${expanded ? 'expanded' : 'collapsed'}`}>
@@ -32,7 +34,7 @@ const Note = ({ note }) => {
   };
 
   return (
-    <Card className='shadow-sm note-card '>
+    <Card className='shadow-sm note-card' style={{backgroundColor: note.color}}>
       <Card.Header className='d-flex justify-content-between'>
         <Card.Title className='my-auto overflow-ellipsis p-1'>{note.title}</Card.Title>
         <Button variant='outline-primary' onClick={() => setExpanded(!expanded)}>
