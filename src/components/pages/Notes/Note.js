@@ -5,11 +5,12 @@ import useNotes from '../../../contexts/NotesContext';
 import Moment from 'react-moment';
 import '../../../styles/notes.css';
 import 'simplebar/dist/simplebar.min.css';
+import { getTextColor } from '../../../utility/colorUtility';
 
 const Note = ({ note }) => {
   const [, , { openDialog }] = useNotes();
   const [expanded, setExpanded] = useState(false);
-  
+
   const todoListDiv = content => {
     let parsedContent;
     try {
@@ -34,7 +35,9 @@ const Note = ({ note }) => {
   };
 
   return (
-    <Card className='shadow-sm note-card' style={{backgroundColor: note.color}}>
+    <Card
+      className={`shadow-sm note-card ${getTextColor(note.color)}`}
+      style={{ backgroundColor: note.color }}>
       <Card.Header className='d-flex justify-content-between'>
         <Card.Title className='my-auto overflow-ellipsis p-1'>{note.title}</Card.Title>
         <Button variant='outline-primary' onClick={() => setExpanded(!expanded)}>

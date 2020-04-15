@@ -6,7 +6,7 @@ import '../../styles/colorpicker.css';
 const ColorPicker = props => {
   const { children, show, color, onColorChange } = props;
 
-  const defaultColors = ['#d9e3f0', '#f47373', '#697689', '#dce775', '#37d67a'];
+  const defaultColors = ['#ededed', '#7189bf', '#df7599', '#ffc785', '#72d6c9'];
 
   const onChangeComplete = color => {
     onColorChange(color.hex);
