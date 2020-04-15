@@ -23,3 +23,9 @@ export const getTextColor = data => {
   const yiq = (col.rgb.r * 299 + col.rgb.g * 587 + col.rgb.b * 114) / 1000;
   return yiq >= 128 ? 'text-dark' : 'text-light';
 };
+
+export const getFormColor = data => {
+  const color = tinycolor(data);
+  color.brighten();
+  return `#${color.toHex()}`;
+};

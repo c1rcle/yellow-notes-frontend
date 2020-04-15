@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import Todo from '../Todo';
+import { getFormColor } from '../../../../utility/colorUtility';
 
 const NoteDialogForm = props => {
   const { children, onSubmit, formData, setFormData } = props;
@@ -12,7 +13,7 @@ const NoteDialogForm = props => {
 
   return (
     <Form onSubmit={onSubmit}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton style={{ backgroundColor: formData.color, borderBottom: 'none' }}>
         <Modal.Title>
           <Form.Control
             name='title'
@@ -21,11 +22,12 @@ const NoteDialogForm = props => {
             type='text'
             placeholder='Note Title'
             tabIndex='1'
+            style={{ backgroundColor: getFormColor(formData.color) }}
           />
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body>
+      <Modal.Body style={{ backgroundColor: formData.color }}>
         {formData.variant === 0 ? (
           <Form.Control
             name='content'
@@ -35,6 +37,7 @@ const NoteDialogForm = props => {
             rows='3'
             placeholder='Note Content'
             tabIndex='2'
+            style={{ backgroundColor: getFormColor(formData.color) }}
           />
         ) : (
           <Todo name='content' value={content} onChange={e => onChange(e)} rows='3' tabIndex='2' />
