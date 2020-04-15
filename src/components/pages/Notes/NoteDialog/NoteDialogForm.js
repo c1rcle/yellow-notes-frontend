@@ -13,7 +13,13 @@ const NoteDialogForm = props => {
 
   return (
     <Form onSubmit={onSubmit}>
-      <Modal.Header closeButton style={{ backgroundColor: formData.color, borderBottom: 'none' }}>
+      <Modal.Header
+        closeButton
+        className={getTextColor(formData.color) === 'text-dark' ? 'close-dark' : 'close-light'}
+        style={{
+          backgroundColor: formData.color,
+          borderBottom: 'none'
+        }}>
         <Modal.Title>
           <Form.Control
             name='title'

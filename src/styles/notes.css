@@ -2,6 +2,24 @@ div .note-card {
   cursor: auto;
 }
 
+.close-dark .close {
+  color: #333;
+}
+
+.close-light .close {
+  color: #fff;
+}
+
+.close-dark .close:hover {
+  color: #000;
+  outline: none;
+}
+
+.close-light .close:hover {
+  color: #ccc;
+  outline: none;
+}
+
 .note-card .card-header {
   background-color: transparent;
 }
