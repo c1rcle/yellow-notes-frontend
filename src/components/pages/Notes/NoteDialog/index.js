@@ -54,7 +54,7 @@ const NoteDialog = () => {
   };
 
   return (
-    <Modal show={dialogVisible} onHide={closeDialog}>
+    <Modal show={dialogVisible} onHide={closeDialog} enforceFocus={false}>
       <NoteDialogForm onSubmit={onSubmit} formData={formData} setFormData={setFormData}>
         <NoteDialogButtons onDelete={onDelete} />
       </NoteDialogForm>
