@@ -11,7 +11,7 @@ const ColorPicker = props => {
     '#ffc785',
     '#f1daf5',
     '#df7599',
-    '#ba0120',
+    '#8f0018',
     '#7189bf',
     '#72d6c9',
     '#77da57',
