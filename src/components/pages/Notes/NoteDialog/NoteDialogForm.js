@@ -10,10 +10,15 @@ const NoteDialogForm = props => {
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const textFieldStyle = {
+    borderWidth: '0 0 2px 0',
+    borderRadius: '0'
+  }
+
   return (
     <Form onSubmit={onSubmit}>
       <Modal.Header closeButton>
-        <Modal.Title>
+        <Modal.Title style={{ width: '100%' }}>
           <Form.Control
             name='title'
             value={title}
@@ -21,6 +26,7 @@ const NoteDialogForm = props => {
             type='text'
             placeholder='Note Title'
             tabIndex='1'
+            style={textFieldStyle}
           />
         </Modal.Title>
       </Modal.Header>
@@ -35,6 +41,7 @@ const NoteDialogForm = props => {
             rows='3'
             placeholder='Note Content'
             tabIndex='2'
+            style={textFieldStyle}
           />
         ) : (
           <Todo name='content' value={content} onChange={e => onChange(e)} rows='3' tabIndex='2' />
