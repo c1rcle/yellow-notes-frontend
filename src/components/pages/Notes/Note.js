@@ -4,7 +4,6 @@ import Moment from 'react-moment';
 import useNotes from '../../../contexts/NotesContext';
 import { getTextColor } from '../../../utility/colorUtility';
 import '../../../styles/notes.css';
-import 'simplebar/dist/simplebar.min.css';
 
 const Note = ({ note }) => {
   const [, , { openDialog }] = useNotes();

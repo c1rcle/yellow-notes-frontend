@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { ListGroup, Button, Row, Col } from 'react-bootstrap';
 
 const TodoItem = props => {
-  const { task, checkTask, removeTask } = props;
+  const { task, checkTask, removeTask, color } = props;
 
   return (
-    <Fragment>
-      <ListGroup.Item>
+    <>
+      <ListGroup.Item style={{backgroundColor: color}}>
         <Row>
           <Col xs='auto' className='ml-1 pr-0'>
             <Button
@@ -25,7 +25,7 @@ const TodoItem = props => {
           </Col>
         </Row>
       </ListGroup.Item>
-    </Fragment>
+    </>
   );
 };
 

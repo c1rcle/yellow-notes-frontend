@@ -1,0 +1,8 @@
+.list-group {
+  padding-top: 1rem;
+}
+
+.list-group .list-group-item {
+  padding: 0.75rem 0rem;
+  border: none;
+}

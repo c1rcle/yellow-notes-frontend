@@ -5,7 +5,7 @@ import { getTextColor, getFormColor } from '../../../../utility/colorUtility';
 
 const NoteDialogForm = props => {
   const { children, onSubmit, formData, setFormData } = props;
-  const { title, content } = formData;
+  const { title, content, color } = formData;
 
   const onChange = e => {
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,38 +15,40 @@ const NoteDialogForm = props => {
     <Form onSubmit={onSubmit}>
       <Modal.Header
         closeButton
-        className={getTextColor(formData.color) === 'text-dark' ? 'close-dark' : 'close-light'}
+        className={getTextColor(color) === 'text-dark' ? 'close-dark' : 'close-light'}
         style={{
-          backgroundColor: formData.color,
+          backgroundColor: color,
           borderBottom: 'none'
         }}>
         <Modal.Title>
           <Form.Control
+            name='title'
             value={title}
             onChange={e => onChange(e)}
             type='text'
             placeholder='Note Title'
             tabIndex='1'
-            className={getTextColor(formData.color)}
-            style={{ backgroundColor: getFormColor(formData.color) }}
+            className={getTextColor(color)}
+            style={{ backgroundColor: getFormColor(color) }}
           />
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body style={{ backgroundColor: formData.color }}>
+      <Modal.Body style={{ backgroundColor: color }}>
         {formData.variant === 0 ? (
           <Form.Control
+            name='content'
             value={content}
             onChange={e => onChange(e)}
             as='textarea'
             rows='3'
             placeholder='Note Content'
             tabIndex='2'
-            className={getTextColor(formData.color)}
-            style={{ backgroundColor: getFormColor(formData.color) }}
+            className={getTextColor(color)}
+            style={{ backgroundColor: getFormColor(color) }}
           />
         ) : (
-          <Todo value={content} onChange={e => onChange(e)} rows='3' tabIndex='2' />
+          <Todo name='content' data={formData} onChange={e => onChange(e)} rows='3' tabIndex='2' />
         )}
       </Modal.Body>
       {children}
