@@ -18,7 +18,7 @@ const Note = ({ note }) => {
     return parsedContent.map(i => (
       <div key={i.id}>
         {<i className={`fas fa-${i.checked ? 'check' : 'times'} fa-fw`} />}
-        {i.content}
+        {i.checked ? <strike>{i.content}</strike> : i.content}
       </div>
     ));
   };
