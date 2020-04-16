@@ -20,7 +20,7 @@ const NoteDialogForm = props => {
           backgroundColor: color,
           borderBottom: 'none'
         }}>
-        <Modal.Title>
+        <Modal.Title style={{ width: '100%' }}>
           <Form.Control
             name='title'
             value={title}
@@ -29,7 +29,7 @@ const NoteDialogForm = props => {
             placeholder='Note Title'
             tabIndex='1'
             className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
-            style={{ backgroundColor: getFormColor(color) }}
+            style={{ backgroundColor: getFormColor(color), borderWidth: '0' }}
           />
         </Modal.Title>
       </Modal.Header>
@@ -45,7 +45,7 @@ const NoteDialogForm = props => {
             placeholder='Note Content'
             tabIndex='2'
             className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
-            style={{ backgroundColor: getFormColor(color) }}
+            style={{ backgroundColor: getFormColor(color), borderWidth: '0' }}
           />
         ) : (
           <Todo name='content' data={formData} onChange={e => onChange(e)} rows='3' tabIndex='2' />

@@ -49,7 +49,7 @@ const Todo = props => {
             value={content}
             onChange={e => setContent(e.target.value)}
             className={`text-${getVariant(data.color)} placeholder-${getVariant(data.color)}`}
-            style={{ backgroundColor: getFormColor(data.color) }}
+            style={{ backgroundColor: getFormColor(data.color), borderWidth: '0' }}
           />
           <InputGroup.Append>
             <Button variant='success' onClick={addTaskPressed}>
