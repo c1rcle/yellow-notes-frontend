@@ -24,6 +24,14 @@ div .note-card:hover {
   outline: none;
 }
 
+.placeholder-dark::placeholder {
+  color: #666 !important;
+}
+
+.placeholder-light::placeholder {
+  color: #bbb !important;
+}
+
 .note-card .card-header {
   background-color: transparent;
 }
@@ -47,4 +55,13 @@ div .note-card:hover {
 
 .timestamp {
   font-size: 0.8rem;
+}
+
+.list-group {
+  padding-top: 1rem;
+}
+
+.list-group .list-group-item {
+  padding: 0.75rem 0;
+  border: none;
 }

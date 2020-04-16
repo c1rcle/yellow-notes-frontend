@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import Moment from 'react-moment';
 import useNotes from '../../../contexts/NotesContext';
-import { getTextColor } from '../../../utility/colorUtility';
+import { getVariant } from '../../../utility/colorUtility';
 import '../../../styles/notes.css';
 
 const Note = ({ note }) => {
@@ -32,7 +32,7 @@ const Note = ({ note }) => {
   return (
     <Card
       onClick={() => openDialog({ ...note })}
-      className={`shadow-sm note-card ${getTextColor(note.color)}`}
+      className={`shadow-sm note-card text-${getVariant(note.color)}`}
       style={{ backgroundColor: note.color }}>
       <Card.Header>
         <Card.Title className='my-auto overflow-ellipsis p-1'>{note.title}</Card.Title>

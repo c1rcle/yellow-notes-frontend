@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, ListGroup, Button, InputGroup } from 'react-bootstrap';
 import TodoItem from './TodoItem';
-import { getTextColor, getFormColor } from '../../../../utility/colorUtility';
-import '../../../../styles/todo.css';
+import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 
 const Todo = props => {
   const [tasks, setTasksState] = useState([]);
@@ -49,7 +48,7 @@ const Todo = props => {
             placeholder='Enter a new task'
             value={content}
             onChange={e => setContent(e.target.value)}
-            className={getTextColor(data.color)}
+            className={`text-${getVariant(data.color)} placeholder-${getVariant(data.color)}`}
             style={{ backgroundColor: getFormColor(data.color) }}
           />
           <InputGroup.Append>

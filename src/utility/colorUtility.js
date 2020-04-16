@@ -1,6 +1,6 @@
 import tinycolor from 'tinycolor2';
 
-export const getTextColor = data => {
+export const getVariant = data => {
   const toObject = data => {
     const color = tinycolor(data);
     const rgb = color.toRgb();
@@ -14,17 +14,21 @@ export const getTextColor = data => {
   };
 
   if (!data) {
-    return 'text-dark';
+    return 'dark';
   }
   const col = toObject(data);
   if (col.hex === 'transparent') {
-    return 'text-light';
+    return 'light';
   }
   const yiq = (col.rgb.r * 299 + col.rgb.g * 587 + col.rgb.b * 114) / 1000;
-  return yiq >= 128 ? 'text-dark' : 'text-light';
+  return yiq >= 128 ? 'dark' : 'light';
 };
 
 export const getFormColor = data => {
+  if (!data) {
+    return '#ffc785';
+  }
+
   const color = tinycolor(data);
   color.brighten();
   return `#${color.toHex()}`;

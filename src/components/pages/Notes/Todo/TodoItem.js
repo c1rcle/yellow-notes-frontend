@@ -1,5 +1,6 @@
 import React from 'react';
 import { ListGroup, Button, Row, Col } from 'react-bootstrap';
+import { getVariant } from '../../../../utility/colorUtility';
 
 const TodoItem = props => {
   const { task, checkTask, removeTask, color } = props;
@@ -15,8 +16,8 @@ const TodoItem = props => {
               <i className={`fas fa-${task.checked ? 'check' : 'times'} fa-fw`} />
             </Button>
           </Col>
-          <Col className='m-auto trimText'>
-            {task.checked ? <div className='text-muted'>{task.content}</div> : task.content}
+          <Col className={`m-auto trimText text-${getVariant(color)}`}>
+            {task.checked ? <strike>{task.content}</strike> : task.content}
           </Col>
           <Col xs='auto' className='mr-1'>
             <Button variant='danger' onClick={() => removeTask(task.id)}>
