@@ -22,7 +22,6 @@ const NoteDialogForm = props => {
         }}>
         <Modal.Title>
           <Form.Control
-            name='title'
             value={title}
             onChange={e => onChange(e)}
             type='text'
@@ -37,7 +36,6 @@ const NoteDialogForm = props => {
       <Modal.Body style={{ backgroundColor: formData.color }}>
         {formData.variant === 0 ? (
           <Form.Control
-            name='content'
             value={content}
             onChange={e => onChange(e)}
             as='textarea'
@@ -48,7 +46,7 @@ const NoteDialogForm = props => {
             style={{ backgroundColor: getFormColor(formData.color) }}
           />
         ) : (
-          <Todo name='content' value={content} onChange={e => onChange(e)} rows='3' tabIndex='2' />
+          <Todo value={content} onChange={e => onChange(e)} rows='3' tabIndex='2' />
         )}
       </Modal.Body>
       {children}
