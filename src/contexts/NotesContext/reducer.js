@@ -5,7 +5,11 @@ export default (state, { type, payload }) => {
     }
 
     case 'GET_NOTES': {
-      const notes = [...new Set([...state.notes, ...payload.notes])]
+      const notes = [...state.notes];
+      payload.notes.forEach(note => {
+        const index = notes.findIndex(n => n.noteId === note.noteId);
+        index === -1 ? notes.push(note) : (notes[index] = note);
+      });
       return { ...state, ...payload, notes, isLoading: false };
     }
 
@@ -27,7 +31,12 @@ export default (state, { type, payload }) => {
     }
 
     case 'CLEAR_NOTES': {
-      return { count: 0, notes: [], isLoading: false };
+      return {
+        loadedCount: 0,
+        serverCount: -1,
+        notes: [],
+        isLoading: false
+      };
     }
 
     default:

@@ -9,13 +9,20 @@ import 'simplebar/dist/simplebar.min.css';
 const Note = ({ note }) => {
   const [, , { openDialog }] = useNotes();
   const [expanded, setExpanded] = useState(false);
-  const todoListDiv = content =>
-    JSON.parse(content).map(i => (
+  const todoListDiv = content => {
+    let parsedContent;
+    try {
+      parsedContent = JSON.parse(content);
+    } catch (error) {
+      parsedContent = [];
+    }
+    return parsedContent.map(i => (
       <div key={i.id}>
         {<i className={`fas fa-${i.checked ? 'check' : 'times'} fa-fw`} />}
         {i.content}
       </div>
     ));
+  };
   const contentDiv = note => {
     return (
       <div className={`content-${expanded ? 'expanded' : 'collapsed'}`}>
@@ -27,7 +34,7 @@ const Note = ({ note }) => {
   return (
     <Card className='shadow-sm note-card '>
       <Card.Header className='d-flex justify-content-between'>
-        <Card.Title className='my-auto overflow-ellipsis'>{note.title}</Card.Title>
+        <Card.Title className='my-auto overflow-ellipsis p-1'>{note.title}</Card.Title>
         <Button variant='outline-primary' onClick={() => setExpanded(!expanded)}>
           <i className={'fas fa-' + (expanded ? 'compress-alt' : 'expand-alt')} />
         </Button>
