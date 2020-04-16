@@ -25,11 +25,11 @@ div .note-card:hover {
 }
 
 .placeholder-dark::placeholder {
-  color: #666 !important;
+  color: #333 !important;
 }
 
 .placeholder-light::placeholder {
-  color: #bbb !important;
+  color: #ccc !important;
 }
 
 .note-card .card-header {
@@ -64,4 +64,8 @@ div .note-card:hover {
 .list-group .list-group-item {
   padding: 0.75rem 0;
   border: none;
+}
+
+.button-shadow {
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.5) !important;
 }

@@ -7,12 +7,13 @@ const TodoItem = props => {
 
   return (
     <>
-      <ListGroup.Item style={{backgroundColor: color}}>
+      <ListGroup.Item style={{ backgroundColor: color }}>
         <Row>
           <Col xs='auto' className='ml-1 pr-0'>
             <Button
-              variant={task.checked ? 'success' : 'outline-success'}
-              onClick={() => checkTask(task.id, !task.checked)}>
+              variant='success'
+              onClick={() => checkTask(task.id, !task.checked)}
+              className='button-shadow'>
               <i className={`fas fa-${task.checked ? 'check' : 'times'} fa-fw`} />
             </Button>
           </Col>
@@ -20,7 +21,7 @@ const TodoItem = props => {
             {task.checked ? <strike>{task.content}</strike> : task.content}
           </Col>
           <Col xs='auto' className='mr-1'>
-            <Button variant='danger' onClick={() => removeTask(task.id)}>
+            <Button variant='danger' onClick={() => removeTask(task.id)} className='button-shadow'>
               <i className={'fas fa-trash fa-fw'} />
             </Button>
           </Col>
