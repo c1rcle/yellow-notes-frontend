@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Form, ListGroup, Button, InputGroup, Row, Col } from 'react-bootstrap';
+import { Form, ListGroup, Button, InputGroup, Row, Col } from 'react-bootstrap';
 import TodoItem from './TodoItem';
+import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 
 const Todo = props => {
   const [tasks, setTasksState] = useState([]);
   const [content, setContent] = useState('');
-  const { onChange, value, name } = props;
+  const { onChange, data, name } = props;
 
   const setTasks = tasks => {
     onChange({ target: { name, value: JSON.stringify(tasks) } });
@@ -13,11 +14,11 @@ const Todo = props => {
 
   useEffect(() => {
     try {
-      setTasksState(JSON.parse(value));
+      setTasksState(JSON.parse(data.content));
     } catch (error) {
       setTasksState([]);
     }
-  }, [value]);
+  }, [data.content]);
 
   const addTask = content => {
     let newId = tasks.length === 0 ? 0 : tasks[tasks.length - 1].id + 1;
@@ -39,10 +40,16 @@ const Todo = props => {
   };
 
   return (
-    <Card>
+    <>
       <ListGroup variant='flush'>
         {tasks.map(task => (
-          <TodoItem key={task.id} task={task} removeTask={removeTask} checkTask={checkTask} />
+          <TodoItem
+            key={task.id}
+            task={task}
+            removeTask={removeTask}
+            checkTask={checkTask}
+            color={data.color}
+          />
         ))}
 
         <ListGroup.Item className='py-0'>
@@ -50,25 +57,34 @@ const Todo = props => {
             <Col className='px-0'>
               <div onSubmit={addTaskPressed}>
                 <InputGroup>
+                  {
+                    //TODO try remove this
+                  }
                   <Form.Control
-                    className='border-0'
                     type='text'
                     placeholder='Enter a new task'
                     value={content}
                     onChange={e => setContent(e.target.value)}
+                    className={`text-${getVariant(data.color)} 
+                    placeholder-${getVariant(data.color)}`}
+                    tabIndex='1'
+                    style={{ backgroundColor: getFormColor(data.color), borderWidth: '0' }}
                   />
                 </InputGroup>
               </div>
             </Col>
             <Col xs='auto' className='mr-1 py-2'>
-              <Button className='p-1 pr-2 pl-2' variant='success' onClick={addTaskPressed}>
+              <Button
+                className='button-shadow p-1 pr-2 pl-2'
+                variant='success'
+                onClick={addTaskPressed}>
                 <i className={'fas fa-plus fa-fw'} />
               </Button>
             </Col>
           </Row>
         </ListGroup.Item>
       </ListGroup>
-    </Card>
+    </>
   );
 };
 

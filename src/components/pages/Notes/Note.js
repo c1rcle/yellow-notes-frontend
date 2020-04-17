@@ -1,13 +1,13 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
-import SimpleBar from 'simplebar-react';
-import useNotes from '../../../contexts/NotesContext';
+import { Card } from 'react-bootstrap';
 import Moment from 'react-moment';
+import useNotes from '../../../contexts/NotesContext';
+import { getVariant } from '../../../utility/colorUtility';
 import '../../../styles/notes.css';
-import 'simplebar/dist/simplebar.min.css';
 
 const Note = ({ note }) => {
   const [, , { openDialog }] = useNotes();
+
   const todoListDiv = content => {
     let parsedContent;
     try {
@@ -22,25 +22,22 @@ const Note = ({ note }) => {
       </div>
     ));
   };
+
   const contentDiv = note => {
     return (
-      <div className={'content-expanded'}>
-        {note.variant === 0 ? note.content : todoListDiv(note.content)}
-      </div>
+      <div className='content'>{note.variant === 0 ? note.content : todoListDiv(note.content)}</div>
     );
   };
 
   return (
-    <Card className='shadow-sm note-card '>
-      <Card.Header className='d-flex justify-content-between'>
+    <Card
+      onClick={() => openDialog({ ...note })}
+      className={`shadow-sm note-card text-${getVariant(note.color)}`}
+      style={{ backgroundColor: note.color }}>
+      <Card.Header>
         <Card.Title className='my-auto overflow-ellipsis p-1'>{note.title}</Card.Title>
-        <Button variant='outline-primary' onClick={() => openDialog({ ...note })}>
-          Edit
-        </Button>
       </Card.Header>
-      <Card.Body>
-        <SimpleBar className='scrollbar'>{contentDiv(note)}</SimpleBar>
-      </Card.Body>
+      <Card.Body>{contentDiv(note)}</Card.Body>
       <Card.Footer className='py-0 pr-1'>
         <div className='my-auto timestamp text-right'>
           <Moment className='small' format='YYYY-MM-DD HH:mm'>

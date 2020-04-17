@@ -1,23 +1,25 @@
 import React from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import Todo from '../Todo';
+import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 
 const NoteDialogForm = props => {
   const { children, onSubmit, formData, setFormData } = props;
-  const { title, content } = formData;
+  const { title, content, color } = formData;
 
   const onChange = e => {
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const textFieldStyle = {
-    borderWidth: '0 0 2px 0',
-    borderRadius: '0'
-  }
-
   return (
     <Form onSubmit={onSubmit}>
-      <Modal.Header closeButton>
+      <Modal.Header
+        closeButton
+        className={`close-${getVariant(color)}`}
+        style={{
+          backgroundColor: color,
+          borderBottom: 'none'
+        }}>
         <Modal.Title style={{ width: '100%' }}>
           <Form.Control
             name='title'
@@ -26,12 +28,13 @@ const NoteDialogForm = props => {
             type='text'
             placeholder='Note Title'
             tabIndex='1'
-            style={textFieldStyle}
+            className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
+            style={{ backgroundColor: getFormColor(color), borderWidth: '0' }}
           />
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body>
+      <Modal.Body style={{ backgroundColor: color }}>
         {formData.variant === 0 ? (
           <Form.Control
             name='content'
@@ -41,10 +44,11 @@ const NoteDialogForm = props => {
             rows='3'
             placeholder='Note Content'
             tabIndex='2'
-            style={textFieldStyle}
+            className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
+            style={{ backgroundColor: getFormColor(color), borderWidth: '0' }}
           />
         ) : (
-          <Todo name='content' value={content} onChange={e => onChange(e)} rows='3' tabIndex='2' />
+          <Todo name='content' data={formData} onChange={e => onChange(e)} rows='3' tabIndex='2' />
         )}
       </Modal.Body>
       {children}

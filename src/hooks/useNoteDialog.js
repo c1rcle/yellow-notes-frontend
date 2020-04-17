@@ -5,12 +5,11 @@ function useNoteDialog() {
   const [note, setNote] = useState(undefined);
 
   const openDialog = note => {
-    setDialogVisible(true);
     setNote(() => note);
+    setDialogVisible(true);
   };
   const closeDialog = () => {
     setDialogVisible(false);
-    setNote(() => undefined);
   };
 
   return { dialogVisible, openDialog, closeDialog, note };
