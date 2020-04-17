@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import SimpleBar from 'simplebar-react';
 import useNotes from '../../../contexts/NotesContext';
