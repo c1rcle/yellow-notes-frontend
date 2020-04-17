@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 import { Overlay, Popover } from 'react-bootstrap';
-import { BlockPicker } from 'react-color';
+import { SketchPicker } from 'react-color';
 import '../../styles/colorpicker.css';
 
 const ColorPicker = props => {
-  const { children, show, color, onColorChange } = props;
+  const { children, show, setShow, color, onColorChange } = props;
 
   const defaultColors = [
     '#ffef7f',
@@ -23,6 +23,10 @@ const ColorPicker = props => {
     onColorChange(color.hex);
   };
 
+  const onHide = () => {
+    setShow(false);
+  };
+
   const ref = useRef();
   let firstChild = (Array.isArray(children) ? children[0] : children) || <div ref={ref} />;
 
@@ -34,13 +38,13 @@ const ColorPicker = props => {
   return (
     <>
       {children || firstChild}
-      <Overlay {...props} target={target} show={show}>
-        <Popover content={true}>
-          <BlockPicker
+      <Overlay {...props} onHide={onHide} rootClose target={target} show={show}>
+        <Popover content={false}>
+          <SketchPicker
             color={color}
-            colors={defaultColors}
+            presetColors={defaultColors}
             onChangeComplete={onChangeComplete}
-            triangle='hide'
+            disableAlpha={true}
           />
         </Popover>
       </Overlay>

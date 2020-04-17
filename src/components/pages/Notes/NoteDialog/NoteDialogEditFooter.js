@@ -21,6 +21,7 @@ const NoteDialogEditFooter = props => {
         color={formData.color}
         onColorChange={onColorChange}
         show={showPicker}
+        setShow={setShowPicker}
         placement='bottom'>
         <Button
           variant='outline-secondary'
