@@ -9,13 +9,19 @@ const ColorPicker = props => {
   const defaultColors = [
     '#ffef7f',
     '#ffc785',
+    '#8F6132',
     '#f1daf5',
     '#df7599',
+    '#D84447',
     '#8f0018',
     '#7189bf',
-    '#72d6c9',
+    '#7258AA',
+    '#661F62',
+    '#4A5A12',
     '#77da57',
+    '#72d6c9',
     '#ededed',
+    '#646464',
     '#22222a'
   ];
 
