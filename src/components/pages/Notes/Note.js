@@ -8,7 +8,6 @@ import 'simplebar/dist/simplebar.min.css';
 
 const Note = ({ note }) => {
   const [, , { openDialog }] = useNotes();
-  const [expanded, setExpanded] = useState(false);
   const todoListDiv = content => {
     let parsedContent;
     try {
@@ -25,7 +24,7 @@ const Note = ({ note }) => {
   };
   const contentDiv = note => {
     return (
-      <div className={`content-${expanded ? 'expanded' : 'collapsed'}`}>
+      <div className={'content-expanded'}>
         {note.variant === 0 ? note.content : todoListDiv(note.content)}
       </div>
     );
@@ -35,28 +34,20 @@ const Note = ({ note }) => {
     <Card className='shadow-sm note-card '>
       <Card.Header className='d-flex justify-content-between'>
         <Card.Title className='my-auto overflow-ellipsis p-1'>{note.title}</Card.Title>
-        <Button variant='outline-primary' onClick={() => setExpanded(!expanded)}>
-          <i className={'fas fa-' + (expanded ? 'compress-alt' : 'expand-alt')} />
+        <Button variant='outline-primary' onClick={() => openDialog({ ...note })}>
+          Edit
         </Button>
       </Card.Header>
       <Card.Body>
-        {expanded ? (
-          <SimpleBar className='scrollbar'>{contentDiv(note)}</SimpleBar>
-        ) : (
-          contentDiv(note)
-        )}
+        <SimpleBar className='scrollbar'>{contentDiv(note)}</SimpleBar>
       </Card.Body>
-      {expanded && (
-        <Card.Footer className='d-flex justify-content-between'>
-          <div className='my-auto timestamp'>
-            <i className='far fa-calendar-alt pr-1' />
-            <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
-          </div>
-          <Button variant='outline-primary' onClick={() => openDialog({ ...note })}>
-            Edit
-          </Button>
-        </Card.Footer>
-      )}
+      <Card.Footer className='py-0 pr-1'>
+        <div className='my-auto timestamp text-right'>
+          <Moment className='small' format='YYYY-MM-DD HH:mm'>
+            {note.timestamp}
+          </Moment>
+        </div>
+      </Card.Footer>
     </Card>
   );
 };
