@@ -14,10 +14,7 @@ const NoteDialog = () => {
   const isNoteNew = !note || note.noteId === undefined;
 
   const updateNote = () => {
-    dialogVisible &&
-      (isNoteNew
-        ? setFormData(() => ({ ...emptyNote, ...note }))
-        : setFormData(() => ({ ...note })));
+    dialogVisible && setFormData(() => ({ ...emptyNote, ...note }));
   };
   useEffect(updateNote, [dialogVisible, note]);
 
@@ -42,7 +39,6 @@ const NoteDialog = () => {
           }
         });
 
-    setFormData(() => ({ ...emptyNote }));
     closeDialog();
   };
 
@@ -66,7 +62,8 @@ const NoteDialog = () => {
       enforceFocus={false}>
       <NoteDialogForm onSubmit={onSubmit} formData={formData} setFormData={setFormData}>
         {isNoteNew ? (
-          <NoteDialogCreateFooter closeDialog={closeDialog} />
+          //Needs refactoring.
+          <NoteDialogCreateFooter formData={formData} setFormData={setFormData} />
         ) : (
           <NoteDialogEditFooter
             onDelete={onDelete}

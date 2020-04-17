@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import ColorPicker from '../../../common/ColorPicker';
 
-const NoteDialogCreateFooter = ({ closeDialog }) => {
+const NoteDialogCreateFooter = props => {
+  const { formData, setFormData } = props;
+  const [showPicker, setShowPicker] = useState(false);
+
+  const onColorChange = color => {
+    setFormData({ ...formData, color: color });
+  };
+
   return (
     <Modal.Footer>
-      <Button variant='outline-secondary' onClick={closeDialog} tabIndex='3'>
-        Cancel
-      </Button>
-      <Button variant='outline-primary' type='submit' tabIndex='4'>
+      <ColorPicker
+        color={formData.color}
+        onColorChange={onColorChange}
+        show={showPicker}
+        setShow={setShowPicker}
+        placement='bottom'>
+        <Button
+          variant='outline-secondary'
+          onClick={() => setShowPicker(!showPicker)}
+          tabIndex='3'
+          ref={useRef()}>
+          <i className='fas fa-eye-dropper fa-fw' />
+        </Button>
+      </ColorPicker>
+      <Button variant='outline-primary' type='submit' tabIndex='3'>
         Create
       </Button>
     </Modal.Footer>
