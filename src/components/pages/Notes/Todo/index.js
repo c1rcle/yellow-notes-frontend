@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Form, ListGroup, Button, InputGroup } from 'react-bootstrap';
+import { Card, Form, ListGroup, Button, InputGroup, Row, Col } from 'react-bootstrap';
 import TodoItem from './TodoItem';
 
 const Todo = props => {
@@ -40,28 +40,33 @@ const Todo = props => {
 
   return (
     <Card>
-      <Card.Body>
-        <div onSubmit={addTaskPressed}>
-          <InputGroup>
-            <Form.Control
-              type='text'
-              placeholder='Enter a new task'
-              value={content}
-              onChange={e => setContent(e.target.value)}
-            />
-            <InputGroup.Append>
-              <Button variant='success' onClick={addTaskPressed}>
-                Add
-              </Button>
-            </InputGroup.Append>
-          </InputGroup>
-        </div>
-      </Card.Body>
-
       <ListGroup variant='flush'>
         {tasks.map(task => (
           <TodoItem key={task.id} task={task} removeTask={removeTask} checkTask={checkTask} />
         ))}
+
+        <ListGroup.Item className='py-0'>
+          <Row>
+            <Col className='px-0'>
+              <div onSubmit={addTaskPressed}>
+                <InputGroup>
+                  <Form.Control
+                    className='border-0'
+                    type='text'
+                    placeholder='Enter a new task'
+                    value={content}
+                    onChange={e => setContent(e.target.value)}
+                  />
+                </InputGroup>
+              </div>
+            </Col>
+            <Col xs='auto' className='mr-1 py-2'>
+              <Button className='p-1 pr-2 pl-2' variant='success' onClick={addTaskPressed}>
+                <i className={'fas fa-plus fa-fw'} />
+              </Button>
+            </Col>
+          </Row>
+        </ListGroup.Item>
       </ListGroup>
     </Card>
   );
