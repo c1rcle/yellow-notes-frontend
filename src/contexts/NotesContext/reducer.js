@@ -39,6 +39,34 @@ export default (state, { type, payload }) => {
       };
     }
 
+    case 'ADD_FAILED': {
+      return {
+        error: { type: 'ADD', message: 'Error while adding note!' }
+      };
+    }
+
+    case 'EDIT_FAILED': {
+      return {
+        error: { type: 'EDIT', message: 'Error while editing note!' }
+      };
+    }
+
+    case 'GET_FAILED': {
+      return {
+        error: { type: 'GET', message: 'Unable to load notes!' }
+      };
+    }
+
+    case 'REMOVE_FAILED': {
+      return {
+        error: { type: 'REMOVE', message: 'Error while removing note!' }
+      };
+    }
+
+    case 'CLEAR_ERRORS': {
+      return { ...state, error: null };
+    }
+
     default:
       return state;
   }
