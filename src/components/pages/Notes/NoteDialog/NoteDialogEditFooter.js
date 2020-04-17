@@ -14,7 +14,6 @@ const NoteDialogEditFooter = props => {
   return (
     <Modal.Footer>
       <Form.Label style={{ marginRight: 'auto', fontSize: '0.95rem' }}>
-        <i className='far fa-calendar-alt pr-1' />
         <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
       </Form.Label>
       <ColorPicker
@@ -32,7 +31,7 @@ const NoteDialogEditFooter = props => {
         </Button>
       </ColorPicker>
       <Button variant='outline-danger' onClick={onDelete} tabIndex='4'>
-        <i className='fas fa-times-circle fa-fw' />
+        <i className='fas fa-trash fa-fw' />
       </Button>
       <Button variant='outline-primary' type='submit' tabIndex='5'>
         <i className='fas fa-save fa-fw' />

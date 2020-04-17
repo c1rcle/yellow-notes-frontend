@@ -52,25 +52,20 @@ const Todo = props => {
           />
         ))}
 
-        <ListGroup.Item className='py-0'>
+        <ListGroup.Item className='py-0' style={{ backgroundColor: data.color }}>
           <Row>
-            <Col className='px-0'>
+            <Col className='pr-0'>
               <div onSubmit={addTaskPressed}>
-                <InputGroup>
-                  {
-                    //TODO try remove this
-                  }
-                  <Form.Control
-                    type='text'
-                    placeholder='Enter a new task'
-                    value={content}
-                    onChange={e => setContent(e.target.value)}
-                    className={`text-${getVariant(data.color)} 
+                <Form.Control
+                  type='text'
+                  placeholder='Enter a new task'
+                  value={content}
+                  onChange={e => setContent(e.target.value)}
+                  className={`text-${getVariant(data.color)} 
                     placeholder-${getVariant(data.color)}`}
-                    tabIndex='1'
-                    style={{ backgroundColor: getFormColor(data.color), borderWidth: '0' }}
-                  />
-                </InputGroup>
+                  tabIndex='1'
+                  style={{ backgroundColor: getFormColor(data.color), borderWidth: '0' }}
+                />
               </div>
             </Col>
             <Col xs='auto' className='mr-1 py-2'>

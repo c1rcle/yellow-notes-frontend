@@ -40,9 +40,7 @@ const Note = ({ note }) => {
       <Card.Body>{contentDiv(note)}</Card.Body>
       <Card.Footer className='py-0 pr-1'>
         <div className='my-auto timestamp text-right'>
-          <Moment className='small' format='YYYY-MM-DD HH:mm'>
-            {note.timestamp}
-          </Moment>
+          <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
         </div>
       </Card.Footer>
     </Card>
