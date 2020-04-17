@@ -45,6 +45,7 @@ const ColorPicker = props => {
             presetColors={defaultColors}
             onChangeComplete={onChangeComplete}
             disableAlpha={true}
+            className='picker-input'
           />
         </Popover>
       </Overlay>
