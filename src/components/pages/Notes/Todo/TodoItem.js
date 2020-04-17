@@ -1,31 +1,33 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { ListGroup, Button, Row, Col } from 'react-bootstrap';
+import { getVariant } from '../../../../utility/colorUtility';
 
 const TodoItem = props => {
-  const { task, checkTask, removeTask } = props;
+  const { task, checkTask, removeTask, color } = props;
 
   return (
-    <Fragment>
-      <ListGroup.Item>
+    <>
+      <ListGroup.Item style={{ backgroundColor: color }}>
         <Row>
           <Col xs='auto' className='ml-1 pr-0'>
             <Button
-              variant={task.checked ? 'success' : 'outline-success'}
-              onClick={() => checkTask(task.id, !task.checked)}>
+              variant='success'
+              onClick={() => checkTask(task.id, !task.checked)}
+              className='button-shadow'>
               <i className={`fas fa-${task.checked ? 'check' : 'times'} fa-fw`} />
             </Button>
           </Col>
-          <Col className='m-auto trimText'>
-            {task.checked ? <div className='text-muted'>{task.content}</div> : task.content}
+          <Col className={`m-auto trimText text-${getVariant(color)}`}>
+            {task.checked ? <strike>{task.content}</strike> : task.content}
           </Col>
           <Col xs='auto' className='mr-1'>
-            <Button variant='danger' onClick={() => removeTask(task.id)}>
+            <Button variant='danger' onClick={() => removeTask(task.id)} className='button-shadow'>
               <i className={'fas fa-trash fa-fw'} />
             </Button>
           </Col>
         </Row>
       </ListGroup.Item>
-    </Fragment>
+    </>
   );
 };
 

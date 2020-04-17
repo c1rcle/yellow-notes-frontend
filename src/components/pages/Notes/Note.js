@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { Card, Button } from 'react-bootstrap';
-import SimpleBar from 'simplebar-react';
-import useNotes from '../../../contexts/NotesContext';
+import React from 'react';
+import { Card } from 'react-bootstrap';
 import Moment from 'react-moment';
+import useNotes from '../../../contexts/NotesContext';
+import { getVariant } from '../../../utility/colorUtility';
 import '../../../styles/notes.css';
-import 'simplebar/dist/simplebar.min.css';
 
 const Note = ({ note }) => {
   const [, , { openDialog }] = useNotes();
-  const [expanded, setExpanded] = useState(false);
+
   const todoListDiv = content => {
     let parsedContent;
     try {
@@ -19,44 +18,31 @@ const Note = ({ note }) => {
     return parsedContent.map(i => (
       <div key={i.id}>
         {<i className={`fas fa-${i.checked ? 'check' : 'times'} fa-fw`} />}
-        {i.content}
+        {i.checked ? <strike>{i.content}</strike> : i.content}
       </div>
     ));
   };
+
   const contentDiv = note => {
     return (
-      <div className={`content-${expanded ? 'expanded' : 'collapsed'}`}>
-        {note.variant === 0 ? note.content : todoListDiv(note.content)}
-      </div>
+      <div className='content'>{note.variant === 0 ? note.content : todoListDiv(note.content)}</div>
     );
   };
 
   return (
-    <Card className='shadow-sm note-card '>
-      <Card.Header className='d-flex justify-content-between'>
+    <Card
+      onClick={() => openDialog({ ...note })}
+      className={`shadow-sm note-card text-${getVariant(note.color)}`}
+      style={{ backgroundColor: note.color }}>
+      <Card.Header>
         <Card.Title className='my-auto overflow-ellipsis p-1'>{note.title}</Card.Title>
-        <Button variant='outline-primary' onClick={() => setExpanded(!expanded)}>
-          <i className={'fas fa-' + (expanded ? 'compress-alt' : 'expand-alt')} />
-        </Button>
       </Card.Header>
-      <Card.Body>
-        {expanded ? (
-          <SimpleBar className='scrollbar'>{contentDiv(note)}</SimpleBar>
-        ) : (
-          contentDiv(note)
-        )}
-      </Card.Body>
-      {expanded && (
-        <Card.Footer className='d-flex justify-content-between'>
-          <div className='my-auto timestamp'>
-            <i className='far fa-calendar-alt pr-1' />
-            <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
-          </div>
-          <Button variant='outline-primary' onClick={() => openDialog({ ...note })}>
-            Edit
-          </Button>
-        </Card.Footer>
-      )}
+      <Card.Body>{contentDiv(note)}</Card.Body>
+      <Card.Footer>
+        <div className='my-auto timestamp'>
+          <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
+        </div>
+      </Card.Footer>
     </Card>
   );
 };
