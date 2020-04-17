@@ -10,16 +10,17 @@ const TodoItem = props => {
         <Row>
           <Col xs='auto' className='ml-1 pr-0'>
             <Button
+              className='p-1 pr-2 pl-2'
               variant={task.checked ? 'success' : 'outline-success'}
               onClick={() => checkTask(task.id, !task.checked)}>
-              <i className={`fas fa-${task.checked ? 'check' : 'times'} fa-fw`} />
+              <i className={`far fa-${task.checked ? 'check-square' : 'square'} fa-fw`} />
             </Button>
           </Col>
           <Col className='m-auto trimText'>
-            {task.checked ? <div className='text-muted'>{task.content}</div> : task.content}
+            {task.checked ? <div className='text-muted'><del>{task.content}</del></div> : task.content}
           </Col>
           <Col xs='auto' className='mr-1'>
-            <Button variant='danger' onClick={() => removeTask(task.id)}>
+            <Button className='p-1 pr-2 pl-2' variant='danger' onClick={() => removeTask(task.id)}>
               <i className={'fas fa-trash fa-fw'} />
             </Button>
           </Col>
