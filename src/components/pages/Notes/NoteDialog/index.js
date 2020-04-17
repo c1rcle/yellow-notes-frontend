@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import useNotes from '../../../../contexts/NotesContext';
 import NoteDialogForm from './NoteDialogForm';
-import NoteDialogButtons from './NoteDialogButtons';
+import NoteDialogCreateFooter from './NoteDialogCreateFooter';
+import NoteDialogEditFooter from './NoteDialogEditFooter';
 
 const NoteDialog = () => {
-  const emptyNote = { title: '', content: '', variant: 0 };
+  const emptyNote = { title: '', content: '', variant: 0, color: '#ffef7f' };
 
   const [, dispatch, { dialogVisible, closeDialog, note }] = useNotes();
   const [formData, setFormData] = useState({ ...emptyNote });
@@ -13,10 +14,7 @@ const NoteDialog = () => {
   const isNoteNew = !note || note.noteId === undefined;
 
   const updateNote = () => {
-    dialogVisible &&
-      (isNoteNew
-        ? setFormData(() => ({ ...emptyNote, ...note }))
-        : setFormData(() => ({ ...note })));
+    dialogVisible && setFormData(() => ({ ...emptyNote, ...note }));
   };
   useEffect(updateNote, [dialogVisible, note]);
 
@@ -41,7 +39,6 @@ const NoteDialog = () => {
           }
         });
 
-    setFormData(() => ({ ...emptyNote }));
     closeDialog();
   };
 
@@ -55,12 +52,26 @@ const NoteDialog = () => {
 
   const onCtrlEnter = e => {
     if (e.ctrlKey && e.keyCode === 13) onSubmit(e);
-  }
+  };
 
   return (
-    <Modal show={dialogVisible} onHide={closeDialog} onKeyDown={e => onCtrlEnter(e)}>
+    <Modal
+      show={dialogVisible}
+      onHide={closeDialog}
+      onKeyDown={e => onCtrlEnter(e)}
+      enforceFocus={false}>
       <NoteDialogForm onSubmit={onSubmit} formData={formData} setFormData={setFormData}>
-        <NoteDialogButtons onDelete={onDelete} />
+        {isNoteNew ? (
+          //Needs refactoring.
+          <NoteDialogCreateFooter formData={formData} setFormData={setFormData} />
+        ) : (
+          <NoteDialogEditFooter
+            onDelete={onDelete}
+            note={note}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        )}
       </NoteDialogForm>
     </Modal>
   );

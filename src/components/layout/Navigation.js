@@ -43,11 +43,11 @@ const Navigation = () => {
           {isUserLoggedIn && (
             <Nav className='w-25 justify-content-center d-none d-lg-flex'>
               <Button variant='outline-success' className='mr-2' onClick={() => openDialog()}>
-                <i className='fas fa-bars mr-1' />
+                <i className='fas fa-bars fa-fw' />
                 Text
               </Button>
               <Button variant='outline-success' onClick={() => openDialog({ variant: 1 })}>
-                <i className='fas fa-bars mr-1' />
+                <i className='fas fa-list-ul fa-fw' />
                 Todo
               </Button>
             </Nav>

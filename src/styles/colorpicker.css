@@ -1,0 +1,12 @@
+.block-picker {
+  box-shadow: none !important;
+}
+
+.popover {
+  top: 5px !important;
+}
+
+.picker-input input {
+  width: 100% !important;
+  text-align: center;
+}

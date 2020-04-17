@@ -1,6 +1,35 @@
 div .note-card {
-  background-color: #f8f9fa;
-  cursor: auto;
+  cursor: pointer;
+}
+
+div .note-card:hover {
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2) !important;
+}
+
+.close-dark .close {
+  color: #333;
+}
+
+.close-light .close {
+  color: #fff;
+}
+
+.close-dark .close:hover {
+  color: #000;
+  outline: none;
+}
+
+.close-light .close:hover {
+  color: #ccc;
+  outline: none;
+}
+
+.placeholder-dark::placeholder {
+  color: #333 !important;
+}
+
+.placeholder-light::placeholder {
+  color: #ccc !important;
 }
 
 .note-card .card-header {
@@ -8,25 +37,35 @@ div .note-card {
 }
 
 .note-card .card-footer {
+  border: none;
   background-color: transparent;
 }
 
-.scrollbar {
-  max-height: 40vh;
+.card-title.h5 {
+  font-size: 1.1rem;
 }
 
-.content-expanded {
-  max-height: 40vh;
-  margin-right: 1rem;
-}
-
-.content-collapsed {
+.content {
   user-select: none;
   max-height: 25vh;
   margin-right: 1rem;
+  white-space: pre;
   overflow: hidden;
 }
 
 .timestamp {
-  font-size: '0.95rem';
+  font-size: 0.8rem;
+}
+
+.list-group {
+  padding-top: 1rem;
+}
+
+.list-group .list-group-item {
+  padding: 0.75rem 0;
+  border: none;
+}
+
+.button-shadow {
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.5) !important;
 }
