@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Form, ListGroup, Button, InputGroup, Row, Col } from 'react-bootstrap';
+import { Form, ListGroup, Button, Row, Col } from 'react-bootstrap';
 import TodoItem from './TodoItem';
-import { getVariant, getFormColor } from '../../../../utility/colorUtility';
+import { getVariant, getFormColor, getBlackOrWhiteColor } from '../../../../utility/colorUtility';
 
 const Todo = props => {
   const [tasks, setTasksState] = useState([]);
@@ -41,7 +41,7 @@ const Todo = props => {
 
   return (
     <>
-      <ListGroup variant='flush'>
+      <ListGroup variant='flush' className='pt-0'>
         {tasks.map(task => (
           <TodoItem
             key={task.id}
@@ -52,7 +52,7 @@ const Todo = props => {
           />
         ))}
 
-        <ListGroup.Item className='py-0' style={{ backgroundColor: data.color }}>
+        <ListGroup.Item style={{ backgroundColor: data.color }}>
           <Row>
             <Col className='pr-0'>
               <div onSubmit={addTaskPressed}>
@@ -70,7 +70,11 @@ const Todo = props => {
             </Col>
             <Col xs='auto' className='mr-1 py-2'>
               <Button
-                className='button-shadow p-1 pr-2 pl-2'
+                style={{
+                  borderColor: getBlackOrWhiteColor(data.color),
+                  filter: 'blur(0.4px)'
+                }}
+                className='p-1 pr-2 pl-2'
                 variant='success'
                 onClick={addTaskPressed}>
                 <i className={'fas fa-plus fa-fw'} />
