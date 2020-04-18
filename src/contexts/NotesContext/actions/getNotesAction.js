@@ -7,8 +7,7 @@ const getNoteAction = async (action, dispatch) => {
   try {
     response = await yellowNotesApi().get('notes', { params: { ...action.payload } });
   } catch (e) {
-    response = { status: 500 };
-    console.error(e);
+    response = e.response;
   }
 
   if (response.status !== 200) {

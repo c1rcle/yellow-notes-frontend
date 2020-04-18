@@ -10,8 +10,7 @@ const removeNoteAction = async (action, dispatch) => {
   try {
     response = await yellowNotesApi().delete('notes/' + action.payload.noteId);
   } catch (e) {
-    response = { status: 500 };
-    console.error(e);
+    response = e.response;
   }
 
   if (response.status !== 204) {

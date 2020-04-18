@@ -12,8 +12,7 @@ const addNoteAction = async (action, dispatch) => {
   try {
     response = await yellowNotesApi().post('notes', note);
   } catch (e) {
-    response = { status: 500 };
-    console.error(e);
+    response = e.response;
   }
 
   if (response.status !== 201) {
