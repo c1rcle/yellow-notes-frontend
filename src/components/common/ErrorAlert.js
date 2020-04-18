@@ -25,15 +25,6 @@ const ErrorAlert = () => {
     }
   }, [user, notes, alert, dispatchUser, dispatchNotes]);
 
-  // if (user.error) {
-  //   // setTimeout(() => dispatch({ type: 'CLEAR_ERROR' }), 5000);
-  //   // return (
-  //   //   <Alert variant='primary' className='mt-3 mb-0'>
-  //   //     <strong>We have encountered an error!</strong> {user.error.message}
-  //   //   </Alert>
-  //   // );
-  //   alert.show(user.error.message);
-  // }
   return <></>;
 };
 
