@@ -10,12 +10,12 @@ import FadingRoute from './components/common/FadingRoute';
 import { UserProvider } from './contexts/UserContext';
 import { NotesProvider } from './contexts/NotesContext';
 import { Provider as AlertProvider } from 'react-alert';
-import AlertTemplate from 'react-alert-template-basic';
+import AlertTemplate from './styles/AlertTemplate';
 import ErrorAlert from './components/common/ErrorAlert';
 
 const alertOptions = {
   timeout: 3000,
-  position: 'top center',
+  position: 'bottom center',
   containerStyle: {
     zIndex: 2000
   }
