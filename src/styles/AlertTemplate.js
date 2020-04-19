@@ -129,7 +129,8 @@ var buttonStyle = {
   border: 'none',
   backgroundColor: 'transparent',
   cursor: 'pointer',
-  color: '#FFFFFF'
+  color: '#FFFFFF',
+  padding: '0'
 };
 
 var AlertTemplate = function AlertTemplate(_ref) {

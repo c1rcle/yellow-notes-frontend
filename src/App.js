@@ -15,7 +15,7 @@ import ErrorAlert from './components/common/ErrorAlert';
 
 const alertOptions = {
   timeout: 3000,
-  position: 'bottom center',
+  position: 'top center',
   containerStyle: {
     zIndex: 2000
   }
