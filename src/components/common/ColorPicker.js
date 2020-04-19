@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { Overlay, Popover } from 'react-bootstrap';
+import React from 'react';
 import { SketchPicker } from 'react-color';
+import Popover, { ArrowContainer } from 'react-tiny-popover';
 import '../../styles/colorpicker.css';
 
 const ColorPicker = props => {
@@ -29,23 +29,18 @@ const ColorPicker = props => {
     onColorChange(color.hex);
   };
 
-  const onHide = () => {
-    setShow(false);
-  };
-
-  const ref = useRef();
-  let firstChild = (Array.isArray(children) ? children[0] : children) || <div ref={ref} />;
-
-  if (firstChild.ref === null) {
-    throw new Error('First child has to have a ref defined!');
-  }
-  const target = firstChild.ref.current;
-
   return (
-    <>
-      {children || firstChild}
-      <Overlay {...props} onHide={onHide} rootClose target={target} show={show}>
-        <Popover content={false}>
+    <Popover
+      isOpen={show}
+      position='bottom'
+      onClickOutside={() => setShow(false)}
+      containerClassName='custom-popover'
+      content={({ position, targetRect, popoverRect }) => (
+        <ArrowContainer
+          position={position}
+          targetRect={targetRect}
+          popoverRect={popoverRect}
+          arrowColor='#adb5bd'>
           <SketchPicker
             color={color}
             presetColors={defaultColors}
@@ -53,9 +48,10 @@ const ColorPicker = props => {
             disableAlpha={true}
             className='picker-input'
           />
-        </Popover>
-      </Overlay>
-    </>
+        </ArrowContainer>
+      )}>
+      {children}
+    </Popover>
   );
 };
 
