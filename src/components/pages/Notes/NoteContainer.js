@@ -17,16 +17,17 @@ const NoteContainer = () => {
   ] = useNotes();
 
   const match = useRouteMatch('/notes/:noteId');
-
-  useEffect(() => {
-    if (match && !isLoading && (!note || match.params.noteId != note.noteId)) {
+  const checkRouteMatch = () => {
+    if (match && !isLoading && (!note || match.params.noteId !== note.noteId.toString())) {
       dispatch({ type: 'GET_NOTE', payload: { noteId: match.params.noteId } });
     }
-  }, [match]);
+  };
+  useEffect(checkRouteMatch, [match]);
 
-  useEffect(() => {
+  const openNote = () => {
     note && openDialog(note);
-  }, [note]);
+  };
+  useEffect(openNote, [note]);
 
   const initializeNotes = () => {
     user.isUserLoggedIn
