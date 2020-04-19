@@ -16,7 +16,7 @@
     "react": "^16.13.1",
     "react-alert": "^7.0.0",
     "react-bootstrap": "^1.0.0",
-    "react-color": "^2.18.0",
+    "react-color": "^2.17.3",
     "react-dom": "^16.13.1",
     "react-infinite-scroller": "^1.2.4",
     "react-masonry-component": "^6.2.1",
