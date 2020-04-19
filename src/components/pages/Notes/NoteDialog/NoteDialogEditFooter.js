@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 import Moment from 'react-moment';
 import ColorPicker from '../../../common/ColorPicker';
@@ -23,11 +23,7 @@ const NoteDialogEditFooter = props => {
         show={showPicker}
         setShow={setShowPicker}
         placement='bottom'>
-        <Button
-          variant='outline-secondary'
-          onClick={() => setShowPicker(!showPicker)}
-          tabIndex='3'
-          ref={useRef()}>
+        <Button variant='outline-secondary' onClick={() => setShowPicker(!showPicker)} tabIndex='3'>
           <i className='fas fa-eye-dropper fa-fw' />
         </Button>
       </ColorPicker>
