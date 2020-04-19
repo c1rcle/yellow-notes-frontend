@@ -39,6 +39,7 @@ export default (state, { type, payload }) => {
         loadedCount: 0,
         serverCount: -1,
         notes: [],
+        note: undefined,
         isLoading: false
       };
     }
