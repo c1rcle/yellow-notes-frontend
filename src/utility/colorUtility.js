@@ -24,6 +24,10 @@ export const getVariant = data => {
   return yiq >= 128 ? 'dark' : 'light';
 };
 
+export const getBlackOrWhiteColor = data => {
+  return getVariant(data) === 'dark' ? '#000000' : '#ffffff';
+};
+
 export const getFormColor = data => {
   if (!data) {
     return '#ffc785';
