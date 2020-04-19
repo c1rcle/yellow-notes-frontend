@@ -13,10 +13,10 @@ export default (state, { type, payload }) => {
       };
     case 'LOGIN':
       return { ...payload, isUserLoggedIn: true };
-    case 'LOGIN_FAILED':
+    case 'ERROR':
       return {
         isUserLoggedIn: false,
-        error: { type: 'LOGIN', message: 'Wrong email or password!' }
+        error: { type: payload.type, message: payload.msg }
       };
     case 'CLEAR_ERROR':
       return { ...state, error: null };

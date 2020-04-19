@@ -13,6 +13,10 @@ export default (state, { type, payload }) => {
       return { ...state, ...payload, notes, isLoading: false };
     }
 
+    case 'GET_NOTE': {
+      return { ...state, note: payload, isLoading: false };
+    }
+
     case 'ADD_NOTE': {
       return { ...state, notes: [{ ...payload }, ...state.notes], isLoading: false };
     }
@@ -35,6 +39,7 @@ export default (state, { type, payload }) => {
         loadedCount: 0,
         serverCount: -1,
         notes: [],
+        note: undefined,
         isLoading: false
       };
     }

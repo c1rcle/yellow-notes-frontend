@@ -10,6 +10,7 @@ export function NotesProvider({ children }) {
     loadedCount: 0,
     serverCount: -1,
     notes: [],
+    note: undefined,
     isLoading: false,
     error: null
   });

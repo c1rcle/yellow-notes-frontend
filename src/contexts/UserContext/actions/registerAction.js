@@ -16,7 +16,10 @@ const registerAction = async (action, dispatch) => {
   }
 
   if (response.status !== 200) {
-    return { type: 'REGISTER_FAILED' };
+    return {
+      type: 'ERROR',
+      payload: { type: 'REGISTER', msg: 'This email is already registered!' }
+    };
   }
 
   localStorage.setItem('token', response.data.token);
