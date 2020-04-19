@@ -3,12 +3,15 @@ import { Modal } from 'react-bootstrap';
 import useNotes from '../../../../contexts/NotesContext';
 import NoteDialogForm from './NoteDialogForm';
 import NoteDialogFooter from './NoteDialogFooter';
+import { useAlert } from 'react-alert';
 
 const NoteDialog = () => {
   const emptyNote = { title: '', content: '', variant: 0, color: '#ffef7f' };
 
   const [, dispatch, { dialogVisible, closeDialog, note }] = useNotes();
   const [formData, setFormData] = useState({ ...emptyNote });
+
+  const alert = useAlert();
 
   const isNoteNew = !note || note.noteId === undefined;
 
@@ -19,7 +22,10 @@ const NoteDialog = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (!formData.title) return; // TODO: add invalid note error
+    if (!formData.title) {
+      alert.show('Note title can not be empty');
+      return;
+    }
 
     isNoteNew
       ? dispatch({

@@ -12,11 +12,12 @@ const addNoteAction = async (action, dispatch) => {
   try {
     response = await yellowNotesApi().post('notes', note);
   } catch (e) {
-    throw new Error('Add note action has failed! ', response);
+    response = e.response;
   }
 
-  if (response.status !== 201) throw new Error('Add note action has failed! ', response);
-
+  if (response.status !== 201) {
+    return { type: 'ERROR', payload: { type: 'ADD', msg: 'Error while adding note!' } };
+  }
   return { ...action, payload: response.data };
 };
 

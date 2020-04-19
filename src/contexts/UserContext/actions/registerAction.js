@@ -12,8 +12,7 @@ const registerAction = async (action, dispatch) => {
   try {
     response = await yellowNotesApi().post('users/register', { ...payload });
   } catch (e) {
-    response = { status: 400 };
-    console.error(e);
+    response = e.response;
   }
 
   if (response.status !== 200) {

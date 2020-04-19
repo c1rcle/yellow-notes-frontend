@@ -39,6 +39,17 @@ export default (state, { type, payload }) => {
       };
     }
 
+    case 'ERROR': {
+      return {
+        ...state,
+        error: { type: payload.type, message: payload.msg }
+      };
+    }
+
+    case 'CLEAR_ERROR': {
+      return { ...state, error: null };
+    }
+
     default:
       return state;
   }
