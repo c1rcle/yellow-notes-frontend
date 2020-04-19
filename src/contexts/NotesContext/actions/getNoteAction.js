@@ -7,17 +7,17 @@ const getNoteAction = async (action, dispatch) => {
   try {
     response = await yellowNotesApi().get('notes/' + action.payload.noteId);
   } catch (e) {
-    throw new Error('Get notes action has failed! ', response);
+    response = e.response;
   }
 
-  if (response.status !== 200) throw new Error('Get notes action has failed! ', response);
-
-  return {
-    ...action,
-    payload: {
-      ...response.data
-    }
-  };
+  return response.status !== 200
+    ? { type: 'ERROR', payload: { type: 'GET', msg: 'Unable to load note!' } }
+    : {
+        ...action,
+        payload: {
+          ...response.data
+        }
+      };
 };
 
 export default getNoteAction;
