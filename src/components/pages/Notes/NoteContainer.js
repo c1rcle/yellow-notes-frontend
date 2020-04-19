@@ -6,10 +6,27 @@ import useNotes from '../../../contexts/NotesContext';
 import Note from './Note';
 import InfiniteScroll from 'react-infinite-scroller';
 import EmptyContainer from './EmptyContainer';
+import { useRouteMatch } from 'react-router-dom';
 
 const NoteContainer = () => {
   const [user] = useUser();
-  const [{ notes, isLoading, loadedCount, serverCount }, dispatch] = useNotes();
+  const [
+    { notes, note, isLoading, loadedCount, serverCount },
+    dispatch,
+    { openDialog }
+  ] = useNotes();
+
+  const match = useRouteMatch('/notes/:noteId');
+
+  useEffect(() => {
+    if (match && !isLoading && (!note || match.params.noteId != note.noteId)) {
+      dispatch({ type: 'GET_NOTE', payload: { noteId: match.params.noteId } });
+    }
+  }, [match]);
+
+  useEffect(() => {
+    note && openDialog(note);
+  }, [note]);
 
   const initializeNotes = () => {
     user.isUserLoggedIn

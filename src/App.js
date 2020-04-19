@@ -13,22 +13,22 @@ import ErrorAlert from './components/common/ErrorAlert';
 
 function App() {
   return (
-    <UserProvider>
-      <NotesProvider>
-        <Router>
+    <Router>
+      <UserProvider>
+        <NotesProvider>
           <Navigation />
           <Container>
             <ErrorAlert />
             <Switch>
               <FadingRoute exact key='0' path='/' component={Login} />
               <FadingRoute exact key='1' path='/registration' component={Registration} />
-              <FadingRoute exact key='2' path='/notes' component={Notes} />
+              <FadingRoute key='2' path='/notes' component={Notes} />
               <FadingRoute component={NotFound} />
             </Switch>
           </Container>
-        </Router>
-      </NotesProvider>
-    </UserProvider>
+        </NotesProvider>
+      </UserProvider>
+    </Router>
   );
 }
 

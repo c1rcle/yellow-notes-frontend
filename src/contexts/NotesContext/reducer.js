@@ -13,6 +13,10 @@ export default (state, { type, payload }) => {
       return { ...state, ...payload, notes, isLoading: false };
     }
 
+    case 'GET_NOTE': {
+      return { ...state, note: payload, isLoading: false };
+    }
+
     case 'ADD_NOTE': {
       return { ...state, notes: [{ ...payload }, ...state.notes], isLoading: false };
     }
