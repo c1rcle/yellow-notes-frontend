@@ -1,18 +1,26 @@
-import React from 'react';
-import { Alert } from 'react-bootstrap';
+import { useEffect } from 'react';
 import useUser from '../../contexts/UserContext';
+import useNotes from '../../contexts/NotesContext';
+import { useAlert } from 'react-alert';
 
 const ErrorAlert = () => {
-  const [user, dispatch] = useUser();
+  const alert = useAlert();
+  const [user, dispatchUser] = useUser();
+  const [notes, dispatchNotes] = useNotes();
 
-  if (user.error) {
-    setTimeout(() => dispatch({ type: 'CLEAR_ERROR' }), 5000);
-    return (
-      <Alert variant='primary' className='mt-3 mb-0'>
-        <strong>We have encountered an error!</strong> {user.error.message}
-      </Alert>
-    );
-  }
+  const showAlert = () => {
+    if (user.error) {
+      setTimeout(() => dispatchUser({ type: 'CLEAR_ERROR' }), 3000);
+      alert.error(user.error.message);
+    }
+
+    if (notes.error) {
+      setTimeout(() => dispatchNotes({ type: 'CLEAR_ERROR' }), 3000);
+      alert.error(notes.error.message);
+    }
+  };
+  useEffect(showAlert, [user.error, notes.error]);
+
   return null;
 };
 

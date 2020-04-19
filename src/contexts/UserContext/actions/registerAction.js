@@ -12,12 +12,14 @@ const registerAction = async (action, dispatch) => {
   try {
     response = await yellowNotesApi().post('users/register', { ...payload });
   } catch (e) {
-    response = { status: 400 };
-    console.error(e);
+    response = e.response;
   }
 
   if (response.status !== 200) {
-    return { type: 'REGISTER_FAILED' };
+    return {
+      type: 'ERROR',
+      payload: { type: 'REGISTER', msg: 'This email is already registered!' }
+    };
   }
 
   localStorage.setItem('token', response.data.token);

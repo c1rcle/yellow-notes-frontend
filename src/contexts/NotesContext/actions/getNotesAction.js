@@ -7,10 +7,12 @@ const getNoteAction = async (action, dispatch) => {
   try {
     response = await yellowNotesApi().get('notes', { params: { ...action.payload } });
   } catch (e) {
-    throw new Error('Get notes action has failed! ', response);
+    response = e.response;
   }
 
-  if (response.status !== 200) throw new Error('Get notes action has failed! ', response);
+  if (response.status !== 200) {
+    return { type: 'ERROR', payload: { type: 'GET', msg: 'Unable to load notes!' } };
+  }
 
   const loadedCount = action.payload.skipCount + action.payload.takeCount;
   const serverCount = response.data.count;

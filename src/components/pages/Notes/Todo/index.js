@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Form, ListGroup, Button, InputGroup } from 'react-bootstrap';
+import { Form, ListGroup, Button, Row, Col } from 'react-bootstrap';
 import TodoItem from './TodoItem';
+import { getVariant, getFormColor, getBlackOrWhiteColor } from '../../../../utility/colorUtility';
 
 const Todo = props => {
   const [tasks, setTasksState] = useState([]);
   const [content, setContent] = useState('');
-  const { onChange, value, name } = props;
+  const { onChange, data, name } = props;
 
   const setTasks = tasks => {
     onChange({ target: { name, value: JSON.stringify(tasks) } });
@@ -13,11 +14,11 @@ const Todo = props => {
 
   useEffect(() => {
     try {
-      setTasksState(JSON.parse(value));
+      setTasksState(JSON.parse(data.content));
     } catch (error) {
       setTasksState([]);
     }
-  }, [value]);
+  }, [data.content]);
 
   const addTask = content => {
     let newId = tasks.length === 0 ? 0 : tasks[tasks.length - 1].id + 1;
@@ -39,31 +40,49 @@ const Todo = props => {
   };
 
   return (
-    <Card>
-      <Card.Body>
-        <div onSubmit={addTaskPressed}>
-          <InputGroup>
-            <Form.Control
-              type='text'
-              placeholder='Enter a new task'
-              value={content}
-              onChange={e => setContent(e.target.value)}
-            />
-            <InputGroup.Append>
-              <Button variant='success' onClick={addTaskPressed}>
-                Add
-              </Button>
-            </InputGroup.Append>
-          </InputGroup>
-        </div>
-      </Card.Body>
-
-      <ListGroup variant='flush'>
+    <>
+      <ListGroup variant='flush' className='pt-0'>
         {tasks.map(task => (
-          <TodoItem key={task.id} task={task} removeTask={removeTask} checkTask={checkTask} />
+          <TodoItem
+            key={task.id}
+            task={task}
+            removeTask={removeTask}
+            checkTask={checkTask}
+            color={data.color}
+          />
         ))}
+
+        <ListGroup.Item style={{ backgroundColor: data.color }}>
+          <Row>
+            <Col className='pr-0'>
+              <div onSubmit={addTaskPressed}>
+                <Form.Control
+                  type='text'
+                  placeholder='Enter a new task'
+                  value={content}
+                  onChange={e => setContent(e.target.value)}
+                  className={`text-${getVariant(data.color)} 
+                    placeholder-${getVariant(data.color)}`}
+                  tabIndex='1'
+                  style={{ backgroundColor: getFormColor(data.color), borderWidth: '0' }}
+                />
+              </div>
+            </Col>
+            <Col xs='auto' className='mr-1 py-2'>
+              <Button
+                style={{
+                  boxShadow: `0 0 2px 0 ${getBlackOrWhiteColor(data.color)}`
+                }}
+                className='p-1 px-2'
+                variant='success'
+                onClick={addTaskPressed}>
+                <i className={'fas fa-plus fa-fw'} />
+              </Button>
+            </Col>
+          </Row>
+        </ListGroup.Item>
       </ListGroup>
-    </Card>
+    </>
   );
 };
 

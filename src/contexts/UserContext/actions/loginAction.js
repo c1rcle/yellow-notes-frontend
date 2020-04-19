@@ -11,12 +11,14 @@ const loginAction = async (action, dispatch) => {
   try {
     response = await yellowNotesApi().post('users/authenticate', payload);
   } catch (e) {
-    response = { status: 500 };
-    console.error(e);
+    response = e.response;
   }
 
   if (response.status !== 200) {
-    return { type: 'LOGIN_FAILED' };
+    return {
+      type: 'ERROR',
+      payload: { type: 'LOGIN', msg: 'Wrong email or password!' }
+    };
   }
 
   localStorage.setItem('token', response.data.token);

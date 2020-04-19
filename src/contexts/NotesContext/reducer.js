@@ -5,8 +5,16 @@ export default (state, { type, payload }) => {
     }
 
     case 'GET_NOTES': {
-      const notes = [...new Set([...state.notes, ...payload.notes])]
+      const notes = [...state.notes];
+      payload.notes.forEach(note => {
+        const index = notes.findIndex(n => n.noteId === note.noteId);
+        index === -1 ? notes.push(note) : (notes[index] = note);
+      });
       return { ...state, ...payload, notes, isLoading: false };
+    }
+
+    case 'GET_NOTE': {
+      return { ...state, note: payload, isLoading: false };
     }
 
     case 'ADD_NOTE': {
@@ -27,7 +35,24 @@ export default (state, { type, payload }) => {
     }
 
     case 'CLEAR_NOTES': {
-      return { count: 0, notes: [], isLoading: false };
+      return {
+        loadedCount: 0,
+        serverCount: -1,
+        notes: [],
+        note: undefined,
+        isLoading: false
+      };
+    }
+
+    case 'ERROR': {
+      return {
+        ...state,
+        error: { type: payload.type, message: payload.msg }
+      };
+    }
+
+    case 'CLEAR_ERROR': {
+      return { ...state, error: null };
     }
 
     default:

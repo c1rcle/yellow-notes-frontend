@@ -6,15 +6,35 @@ import useNotes from '../../../contexts/NotesContext';
 import Note from './Note';
 import InfiniteScroll from 'react-infinite-scroller';
 import EmptyContainer from './EmptyContainer';
+import { useRouteMatch } from 'react-router-dom';
 
 const NoteContainer = () => {
   const [user] = useUser();
-  const [{ notes, isLoading, loadedCount, serverCount }, dispatch] = useNotes();
+  const [
+    { notes, note, isLoading, loadedCount, serverCount },
+    dispatch,
+    { openDialog }
+  ] = useNotes();
 
-  useEffect(() => {
-    if (user.isUserLoggedIn)
-      dispatch({ type: 'GET_NOTES', payload: { takeCount: 9, skipCount: 0 } }); // eslint-disable-next-line
-  }, [user.isUserLoggedIn]);
+  const match = useRouteMatch('/notes/:noteId');
+  const checkRouteMatch = () => {
+    if (match && !isLoading && (!note || match.params.noteId !== note.noteId.toString())) {
+      dispatch({ type: 'GET_NOTE', payload: { noteId: match.params.noteId } });
+    }
+  };
+  useEffect(checkRouteMatch, [match]);
+
+  const openNote = () => {
+    note && openDialog(note);
+  };
+  useEffect(openNote, [note]);
+
+  const initializeNotes = () => {
+    user.isUserLoggedIn
+      ? dispatch({ type: 'GET_NOTES', payload: { takeCount: 9, skipCount: 0 } })
+      : dispatch({ type: 'CLEAR_NOTES' });
+  };
+  useEffect(initializeNotes, [user.isUserLoggedIn]);
 
   const loadNextNotes = () => {
     if (isLoading) return;

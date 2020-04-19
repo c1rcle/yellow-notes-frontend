@@ -1,31 +1,49 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { ListGroup, Button, Row, Col } from 'react-bootstrap';
+import { getVariant, getFormColor, getBlackOrWhiteColor } from '../../../../utility/colorUtility';
 
 const TodoItem = props => {
-  const { task, checkTask, removeTask } = props;
+  const { task, checkTask, removeTask, color } = props;
 
   return (
-    <Fragment>
-      <ListGroup.Item>
+    <>
+      <ListGroup.Item style={{ backgroundColor: color }}>
         <Row>
           <Col xs='auto' className='ml-1 pr-0'>
             <Button
-              variant={task.checked ? 'success' : 'outline-success'}
+              variant=''
+              className='py-1 px-2'
+              style={{
+                backgroundColor: getFormColor(color),
+                boxShadow: `0 0 2px 0 ${getBlackOrWhiteColor(color)}`
+              }}
               onClick={() => checkTask(task.id, !task.checked)}>
-              <i className={`fas fa-${task.checked ? 'check' : 'times'} fa-fw`} />
+              <i
+                style={{
+                  color: getBlackOrWhiteColor(color),
+                  backgroundColor: getFormColor(color)
+                }}
+                className={`fas ${task.checked && 'fa-check'} fa-fw`}
+              />
             </Button>
           </Col>
-          <Col className='m-auto trimText'>
-            {task.checked ? <div className='text-muted'>{task.content}</div> : task.content}
+          <Col className={`m-auto trimText text-${getVariant(color)}`}>
+            {task.checked ? <del>{task.content}</del> : task.content}
           </Col>
           <Col xs='auto' className='mr-1'>
-            <Button variant='danger' onClick={() => removeTask(task.id)}>
+            <Button
+              className='py-1 px-2'
+              variant='danger'
+              style={{
+                boxShadow: `0 0 2px 0 ${getBlackOrWhiteColor(color)}`
+              }}
+              onClick={() => removeTask(task.id)}>
               <i className={'fas fa-trash fa-fw'} />
             </Button>
           </Col>
         </Row>
       </ListGroup.Item>
-    </Fragment>
+    </>
   );
 };
 

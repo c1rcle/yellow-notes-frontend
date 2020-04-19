@@ -18,3 +18,11 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.modal-content .form-control:focus {
+  box-shadow: none;
+}
+
+button#alert-button:focus {
+  outline: 0;
+}

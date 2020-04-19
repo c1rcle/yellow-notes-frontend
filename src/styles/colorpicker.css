@@ -1,0 +1,8 @@
+.custom-popover {
+  z-index: 1060;
+}
+
+.picker-input input {
+  width: 100% !important;
+  text-align: center;
+}
