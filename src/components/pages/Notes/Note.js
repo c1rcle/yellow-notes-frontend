@@ -17,8 +17,8 @@ const Note = ({ note }) => {
     }
     return parsedContent.map(i => (
       <div key={i.id}>
-        {<i className={`fas fa-${i.checked ? 'check' : 'times'} fa-fw`} />}
-        {i.checked ? <strike>{i.content}</strike> : i.content}
+        {<i className={`far fa-${i.checked ? 'check-square' : 'square'} fa-fw`} />}
+        {i.checked ? <del>{i.content}</del> : i.content}
       </div>
     ));
   };
@@ -38,8 +38,8 @@ const Note = ({ note }) => {
         <Card.Title className='my-auto overflow-ellipsis p-1'>{note.title}</Card.Title>
       </Card.Header>
       <Card.Body>{contentDiv(note)}</Card.Body>
-      <Card.Footer>
-        <div className='my-auto timestamp'>
+      <Card.Footer className='py-0 pr-1'>
+        <div className='my-auto timestamp text-right'>
           <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
         </div>
       </Card.Footer>
