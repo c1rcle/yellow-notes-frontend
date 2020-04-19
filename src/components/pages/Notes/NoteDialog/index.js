@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import useNotes from '../../../../contexts/NotesContext';
 import NoteDialogForm from './NoteDialogForm';
-import NoteDialogCreateFooter from './NoteDialogCreateFooter';
-import NoteDialogEditFooter from './NoteDialogEditFooter';
+import NoteDialogFooter from './NoteDialogFooter';
 
 const NoteDialog = () => {
   const emptyNote = { title: '', content: '', variant: 0, color: '#ffef7f' };
@@ -61,17 +60,13 @@ const NoteDialog = () => {
       onKeyDown={e => onCtrlEnter(e)}
       enforceFocus={false}>
       <NoteDialogForm onSubmit={onSubmit} formData={formData} setFormData={setFormData}>
-        {isNoteNew ? (
-          //Needs refactoring.
-          <NoteDialogCreateFooter formData={formData} setFormData={setFormData} />
-        ) : (
-          <NoteDialogEditFooter
-            onDelete={onDelete}
-            note={note}
-            formData={formData}
-            setFormData={setFormData}
-          />
-        )}
+        <NoteDialogFooter
+          isNoteNew={isNoteNew}
+          formData={formData}
+          setFormData={setFormData}
+          onDelete={onDelete}
+          note={note}
+        />
       </NoteDialogForm>
     </Modal>
   );

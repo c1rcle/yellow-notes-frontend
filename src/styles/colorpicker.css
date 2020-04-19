@@ -1,9 +1,5 @@
-.block-picker {
-  box-shadow: none !important;
-}
-
-.popover {
-  top: 5px !important;
+.custom-popover {
+  z-index: 1060;
 }
 
 .picker-input input {
