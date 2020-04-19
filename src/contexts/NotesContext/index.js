@@ -11,7 +11,8 @@ export function NotesProvider({ children }) {
     serverCount: -1,
     notes: [],
     note: undefined,
-    isLoading: false
+    isLoading: false,
+    error: null
   });
 
   const noteDialog = useNoteDialog();

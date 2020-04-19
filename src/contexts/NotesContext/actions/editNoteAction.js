@@ -12,10 +12,12 @@ const editNoteAction = async (action, dispatch) => {
   try {
     response = await yellowNotesApi().put('notes/' + action.payload.noteId, note);
   } catch (e) {
-    throw new Error('Edit note action has failed! ', response);
+    response = e.response;
   }
 
-  if (response.status !== 204) throw new Error('Edit note action has failed! ', response);
+  if (response.status !== 204) {
+    return { type: 'ERROR', payload: { type: 'EDIT', msg: 'Error while editing note!' } };
+  }
 
   note.modificationDate = Date(Date.now());
 

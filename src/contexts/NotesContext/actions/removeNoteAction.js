@@ -10,10 +10,12 @@ const removeNoteAction = async (action, dispatch) => {
   try {
     response = await yellowNotesApi().delete('notes/' + action.payload.noteId);
   } catch (e) {
-    throw new Error('Add note deletion has failed! ', response);
+    response = e.response;
   }
 
-  if (response.status !== 204) throw new Error('Add note deletion has failed! ', response);
+  if (response.status !== 204) {
+    return { type: 'ERROR', payload: { type: 'REMOVE', msg: 'Error while removing note!' } };
+  }
 
   return { ...action };
 };
