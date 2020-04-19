@@ -11,11 +11,11 @@ const TodoItem = props => {
         <Row>
           <Col xs='auto' className='ml-1 pr-0'>
             <Button
-              className='p-1 px-2'
+              variant=''
+              className='py-1 px-2'
               style={{
-                borderColor: getBlackOrWhiteColor(color),
                 backgroundColor: getFormColor(color),
-                filter: 'blur(0.4px)'
+                boxShadow: `0 0 2px 0 ${getBlackOrWhiteColor(color)}`
               }}
               onClick={() => checkTask(task.id, !task.checked)}>
               <i
@@ -32,11 +32,10 @@ const TodoItem = props => {
           </Col>
           <Col xs='auto' className='mr-1'>
             <Button
-              className='p-1 px-2'
+              className='py-1 px-2'
               variant='danger'
               style={{
-                borderColor: getBlackOrWhiteColor(color),
-                filter: 'blur(0.4px)'
+                boxShadow: `0 0 2px 0 ${getBlackOrWhiteColor(color)}`
               }}
               onClick={() => removeTask(task.id)}>
               <i className={'fas fa-trash fa-fw'} />

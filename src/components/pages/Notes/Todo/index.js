@@ -71,10 +71,9 @@ const Todo = props => {
             <Col xs='auto' className='mr-1 py-2'>
               <Button
                 style={{
-                  borderColor: getBlackOrWhiteColor(data.color),
-                  filter: 'blur(0.4px)'
+                  boxShadow: `0 0 2px 0 ${getBlackOrWhiteColor(data.color)}`
                 }}
-                className='p-1 pr-2 pl-2'
+                className='p-1 px-2'
                 variant='success'
                 onClick={addTaskPressed}>
                 <i className={'fas fa-plus fa-fw'} />

@@ -34,7 +34,7 @@ const NoteDialogForm = props => {
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body className='' style={{ backgroundColor: color }}>
+      <Modal.Body style={{ backgroundColor: color }}>
         {formData.variant === 0 ? (
           <Form.Control
             name='content'
