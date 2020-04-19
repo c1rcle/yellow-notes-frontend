@@ -11,7 +11,7 @@ const getNoteAction = async (action, dispatch) => {
   }
 
   if (response.status !== 200) {
-    return { type: 'GET_FAILED' };
+    return { type: 'ERROR', payload: { type: 'GET', msg: 'Unable to load notes!' } };
   }
 
   const loadedCount = action.payload.skipCount + action.payload.takeCount;

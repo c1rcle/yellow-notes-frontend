@@ -16,7 +16,7 @@ const editNoteAction = async (action, dispatch) => {
   }
 
   if (response.status !== 204) {
-    return { type: 'EDIT_FAILED' };
+    return { type: 'ERROR', payload: { type: 'EDIT', msg: 'Error while editing note!' } };
   }
 
   note.modificationDate = Date(Date.now());

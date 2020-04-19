@@ -16,7 +16,7 @@ const addNoteAction = async (action, dispatch) => {
   }
 
   if (response.status !== 201) {
-    return { type: 'ADD_FAILED' };
+    return { type: 'ERROR', payload: { type: 'ADD', msg: 'Error while adding note!' } };
   }
   return { ...action, payload: response.data };
 };

@@ -14,7 +14,7 @@ const removeNoteAction = async (action, dispatch) => {
   }
 
   if (response.status !== 204) {
-    return { type: 'REMOVE_FAILED' };
+    return { type: 'ERROR', payload: { type: 'REMOVE', msg: 'Error while removing note!' } };
   }
 
   return { ...action };
