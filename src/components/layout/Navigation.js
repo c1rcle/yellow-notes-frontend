@@ -31,23 +31,30 @@ const Navigation = () => {
           </Navbar.Brand>
 
           {isUserLoggedIn && (
-            <Button
-              variant='outline-success'
-              className='d-lg-none mr-2'
-              onClick={() => openDialog()}>
-              <i className='fas fa-bars mr-1' />
-              Text
-            </Button>
+            <>
+              <Button
+                variant='outline-success'
+                className='d-lg-none mr-2'
+                onClick={() => openDialog()}>
+                <i className='fas fa-font fa-fw' />
+              </Button>
+              <Button
+                variant='outline-success'
+                className='d-lg-none'
+                onClick={() => openDialog({ variant: 1 })}>
+                <i className='fas fa-tasks fa-fw' />
+              </Button>
+            </>
           )}
 
           {isUserLoggedIn && (
             <Nav className='w-25 justify-content-center d-none d-lg-flex'>
               <Button variant='outline-success' className='mr-2' onClick={() => openDialog()}>
-                <i className='fas fa-bars fa-fw' />
+                <i className='fas fa-font fa-fw' />
                 Text
               </Button>
               <Button variant='outline-success' onClick={() => openDialog({ variant: 1 })}>
-                <i className='fas fa-list-ul fa-fw' />
+                <i className='fas fa-tasks fa-fw' />
                 Todo
               </Button>
             </Nav>
@@ -56,9 +63,9 @@ const Navigation = () => {
             <>
               <Navbar.Toggle aria-controls='navbar-nav' />
               <Navbar.Collapse id='navbar-nav' className='w-50'>
-                <Nav className='w-50 ml-auto justify-content-end mt-2 mt-lg-0 flex-row'>
+                <Nav className='ml-auto justify-content-end mt-2 mt-lg-0 flex-row'>
                   {isUserLoggedIn && (
-                    <Button variant={`outline-danger`} onClick={() => dispatch({ type: 'LOGOUT' })}>
+                    <Button variant='outline-danger' onClick={() => dispatch({ type: 'LOGOUT' })}>
                       <i className={`fas fa-sign-out-alt mr-1`} />
                       Sign out
                     </Button>
