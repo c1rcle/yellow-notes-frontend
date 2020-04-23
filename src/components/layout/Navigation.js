@@ -42,7 +42,7 @@ const Navigation = () => {
                 variant='outline-success'
                 className='d-lg-none'
                 onClick={() => openDialog({ variant: 1 })}>
-                <i className='fas fa-check-circle fa-fw' />
+                <i className='fas fa-tasks fa-fw' />
               </Button>
             </>
           )}
@@ -54,7 +54,7 @@ const Navigation = () => {
                 Text
               </Button>
               <Button variant='outline-success' onClick={() => openDialog({ variant: 1 })}>
-                <i className='fas fa-check-circle fa-fw' />
+                <i className='fas fa-tasks fa-fw' />
                 Todo
               </Button>
             </Nav>
