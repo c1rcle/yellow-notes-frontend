@@ -38,9 +38,9 @@ const Note = ({ note }) => {
         <Card.Title className='my-auto overflow-ellipsis p-1'>{note.title}</Card.Title>
       </Card.Header>
       <Card.Body>{contentDiv(note)}</Card.Body>
-      <Card.Footer className='py-0 pr-1'>
-        <div className='my-auto timestamp text-right'>
-          <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
+      <Card.Footer className='pb-2 pr-2'>
+        <div className='timestamp text-right'>
+          <Moment format='YYYY-MM-DD HH:mm'>{note.modificationDate}</Moment>
         </div>
       </Card.Footer>
     </Card>

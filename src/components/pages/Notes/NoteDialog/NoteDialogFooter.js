@@ -16,7 +16,7 @@ const NoteDialogFooter = props => {
       {isNoteNew || (
         <Form.Label style={{ marginRight: 'auto', fontSize: '0.95rem' }}>
           <i className='far fa-calendar-alt pr-1' />
-          <Moment format='YYYY-MM-DD HH:mm'>{note.timestamp}</Moment>
+          <Moment format='YYYY-MM-DD HH:mm'>{note.modificationDate}</Moment>
         </Form.Label>
       )}
       <ColorPicker
