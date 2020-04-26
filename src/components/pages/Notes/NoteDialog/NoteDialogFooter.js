@@ -53,9 +53,6 @@ const NoteDialogFooter = props => {
             tabIndex='5'>
             <i className='fas fa-times-circle fa-fw' />
           </Button>
-          <Button variant='outline-primary' type='submit' tabIndex='6'>
-            <i className='fas fa-save fa-fw' />
-          </Button>
         </>
       )}
     </Modal.Footer>

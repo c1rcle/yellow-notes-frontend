@@ -20,8 +20,7 @@ const NoteDialog = () => {
   };
   useEffect(updateNote, [dialogVisible, note]);
 
-  const onSubmit = e => {
-    e.preventDefault();
+  const onSubmit = () => {
     if (!formData.title) {
       alert.show('Note title can not be empty');
       return;
@@ -62,10 +61,10 @@ const NoteDialog = () => {
   return (
     <Modal
       show={dialogVisible}
-      onHide={closeDialog}
+      onHide={onSubmit}
       onKeyDown={e => onCtrlEnter(e)}
       enforceFocus={false}>
-      <NoteDialogForm onSubmit={onSubmit} formData={formData} setFormData={setFormData}>
+      <NoteDialogForm formData={formData} setFormData={setFormData}>
         <NoteDialogFooter
           isNoteNew={isNoteNew}
           formData={formData}
