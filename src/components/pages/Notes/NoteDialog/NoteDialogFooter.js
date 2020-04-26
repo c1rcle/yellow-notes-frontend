@@ -11,6 +11,10 @@ const NoteDialogFooter = props => {
     setFormData({ ...formData, color: color });
   };
 
+  const toggleBlocked = () => {
+    setFormData({ ...formData, isBlocked: !formData.isBlocked });
+  };
+
   return (
     <Modal.Footer>
       {isNoteNew || (
@@ -25,7 +29,11 @@ const NoteDialogFooter = props => {
         show={showPicker}
         setShow={setShowPicker}
         placement='bottom'>
-        <Button variant='outline-secondary' onClick={() => setShowPicker(!showPicker)} tabIndex='3'>
+        <Button
+          disabled={formData.isBlocked}
+          variant='outline-secondary'
+          onClick={() => setShowPicker(!showPicker)}
+          tabIndex='3'>
           <i className='fas fa-eye-dropper fa-fw' />
         </Button>
       </ColorPicker>
@@ -35,10 +43,17 @@ const NoteDialogFooter = props => {
         </Button>
       ) : (
         <>
-          <Button variant='outline-danger' onClick={onDelete} tabIndex='4'>
+          <Button variant='outline-warning' onClick={toggleBlocked} tabIndex='4'>
+            <i className={`fas ${formData.isBlocked ? 'fa-lock-open' : 'fa-lock'} fa-fw`} />
+          </Button>
+          <Button
+            disabled={formData.isBlocked}
+            variant='outline-danger'
+            onClick={onDelete}
+            tabIndex='5'>
             <i className='fas fa-times-circle fa-fw' />
           </Button>
-          <Button variant='outline-primary' type='submit' tabIndex='5'>
+          <Button variant='outline-primary' type='submit' tabIndex='6'>
             <i className='fas fa-save fa-fw' />
           </Button>
         </>

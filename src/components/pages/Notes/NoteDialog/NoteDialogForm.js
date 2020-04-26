@@ -5,7 +5,7 @@ import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 
 const NoteDialogForm = props => {
   const { children, onSubmit, formData, setFormData } = props;
-  const { title, content, color } = formData;
+  const { title, content, color, isBlocked } = formData;
 
   const onChange = e => {
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,6 +22,7 @@ const NoteDialogForm = props => {
         }}>
         <Modal.Title style={{ width: '100%' }}>
           <Form.Control
+            readOnly={isBlocked}
             name='title'
             value={title}
             onChange={e => onChange(e)}
@@ -37,6 +38,7 @@ const NoteDialogForm = props => {
       <Modal.Body style={{ backgroundColor: color }}>
         {formData.variant === 0 ? (
           <Form.Control
+            readOnly={isBlocked}
             name='content'
             value={content}
             onChange={e => onChange(e)}

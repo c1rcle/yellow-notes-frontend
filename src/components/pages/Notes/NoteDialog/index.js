@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
+import { useAlert } from 'react-alert';
 import useNotes from '../../../../contexts/NotesContext';
 import NoteDialogForm from './NoteDialogForm';
 import NoteDialogFooter from './NoteDialogFooter';
-import { useAlert } from 'react-alert';
 
 const NoteDialog = () => {
-  const emptyNote = { title: '', content: '', variant: 0, color: '#ffef7f' };
+  const emptyNote = { title: '', content: '', variant: 0, color: '#ffef7f', isBlocked: false };
 
   const [, dispatch, { dialogVisible, closeDialog, note }] = useNotes();
   const [formData, setFormData] = useState({ ...emptyNote });
