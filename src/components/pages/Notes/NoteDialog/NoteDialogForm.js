@@ -14,8 +14,6 @@ const NoteDialogForm = props => {
   return (
     <Form>
       <Modal.Header
-        closeButton
-        className={`close-${getVariant(color)}`}
         style={{
           backgroundColor: color,
           borderBottom: 'none'

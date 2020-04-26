@@ -20,9 +20,19 @@ const NoteDialog = () => {
   };
   useEffect(updateNote, [dialogVisible, note]);
 
+  const filteredProperties = () => {
+    return Object.keys(formData)
+      .filter(key => formData[key] !== note[key]);
+  };
+
   const onSubmit = () => {
     if (!formData.title) {
       alert.show('Note title can not be empty');
+      return;
+    }
+
+    if (filteredProperties().length === 0) {
+      closeDialog();
       return;
     }
 
@@ -36,8 +46,7 @@ const NoteDialog = () => {
         dispatch({
           type: 'EDIT_NOTE',
           payload: {
-            ...Object.keys(formData)
-              .filter(key => formData[key] !== note[key])
+            ...filteredProperties()
               .reduce((res, key) => ({ ...res, [key]: formData[key] }), {}),
             noteId: note.noteId
           }
