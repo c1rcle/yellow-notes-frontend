@@ -21,8 +21,7 @@ const NoteDialog = () => {
   useEffect(updateNote, [dialogVisible, note]);
 
   const filteredProperties = () => {
-    return Object.keys(formData)
-      .filter(key => formData[key] !== note[key]);
+    return Object.keys(formData).filter(key => formData[key] !== note[key]);
   };
 
   const onSubmit = () => {
@@ -46,8 +45,7 @@ const NoteDialog = () => {
         dispatch({
           type: 'EDIT_NOTE',
           payload: {
-            ...filteredProperties()
-              .reduce((res, key) => ({ ...res, [key]: formData[key] }), {}),
+            ...filteredProperties().reduce((res, key) => ({ ...res, [key]: formData[key] }), {}),
             noteId: note.noteId
           }
         });
@@ -73,7 +71,7 @@ const NoteDialog = () => {
       onHide={onSubmit}
       onKeyDown={e => onCtrlEnter(e)}
       enforceFocus={false}>
-      <NoteDialogForm formData={formData} setFormData={setFormData}>
+      <NoteDialogForm onSubmit={onSubmit} formData={formData} setFormData={setFormData}>
         <NoteDialogFooter
           isNoteNew={isNoteNew}
           formData={formData}

@@ -9,7 +9,7 @@ const EmptyContainer = () => {
         <p className='lead mt-3'>
           Click the
           <Button disabled variant='outline-success' className='mx-2' style={{ cursor: 'default' }}>
-            <i className='fas fa-bars mr-1' />
+            <i className='fas fa-font mr-1 fa-fw' />
             Text
           </Button>
           button on the navigation bar to start.

@@ -4,7 +4,7 @@ import Todo from '../Todo';
 import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 
 const NoteDialogForm = props => {
-  const { children, formData, setFormData } = props;
+  const { children, onSubmit, formData, setFormData } = props;
   const { title, content, color, isBlocked } = formData;
 
   const onChange = e => {
@@ -12,7 +12,7 @@ const NoteDialogForm = props => {
   };
 
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <Modal.Header
         style={{
           backgroundColor: color,

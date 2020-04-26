@@ -16,13 +16,7 @@ const NoteDialogFooter = props => {
   };
 
   return (
-    <Modal.Footer>
-      {isNoteNew || (
-        <Form.Label style={{ marginRight: 'auto', fontSize: '0.95rem' }}>
-          <i className='far fa-calendar-alt pr-1' />
-          <Moment format='YYYY-MM-DD HH:mm'>{note.modificationDate}</Moment>
-        </Form.Label>
-      )}
+    <Modal.Footer className='justify-content-start'>
       <ColorPicker
         color={formData.color}
         onColorChange={onColorChange}
@@ -53,7 +47,18 @@ const NoteDialogFooter = props => {
             tabIndex='5'>
             <i className='fas fa-times-circle fa-fw' />
           </Button>
+          <div className='d-block d-sm-none'>
+            <Button variant='outline-primary' type='submit' className='mr-2'>
+              <i className='fas fa-save fa-fw' />
+            </Button>
+          </div>
         </>
+      )}
+      {isNoteNew || (
+        <Form.Label className='ml-sm-auto d-flex flex-wrap' style={{ fontSize: '0.95rem' }}>
+          <i className='my-auto far fa-calendar-alt pr-2' />
+          <Moment format='YYYY-MM-DD HH:mm'>{note.modificationDate}</Moment>
+        </Form.Label>
       )}
     </Modal.Footer>
   );
