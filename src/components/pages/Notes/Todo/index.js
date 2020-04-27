@@ -6,7 +6,7 @@ import { getVariant, getFormColor, getBlackOrWhiteColor } from '../../../../util
 const Todo = props => {
   const [tasks, setTasksState] = useState([]);
   const [content, setContent] = useState('');
-  const { onChange, data, name } = props;
+  const { isNoteNew, onChange, data, name } = props;
 
   const setTasks = tasks => {
     onChange({ target: { name, value: JSON.stringify(tasks) } });
@@ -44,7 +44,7 @@ const Todo = props => {
       <ListGroup variant='flush' className='pt-0'>
         {tasks.map(task => (
           <TodoItem
-            blocked={data.isBlocked}
+            blocked={data.isBlocked && !isNoteNew}
             key={task.id}
             task={task}
             removeTask={removeTask}
@@ -53,7 +53,7 @@ const Todo = props => {
           />
         ))}
 
-        {data.isBlocked || (
+        {(data.isBlocked && !isNoteNew) || (
           <ListGroup.Item style={{ backgroundColor: data.color }}>
             <Row>
               <Col className='pr-0'>

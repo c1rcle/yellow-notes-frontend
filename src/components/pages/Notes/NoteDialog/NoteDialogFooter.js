@@ -24,22 +24,22 @@ const NoteDialogFooter = props => {
         setShow={setShowPicker}
         placement='bottom'>
         <Button
-          disabled={formData.isBlocked}
+          disabled={formData.isBlocked && !isNoteNew}
           variant='outline-secondary'
           onClick={() => setShowPicker(!showPicker)}
           tabIndex='3'>
           <i className='fas fa-eye-dropper fa-fw' />
         </Button>
+        <Button variant='outline-warning' onClick={toggleBlocked} tabIndex='4'>
+          <i className={`fas ${formData.isBlocked ? 'fa-lock-open' : 'fa-lock'} fa-fw`} />
+        </Button>
       </ColorPicker>
       {isNoteNew ? (
-        <Button variant='outline-primary' type='submit' tabIndex='3'>
+        <Button variant='outline-primary' type='submit' className='ml-auto' tabIndex='3'>
           Create
         </Button>
       ) : (
         <>
-          <Button variant='outline-warning' onClick={toggleBlocked} tabIndex='4'>
-            <i className={`fas ${formData.isBlocked ? 'fa-lock-open' : 'fa-lock'} fa-fw`} />
-          </Button>
           <Button
             disabled={formData.isBlocked}
             variant='outline-danger'
@@ -47,13 +47,15 @@ const NoteDialogFooter = props => {
             tabIndex='5'>
             <i className='fas fa-times-circle fa-fw' />
           </Button>
-          <div className='d-block d-sm-none'>
-            <Button variant='outline-primary' type='submit' className='mr-2'>
-              <i className='fas fa-save fa-fw' />
+          <div className='d-block d-sm-none ml-auto'>
+            <Button variant='outline-primary' type='submit'>
+              <i className='fas fa-save fa-fw mr-1' />
+              Save
             </Button>
           </div>
         </>
       )}
+      <div className="d-block d-sm-none break" />
       {isNoteNew || (
         <Form.Label className='ml-sm-auto d-flex flex-wrap' style={{ fontSize: '0.95rem' }}>
           <i className='my-auto far fa-calendar-alt pr-2' />

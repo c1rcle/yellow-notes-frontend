@@ -24,23 +24,30 @@ const NoteDialog = () => {
     return Object.keys(formData).filter(key => formData[key] !== note[key]);
   };
 
-  const onSubmit = () => {
+  const onHide = () => {
+    isNoteNew ? closeDialog() : onSubmit();
+  };
+
+  const onSubmit = e => {
+    if (e) e.preventDefault();
+
     if (!formData.title) {
       alert.show('Note title can not be empty');
       return;
     }
 
-    if (filteredProperties().length === 0) {
-      closeDialog();
-      return;
-    }
+    if (isNoteNew) {
+      dispatch({
+        type: 'ADD_NOTE',
+        payload: { ...formData }
+      });
+    } else {
+      if (filteredProperties().length === 0) {
+        closeDialog();
+        return;
+      }
 
-    isNoteNew
-      ? dispatch({
-          type: 'ADD_NOTE',
-          payload: { ...formData }
-        })
-      : Object.keys(formData).length > 1 &&
+      Object.keys(formData).length > 1 &&
         formData.noteId &&
         dispatch({
           type: 'EDIT_NOTE',
@@ -49,6 +56,7 @@ const NoteDialog = () => {
             noteId: note.noteId
           }
         });
+    }
 
     closeDialog();
   };
@@ -68,10 +76,14 @@ const NoteDialog = () => {
   return (
     <Modal
       show={dialogVisible}
-      onHide={onSubmit}
+      onHide={onHide}
       onKeyDown={e => onCtrlEnter(e)}
       enforceFocus={false}>
-      <NoteDialogForm onSubmit={onSubmit} formData={formData} setFormData={setFormData}>
+      <NoteDialogForm
+        isNoteNew={isNoteNew}
+        onSubmit={onSubmit}
+        formData={formData}
+        setFormData={setFormData}>
         <NoteDialogFooter
           isNoteNew={isNoteNew}
           formData={formData}
