@@ -1,4 +1,5 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
+import yellowNotesApiHandler from '../../../apis/yellowNotesApiHandler';
 
 const editNoteAction = async (action, dispatch) => {
   if (!action.payload || !action.payload.noteId)
@@ -8,16 +9,11 @@ const editNoteAction = async (action, dispatch) => {
 
   dispatch({ type: 'LOADING_START' });
 
-  let response;
-  try {
-    response = await yellowNotesApi().put('notes/' + action.payload.noteId, note);
-  } catch (e) {
-    response = e.response;
-  }
-
-  if (response.status !== 204) {
-    return { type: 'ERROR', payload: { type: 'EDIT', msg: 'Error while editing note!' } };
-  }
+  const response = await yellowNotesApiHandler(
+    yellowNotesApi().put('notes/' + action.payload.noteId, note),
+    { type: 'EDIT', msg: 'Error while editing note!' }
+  );
+  if (response.type === 'ERROR') return response;
 
   note.modificationDate = Date(Date.now());
 

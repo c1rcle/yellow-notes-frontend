@@ -1,4 +1,5 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
+import yellowNotesApiHandler from '../../../apis/yellowNotesApiHandler';
 
 const addNoteAction = async (action, dispatch) => {
   if (!action.payload || !action.payload.title || Object.keys(action.payload).length <= 1)
@@ -8,17 +9,11 @@ const addNoteAction = async (action, dispatch) => {
 
   dispatch({ type: 'LOADING_START' });
 
-  let response;
-  try {
-    response = await yellowNotesApi().post('notes', note);
-  } catch (e) {
-    response = e.response;
-  }
-
-  if (response.status !== 201) {
-    return { type: 'ERROR', payload: { type: 'ADD', msg: 'Error while adding note!' } };
-  }
-  return { ...action, payload: response.data };
+  const response = await yellowNotesApiHandler(yellowNotesApi().post('notes', note), {
+    type: 'ADD',
+    msg: 'Error while adding note!'
+  });
+  return response.type === 'ERROR' ? response : { ...action, payload: response.data };
 };
 
 export default addNoteAction;
