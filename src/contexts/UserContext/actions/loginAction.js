@@ -1,4 +1,5 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
+import yellowNotesApiHandler from '../../../apis/yellowNotesApiHandler';
 
 const loginAction = async (action, dispatch) => {
   const { payload } = action;
@@ -7,19 +8,11 @@ const loginAction = async (action, dispatch) => {
 
   dispatch({ type: 'LOADING_START' });
 
-  let response;
-  try {
-    response = await yellowNotesApi().post('users/authenticate', payload);
-  } catch (e) {
-    response = e.response;
-  }
-
-  if (response.status !== 200) {
-    return {
-      type: 'ERROR',
-      payload: { type: 'LOGIN', msg: 'Wrong email or password!' }
-    };
-  }
+  const response = await yellowNotesApiHandler(
+    yellowNotesApi().post('users/authenticate', payload),
+    { type: 'LOGIN', msg: 'Wrong email or password!' }
+  );
+  if (response.type === 'ERROR') return response;
 
   localStorage.setItem('token', response.data.token);
 

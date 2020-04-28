@@ -1,4 +1,5 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
+import yellowNotesApiHandler from '../../../apis/yellowNotesApiHandler';
 
 const registerAction = async (action, dispatch) => {
   const { payload } = action;
@@ -8,19 +9,11 @@ const registerAction = async (action, dispatch) => {
 
   dispatch({ type: 'LOADING_START' });
 
-  let response;
-  try {
-    response = await yellowNotesApi().post('users/register', { ...payload });
-  } catch (e) {
-    response = e.response;
-  }
-
-  if (response.status !== 200) {
-    return {
-      type: 'ERROR',
-      payload: { type: 'REGISTER', msg: 'This email is already registered!' }
-    };
-  }
+  const response = await yellowNotesApiHandler(
+    yellowNotesApi().post('users/register', { ...payload }),
+    { type: 'REGISTER', msg: 'This email is already registered!' }
+  );
+  if (response.type === 'ERROR') return response;
 
   localStorage.setItem('token', response.data.token);
 
