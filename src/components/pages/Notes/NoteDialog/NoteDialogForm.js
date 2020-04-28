@@ -32,7 +32,8 @@ const NoteDialogForm = props => {
             className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
             style={{
               backgroundColor: titleState.hover || titleState.focus ? getFormColor(color) : color,
-              borderWidth: '0'
+              borderWidth: '0',
+              fontWeight: 'bold'
             }}
             onMouseOver={() => setTitleState({ ...titleState, hover: true })}
             onMouseOut={() => setTitleState({ ...titleState, hover: false })}
