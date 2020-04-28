@@ -1,5 +1,6 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
 import yellowNotesApiHandler from '../../../apis/yellowNotesApiHandler';
+import moment from 'moment';
 
 const editNoteAction = async (action, dispatch) => {
   if (!action.payload || !action.payload.noteId)
@@ -15,7 +16,7 @@ const editNoteAction = async (action, dispatch) => {
   );
   if (response.type === 'ERROR') return response;
 
-  note.modificationDate = Date(Date.now());
+  note.modificationDate = moment.now();
 
   return { ...action, payload: note };
 };
