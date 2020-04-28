@@ -17,9 +17,10 @@ const useNoteDialog = () => {
 
   const closeDialog = () => {
     setDialogVisible(false);
+    setNote(undefined);
     history.replace('/notes');
   };
 
-  return { dialogVisible, openDialog, closeDialog, note };
+  return { dialogVisible, openDialog, closeDialog, note, setNote, setDialogVisible };
 };
 export default useNoteDialog;
