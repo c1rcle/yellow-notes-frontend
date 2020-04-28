@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import { useAlert } from 'react-alert';
+import useInterval from '../../../../hooks/useInterval';
+import useNoteAction from '../../../../hooks/useNoteAction';
 import useNotes from '../../../../contexts/NotesContext';
 import NoteDialogForm from './NoteDialogForm';
 import NoteDialogFooter from './NoteDialogFooter';
@@ -8,10 +10,10 @@ import NoteDialogFooter from './NoteDialogFooter';
 const NoteDialog = () => {
   const emptyNote = { title: '', content: '', variant: 0, color: '#ffef7f', isBlocked: false };
 
-  const [, dispatch, { dialogVisible, closeDialog, note }] = useNotes();
-  const [formData, setFormData] = useState({ ...emptyNote });
-
   const alert = useAlert();
+  const { addNote, editNote, removeNote } = useNoteAction();
+  const [, , { dialogVisible, closeDialog, note }] = useNotes();
+  const [formData, setFormData] = useState({ ...emptyNote });
 
   const isNoteNew = !note || note.noteId === undefined;
 
@@ -20,9 +22,12 @@ const NoteDialog = () => {
   };
   useEffect(updateNote, [dialogVisible, note]);
 
-  const filteredProperties = () => {
-    return Object.keys(formData).filter(key => formData[key] !== note[key]);
+  const onIntervalTick = () => {
+    if (formData.title && !isNoteNew) {
+      editNote(formData, note);
+    }
   };
+  useInterval(onIntervalTick, 3000);
 
   const onHide = () => {
     isNoteNew ? closeDialog() : onSubmit();
@@ -32,40 +37,16 @@ const NoteDialog = () => {
     if (e) e.preventDefault();
 
     if (!formData.title) {
-      alert.show('Note title can not be empty');
+      alert.show('Note title cannot be empty!');
       return;
     }
 
-    if (isNoteNew) {
-      dispatch({
-        type: 'ADD_NOTE',
-        payload: { ...formData }
-      });
-    } else {
-      if (filteredProperties().length === 0) {
-        closeDialog();
-        return;
-      }
-
-      Object.keys(formData).length > 1 &&
-        formData.noteId &&
-        dispatch({
-          type: 'EDIT_NOTE',
-          payload: {
-            ...filteredProperties().reduce((res, key) => ({ ...res, [key]: formData[key] }), {}),
-            noteId: note.noteId
-          }
-        });
-    }
-
+    isNoteNew ? addNote(formData) : editNote(formData, note);
     closeDialog();
   };
 
   const onDelete = () => {
-    dispatch({
-      type: 'REMOVE_NOTE',
-      payload: { ...formData }
-    });
+    removeNote(formData);
     closeDialog();
   };
 
