@@ -1,18 +1,14 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
+import yellowNotesApiHandler from '../../../apis/yellowNotesApiHandler';
 
 const getNoteAction = async (action, dispatch) => {
   dispatch({ type: 'LOADING_START' });
 
-  let response;
-  try {
-    response = await yellowNotesApi().get('notes', { params: { ...action.payload } });
-  } catch (e) {
-    response = e.response;
-  }
-
-  if (response.status !== 200) {
-    return { type: 'ERROR', payload: { type: 'GET', msg: 'Unable to load notes!' } };
-  }
+  const response = await yellowNotesApiHandler(
+    yellowNotesApi().get('notes', { params: { ...action.payload } }),
+    { type: 'GET', msg: 'Unable to load notes!' }
+  );
+  if (response.type === 'ERROR') return response;
 
   const loadedCount = action.payload.skipCount + action.payload.takeCount;
   const serverCount = response.data.count;

@@ -1,4 +1,5 @@
 import yellowNotesApi from '../../../apis/yellowNotesApi';
+import yellowNotesApiHandler from '../../../apis/yellowNotesApiHandler';
 
 const removeNoteAction = async (action, dispatch) => {
   if (!action.payload || !action.payload.noteId)
@@ -6,18 +7,11 @@ const removeNoteAction = async (action, dispatch) => {
 
   dispatch({ type: 'LOADING_START' });
 
-  let response;
-  try {
-    response = await yellowNotesApi().delete('notes/' + action.payload.noteId);
-  } catch (e) {
-    response = e.response;
-  }
-
-  if (response.status !== 204) {
-    return { type: 'ERROR', payload: { type: 'REMOVE', msg: 'Error while removing note!' } };
-  }
-
-  return { ...action };
+  const response = await yellowNotesApiHandler(
+    yellowNotesApi().delete('notes/' + action.payload.noteId),
+    { type: 'REMOVE', msg: 'Error while removing note!' }
+  );
+  return response.type === 'ERROR' ? response : { ...action };
 };
 
 export default removeNoteAction;
