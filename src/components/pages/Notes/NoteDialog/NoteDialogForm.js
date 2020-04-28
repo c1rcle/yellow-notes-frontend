@@ -6,8 +6,7 @@ import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 const NoteDialogForm = props => {
   const { children, onSubmit, formData, setFormData } = props;
   const { title, content, color } = formData;
-  const [hover, setHover] = useState();
-  const [focus, setFocus] = useState(false);
+  const [titleState, setTitleState] = useState({ hover: false, focus: false });
 
   const onChange = e => {
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,13 +31,13 @@ const NoteDialogForm = props => {
             tabIndex='1'
             className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
             style={{
-              backgroundColor: hover || focus ? getFormColor(color) : color,
+              backgroundColor: titleState.hover || titleState.focus ? getFormColor(color) : color,
               borderWidth: '0'
             }}
-            onMouseOver={() => setHover(true)}
-            onMouseOut={() => setHover(false)}
-            onFocus={() => setFocus(true)}
-            onBlur={() => setFocus(false)}
+            onMouseOver={() => setTitleState({ ...titleState, hover: true })}
+            onMouseOut={() => setTitleState({ ...titleState, hover: false })}
+            onFocus={() => setTitleState({ ...titleState, focus: true })}
+            onBlur={() => setTitleState({ ...titleState, focus: false })}
           />
         </Modal.Title>
       </Modal.Header>
