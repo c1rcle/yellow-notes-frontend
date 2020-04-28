@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import Todo from '../Todo';
 import { getVariant, getFormColor } from '../../../../utility/colorUtility';
@@ -6,6 +6,8 @@ import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 const NoteDialogForm = props => {
   const { children, onSubmit, formData, setFormData } = props;
   const { title, content, color } = formData;
+  const [hover, setHover] = useState();
+  const [focus, setFocus] = useState(false);
 
   const onChange = e => {
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,7 +31,14 @@ const NoteDialogForm = props => {
             placeholder='Note Title'
             tabIndex='1'
             className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
-            style={{ backgroundColor: getFormColor(color), borderWidth: '0' }}
+            style={{
+              backgroundColor: hover || focus ? getFormColor(color) : color,
+              borderWidth: '0'
+            }}
+            onMouseOver={() => setHover(true)}
+            onMouseOut={() => setHover(false)}
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
           />
         </Modal.Title>
       </Modal.Header>
