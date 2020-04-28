@@ -12,6 +12,11 @@ const EmptyContainer = () => {
             <i className='fas fa-font fa-fw' />
             <span className='d-none d-lg-inline'>Text</span>
           </Button>
+          or
+          <Button disabled variant='outline-success' className='mx-2' style={{ cursor: 'default' }}>
+            <i className='fas fa-tasks fa-fw' />
+            <span className='d-none d-lg-inline'>Todo</span>
+          </Button>
           button on the navigation bar to start.
         </p>
       </Col>
