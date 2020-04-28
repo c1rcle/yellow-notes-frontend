@@ -4,13 +4,12 @@ import { Row, Col } from 'react-bootstrap';
 import useNotes from '../../contexts/NotesContext';
 
 const NotFound = () => {
-  const [, dispatch, { dialogVisible, setDialogVisible, setNote }] = useNotes();
+  const [, dispatch, { dialogVisible, setDialogVisible }] = useNotes();
 
   const clearNote = () => {
     if (dialogVisible) {
       dispatch({ type: 'CLEAR_NOTE' });
       setDialogVisible(false);
-      setNote(undefined);
     }
   };
 
