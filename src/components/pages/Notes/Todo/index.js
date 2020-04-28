@@ -6,7 +6,7 @@ import { getVariant, getFormColor, getBlackOrWhiteColor } from '../../../../util
 const Todo = props => {
   const [tasks, setTasksState] = useState([]);
   const [content, setContent] = useState('');
-  const { onChange, data, name } = props;
+  const { isNoteNew, onChange, data, name } = props;
 
   const setTasks = tasks => {
     onChange({ target: { name, value: JSON.stringify(tasks) } });
@@ -44,6 +44,7 @@ const Todo = props => {
       <ListGroup variant='flush' className='pt-0'>
         {tasks.map(task => (
           <TodoItem
+            blocked={data.isBlocked && !isNoteNew}
             key={task.id}
             task={task}
             removeTask={removeTask}
@@ -52,35 +53,35 @@ const Todo = props => {
           />
         ))}
 
-        <ListGroup.Item style={{ backgroundColor: data.color }}>
-          <Row>
-            <Col className='pr-0'>
-              <div onSubmit={addTaskPressed}>
-                <Form.Control
-                  type='text'
-                  placeholder='Enter a new task'
-                  value={content}
-                  onChange={e => setContent(e.target.value)}
-                  className={`text-${getVariant(data.color)} 
+        {(data.isBlocked && !isNoteNew) || (
+          <ListGroup.Item style={{ backgroundColor: data.color }}>
+            <Row>
+              <Col className='pr-0'>
+                <div onSubmit={addTaskPressed}>
+                  <Form.Control
+                    type='text'
+                    placeholder='Enter a new task'
+                    value={content}
+                    onChange={e => setContent(e.target.value)}
+                    tabIndex='1'
+                    className={`text-${getVariant(data.color)}
                     placeholder-${getVariant(data.color)}`}
-                  tabIndex='1'
-                  style={{ backgroundColor: getFormColor(data.color), borderWidth: '0' }}
-                />
-              </div>
-            </Col>
-            <Col xs='auto' className='mr-1 py-2'>
-              <Button
-                style={{
-                  boxShadow: `0 0 2px 0 ${getBlackOrWhiteColor(data.color)}`
-                }}
-                className='p-1 px-2'
-                variant='success'
-                onClick={addTaskPressed}>
-                <i className={'fas fa-plus fa-fw'} />
-              </Button>
-            </Col>
-          </Row>
-        </ListGroup.Item>
+                    style={{ backgroundColor: getFormColor(data.color), borderWidth: '0' }}
+                  />
+                </div>
+              </Col>
+              <Col xs='auto' className='mr-1 py-2'>
+                <Button
+                  variant='success'
+                  onClick={addTaskPressed}
+                  className='p-1 px-2'
+                  style={{ boxShadow: `0 0 2px 0 ${getBlackOrWhiteColor(data.color)}` }}>
+                  <i className={'fas fa-plus fa-fw'} />
+                </Button>
+              </Col>
+            </Row>
+          </ListGroup.Item>
+        )}
       </ListGroup>
     </>
   );

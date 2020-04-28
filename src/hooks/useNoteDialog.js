@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const useNoteDialog = () => {
+const useNoteDialog = dispatch => {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [note, setNote] = useState(undefined);
 
@@ -16,8 +16,8 @@ const useNoteDialog = () => {
   };
 
   const closeDialog = () => {
+    dispatch({ type: 'CLEAR_NOTE' });
     setDialogVisible(false);
-    setNote(undefined);
     history.replace('/notes');
   };
 
