@@ -12,7 +12,7 @@ const useNoteDialog = () => {
     setDialogVisible(true);
     note &&
       note.noteId &&
-      history.replace(`/notes/${note.noteId}/${note.title.substring(0, 25).replace(' ', '_')}`);
+      history.replace(`/notes/${note.noteId}/${note.title.substring(0, 25).replace(/\s+/g, '-')}`);
   };
 
   const closeDialog = () => {
