@@ -44,7 +44,7 @@ const NoteDialog = () => {
           }
         });
 
-    closeDialog();
+    onCloseDialog();
   };
 
   const onDelete = () => {
@@ -52,17 +52,24 @@ const NoteDialog = () => {
       type: 'REMOVE_NOTE',
       payload: { ...formData }
     });
-    closeDialog();
+    onCloseDialog();
   };
 
   const onCtrlEnter = e => {
     if (e.ctrlKey && e.keyCode === 13) onSubmit(e);
   };
 
+  const onCloseDialog = () => {
+    dispatch({
+      type: 'CLEAR_NOTE'
+    });
+    closeDialog();
+  };
+
   return (
     <Modal
       show={dialogVisible}
-      onHide={closeDialog}
+      onHide={onCloseDialog}
       onKeyDown={e => onCtrlEnter(e)}
       enforceFocus={false}>
       <NoteDialogForm onSubmit={onSubmit} formData={formData} setFormData={setFormData}>
