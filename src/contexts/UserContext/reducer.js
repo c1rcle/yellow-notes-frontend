@@ -21,7 +21,12 @@ export default (state, { type, payload }) => {
     case 'CLEAR_ERROR':
       return { ...state, error: null };
     case 'LOGOUT':
-      return { isUserLoggedIn: false };
+      return {
+        email: null,
+        isLoading: false,
+        isUserLoggedIn: false,
+        error: null
+      };
     default:
       return state;
   }
