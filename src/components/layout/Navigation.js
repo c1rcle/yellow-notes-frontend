@@ -65,10 +65,14 @@ const Navigation = () => {
               <Navbar.Collapse id='navbar-nav' className='w-50'>
                 <Nav className='ml-auto justify-content-end mt-2 mt-lg-0 flex-row'>
                   {isUserLoggedIn && (
-                    <Button variant='outline-danger' onClick={() => dispatch({ type: 'LOGOUT' })}>
+                    <NavLink
+                      exact
+                      to='/'
+                      className='btn btn-outline-danger'
+                      onClick={() => dispatch({ type: 'LOGOUT' })}>
                       <i className={`fas fa-sign-out-alt mr-1`} />
                       Sign out
-                    </Button>
+                    </NavLink>
                   )}
                 </Nav>
               </Navbar.Collapse>

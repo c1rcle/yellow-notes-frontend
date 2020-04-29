@@ -34,8 +34,9 @@ const Note = ({ note }) => {
       onClick={() => openDialog({ ...note })}
       className={`shadow-sm note-card text-${getVariant(note.color)}`}
       style={{ backgroundColor: note.color }}>
-      <Card.Header>
+      <Card.Header className='d-flex justify-content-between'>
         <Card.Title className='my-auto overflow-ellipsis p-1'>{note.title}</Card.Title>
+        {note.isBlocked && <i className='timestamp my-auto fas fa-lock fa-fw' />}
       </Card.Header>
       <Card.Body>{contentDiv(note)}</Card.Body>
       <Card.Footer className='pb-2 pr-2'>
