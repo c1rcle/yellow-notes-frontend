@@ -7,11 +7,12 @@ import '../../../styles/notes.css';
 
 const Note = ({ note }) => {
   const [, , dialog] = useNotes();
-  const { dialogVisible, openDialog, setNote } = dialog;
+  const { dialogVisible, openDialog, updateLink, setNote } = dialog;
 
   const updateDialog = () => {
     if (dialogVisible && dialog.note.noteId === note.noteId) {
       setNote(note);
+      updateLink(note);
     }
   };
   useEffect(updateDialog, [note]);
