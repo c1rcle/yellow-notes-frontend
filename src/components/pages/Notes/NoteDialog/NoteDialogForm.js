@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import Todo from '../Todo';
 import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 
 const NoteDialogForm = props => {
   const [titleState, setTitleState] = useState({ hover: false, focus: false });
-
-  const { isNoteNew, children, onSubmit, formData, setFormData } = props;
+  const { isNoteNew, children, onSubmit, formData, setFormData, dialogVisible } = props;
   const { title, content, color, isBlocked } = formData;
+  const inputElement = useRef(null);
 
   const onChange = e => {
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    if (dialogVisible && inputElement.current) {
+      inputElement.current.focus();
+    }
+  }, [dialogVisible]);
 
   return (
     <Form onSubmit={onSubmit}>
@@ -23,6 +29,7 @@ const NoteDialogForm = props => {
         <Modal.Title style={{ width: '100%' }}>
           <Form.Control
             readOnly={isBlocked && !isNoteNew}
+            ref={inputElement}
             name='title'
             value={title}
             onChange={e => onChange(e)}

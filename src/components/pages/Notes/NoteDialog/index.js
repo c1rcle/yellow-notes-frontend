@@ -62,6 +62,7 @@ const NoteDialog = () => {
       enforceFocus={false}>
       <NoteDialogForm
         isNoteNew={isNoteNew}
+        dialogVisible={dialogVisible}
         onSubmit={onSubmit}
         formData={formData}
         setFormData={setFormData}>

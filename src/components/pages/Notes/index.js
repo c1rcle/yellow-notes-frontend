@@ -6,11 +6,12 @@ import NoteDialog from './NoteDialog';
 
 const Notes = () => {
   const [user] = useUser();
+
   return (
     <>
-      {user.isUserLoggedIn || <Redirect to='/' />}
       <NoteContainer />
       <NoteDialog />
+      {user.isUserLoggedIn || <Redirect to='/' />}
     </>
   );
 };
