@@ -35,7 +35,7 @@ const NoteDialogForm = props => {
             type='text'
             placeholder='Note Title'
             tabIndex='1'
-            className={`text-${getVariant(color)} placeholder-${getVariant(color)} autofocus`}
+            className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
             style={{ backgroundColor: getFormColor(color), borderWidth: '0' }}
           />
         </Modal.Title>
