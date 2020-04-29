@@ -7,7 +7,7 @@ import useNotes from '../../contexts/NotesContext';
 const Navigation = () => {
   const [{ isUserLoggedIn, email }, dispatch] = useUser();
 
-  const [, , { openDialog }] = useNotes();
+  const [, dispatchNotes, { openDialog }] = useNotes();
 
   const trimEmail = () => {
     return email.split('@')[0];
@@ -69,7 +69,10 @@ const Navigation = () => {
                       exact
                       to='/'
                       className='btn btn-outline-danger'
-                      onClick={() => dispatch({ type: 'LOGOUT' })}>
+                      onClick={() => {
+                        dispatch({ type: 'LOGOUT' });
+                        dispatchNotes({ type: 'CLEAR_NOTES' });
+                      }}>
                       <i className={`fas fa-sign-out-alt mr-1`} />
                       Sign out
                     </NavLink>
