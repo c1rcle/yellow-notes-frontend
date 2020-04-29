@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import Todo from '../Todo';
 import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 
 const NoteDialogForm = props => {
+  const [titleState, setTitleState] = useState({ hover: false, focus: false });
   const { isNoteNew, children, onSubmit, formData, setFormData, dialogVisible } = props;
   const { title, content, color, isBlocked } = formData;
   const inputElement = useRef(null);
@@ -35,8 +36,16 @@ const NoteDialogForm = props => {
             type='text'
             placeholder='Note Title'
             tabIndex='1'
-            className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
-            style={{ backgroundColor: getFormColor(color), borderWidth: '0' }}
+            className={`note-title border-0 text-${getVariant(color)} placeholder-${getVariant(
+              color
+            )}`}
+            style={{
+              backgroundColor: titleState.hover || titleState.focus ? getFormColor(color) : color
+            }}
+            onMouseOver={() => setTitleState({ ...titleState, hover: true })}
+            onMouseOut={() => setTitleState({ ...titleState, hover: false })}
+            onFocus={() => setTitleState({ ...titleState, focus: true })}
+            onBlur={() => setTitleState({ ...titleState, focus: false })}
           />
         </Modal.Title>
       </Modal.Header>
@@ -52,8 +61,8 @@ const NoteDialogForm = props => {
             rows='3'
             placeholder='Note Content'
             tabIndex='2'
-            className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
-            style={{ backgroundColor: getFormColor(color), borderWidth: '0' }}
+            className={`border-0 text-${getVariant(color)} placeholder-${getVariant(color)}`}
+            style={{ backgroundColor: getFormColor(color) }}
           />
         ) : (
           <Todo

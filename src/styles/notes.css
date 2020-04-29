@@ -54,3 +54,7 @@ div .note-card:hover {
   flex-basis: 100%;
   height: 0;
 }
+
+input.note-title.form-control {
+  font-weight: bold;
+}
