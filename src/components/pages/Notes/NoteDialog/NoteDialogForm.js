@@ -29,11 +29,11 @@ const NoteDialogForm = props => {
             type='text'
             placeholder='Note Title'
             tabIndex='1'
-            className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
+            className={`note-title border-0 text-${getVariant(color)} placeholder-${getVariant(
+              color
+            )}`}
             style={{
-              backgroundColor: titleState.hover || titleState.focus ? getFormColor(color) : color,
-              borderWidth: '0',
-              fontWeight: 'bold'
+              backgroundColor: titleState.hover || titleState.focus ? getFormColor(color) : color
             }}
             onMouseOver={() => setTitleState({ ...titleState, hover: true })}
             onMouseOut={() => setTitleState({ ...titleState, hover: false })}
@@ -54,8 +54,8 @@ const NoteDialogForm = props => {
             rows='3'
             placeholder='Note Content'
             tabIndex='2'
-            className={`text-${getVariant(color)} placeholder-${getVariant(color)}`}
-            style={{ backgroundColor: getFormColor(color), borderWidth: '0' }}
+            className={`border-0 text-${getVariant(color)} placeholder-${getVariant(color)}`}
+            style={{ backgroundColor: getFormColor(color) }}
           />
         ) : (
           <Todo
