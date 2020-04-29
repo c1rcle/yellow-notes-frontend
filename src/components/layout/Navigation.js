@@ -69,7 +69,10 @@ const Navigation = () => {
                       exact
                       to='/'
                       className='btn btn-outline-danger'
-                      onClick={() => dispatch({ type: 'LOGOUT' })}>
+                      onClick={() => {
+                        dispatch({ type: 'LOGOUT' });
+                        dispatch({ type: 'CLEAR_NOTES' });
+                      }}>
                       <i className={`fas fa-sign-out-alt mr-1`} />
                       Sign out
                     </NavLink>
