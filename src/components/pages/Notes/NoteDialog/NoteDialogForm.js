@@ -7,6 +7,7 @@ const NoteDialogForm = props => {
   const [titleState, setTitleState] = useState({ hover: false, focus: false });
   const { isNoteNew, children, onSubmit, formData, setFormData, dialogVisible } = props;
   const { title, content, color, isBlocked } = formData;
+  
   const inputElement = useRef(null);
 
   const onChange = e => {
@@ -14,10 +15,10 @@ const NoteDialogForm = props => {
   };
 
   useEffect(() => {
-    if (dialogVisible && inputElement.current) {
+    if (dialogVisible && isNoteNew && inputElement.current) {
       inputElement.current.focus();
     }
-  }, [dialogVisible]);
+  }, [dialogVisible, isNoteNew]);
 
   return (
     <Form onSubmit={onSubmit}>
