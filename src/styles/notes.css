@@ -7,11 +7,13 @@ div .note-card:hover {
 }
 
 .placeholder-dark::placeholder {
-  color: #333 !important;
+  color: #000 !important;
+  opacity: 0.4 !important;
 }
 
 .placeholder-light::placeholder {
-  color: #ccc !important;
+  color: #fff !important;
+  opacity: 0.4 !important;
 }
 
 .note-card .card-header {
@@ -51,4 +53,8 @@ div .note-card:hover {
 .break {
   flex-basis: 100%;
   height: 0;
+}
+
+input.note-title.form-control {
+  font-weight: bold;
 }
