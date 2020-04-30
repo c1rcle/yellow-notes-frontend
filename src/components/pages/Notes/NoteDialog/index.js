@@ -71,7 +71,6 @@ const NoteDialog = () => {
           formData={formData}
           setFormData={setFormData}
           onDelete={onDelete}
-          note={note}
         />
       </NoteDialogForm>
     </Modal>

@@ -7,12 +7,16 @@ const useNoteDialog = dispatch => {
 
   let history = useHistory();
 
-  const openDialog = note => {
-    setNote(() => note);
-    setDialogVisible(true);
+  const updateLink = note => {
     note &&
       note.noteId &&
       history.replace(`/notes/${note.noteId}/${note.title.substring(0, 25).replace(/\s+/g, '-')}`);
+  };
+
+  const openDialog = note => {
+    setNote(() => note);
+    setDialogVisible(true);
+    updateLink(note);
   };
 
   const closeDialog = () => {
@@ -21,6 +25,6 @@ const useNoteDialog = dispatch => {
     history.replace('/notes');
   };
 
-  return { dialogVisible, openDialog, closeDialog, note, setNote, setDialogVisible };
+  return { dialogVisible, openDialog, closeDialog, updateLink, note, setNote, setDialogVisible };
 };
 export default useNoteDialog;
