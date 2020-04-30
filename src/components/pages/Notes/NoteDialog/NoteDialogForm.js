@@ -14,11 +14,12 @@ const NoteDialogForm = props => {
     e.target && setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
+  const focusTitle = () => {
     if (dialogVisible && isNoteNew && inputElement.current) {
       inputElement.current.focus();
     }
-  }, [dialogVisible, isNoteNew]);
+  };
+  useEffect(focusTitle, [dialogVisible]);
 
   return (
     <Form onSubmit={onSubmit}>
