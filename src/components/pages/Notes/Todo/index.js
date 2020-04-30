@@ -39,22 +39,23 @@ const Todo = props => {
     setTasks(tasks.map(task => (task.id === id ? { ...task, checked: checked } : task)));
   };
 
+  const taskItem = task => (
+    <TodoItem
+      blocked={data.isBlocked && !isNoteNew}
+      key={task.id}
+      task={task}
+      removeTask={removeTask}
+      checkTask={checkTask}
+      color={data.color}
+    />
+  );
+
   return (
     <>
       <ListGroup variant='flush' className='pt-0'>
-        {tasks
-          .sort((a, b) => a.id - b.id)
-          .sort((a, b) => Number(a.checked) - Number(b.checked))
-          .map(task => (
-            <TodoItem
-              blocked={data.isBlocked && !isNoteNew}
-              key={task.id}
-              task={task}
-              removeTask={removeTask}
-              checkTask={checkTask}
-              color={data.color}
-            />
-          ))}
+        {tasks.filter(n => !n.checked).map(task => taskItem(task))}
+
+        {tasks.filter(n => n.checked).map(task => taskItem(task))}
 
         {(data.isBlocked && !isNoteNew) || (
           <ListGroup.Item style={{ backgroundColor: data.color }}>

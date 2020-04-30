@@ -24,15 +24,18 @@ const Note = ({ note }) => {
     } catch (error) {
       parsedContent = [];
     }
-    return parsedContent
-      .sort((a, b) => a.id - b.id)
-      .sort((a, b) => Number(a.checked) - Number(b.checked))
-      .map(i => (
-        <div key={i.id}>
-          {<i className={`far fa-${i.checked ? 'check-square' : 'square'} fa-fw`} />}
-          {i.checked ? <del>{i.content}</del> : i.content}
-        </div>
-      ));
+    const todoItem = item => (
+      <div key={item.id}>
+        {<i className={`far fa-${item.checked ? 'check-square' : 'square'} fa-fw`} />}
+        {item.checked ? <del>{item.content}</del> : item.content}
+      </div>
+    );
+    return (
+      <>
+        {parsedContent.filter(n => !n.checked).map(i => todoItem(i))}
+        {parsedContent.filter(n => n.checked).map(i => todoItem(i))}
+      </>
+    );
   };
 
   const contentDiv = note => {
