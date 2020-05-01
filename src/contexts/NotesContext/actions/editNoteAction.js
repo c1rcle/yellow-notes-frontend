@@ -16,7 +16,7 @@ const editNoteAction = async (action, dispatch) => {
   );
   if (response.type === 'ERROR') return response;
 
-  note.modificationDate = moment.now();
+  note.modificationDate = moment().format();
 
   return { ...action, payload: note };
 };

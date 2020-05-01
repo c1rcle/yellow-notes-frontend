@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 import ColorPicker from '../../../common/ColorPicker';
 
 const NoteDialogFooter = props => {
-  const { isNoteNew, formData, setFormData, onDelete } = props;
+  const { isNoteNew, note, formData, setFormData, onDelete } = props;
   const [showPicker, setShowPicker] = useState(false);
 
   const onColorChange = color => {
@@ -60,7 +60,7 @@ const NoteDialogFooter = props => {
           <div className='d-block d-sm-none break' />
           <Form.Label className='ml-sm-auto d-flex flex-wrap' style={{ fontSize: '0.95rem' }}>
             <i className='my-auto far fa-calendar-alt pr-2' />
-            <Moment format='YYYY-MM-DD HH:mm'>{formData.modificationDate}</Moment>
+            <Moment format='YYYY-MM-DD HH:mm'>{note.modificationDate}</Moment>
           </Form.Label>
         </>
       )}

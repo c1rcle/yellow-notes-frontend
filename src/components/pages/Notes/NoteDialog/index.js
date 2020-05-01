@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import { useAlert } from 'react-alert';
-import useInterval from '../../../../hooks/useInterval';
 import useNoteAction from '../../../../hooks/useNoteAction';
+import useTimeout from '../../../../hooks/useTimeout';
 import useNotes from '../../../../contexts/NotesContext';
 import NoteDialogForm from './NoteDialogForm';
 import NoteDialogFooter from './NoteDialogFooter';
@@ -20,14 +20,12 @@ const NoteDialog = () => {
   const updateNote = () => {
     dialogVisible && setFormData(() => ({ ...emptyNote, ...note }));
   };
-  useEffect(updateNote, [dialogVisible, note]);
+  useEffect(updateNote, [dialogVisible]);
 
-  const onIntervalTick = () => {
-    if (formData.title && !isNoteNew) {
-      editNote(formData, note);
-    }
+  const onNoteModified = () => {
+    if (formData.title && !isNoteNew && dialogVisible) editNote(formData, note);
   };
-  useInterval(onIntervalTick, 3000);
+  useTimeout(onNoteModified, formData, 1000);
 
   const onHide = () => {
     isNoteNew ? closeDialog() : onSubmit();
@@ -68,6 +66,7 @@ const NoteDialog = () => {
         setFormData={setFormData}>
         <NoteDialogFooter
           isNoteNew={isNoteNew}
+          note={note}
           formData={formData}
           setFormData={setFormData}
           onDelete={onDelete}
