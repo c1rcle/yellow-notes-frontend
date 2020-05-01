@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import { useAlert } from 'react-alert';
 import useNoteAction from '../../../../hooks/useNoteAction';
+import useTimeout from '../../../../hooks/useTimeout';
 import useNotes from '../../../../contexts/NotesContext';
 import NoteDialogForm from './NoteDialogForm';
 import NoteDialogFooter from './NoteDialogFooter';
-import useTimeout from '../../../../hooks/useTimeout';
 
 const NoteDialog = () => {
   const emptyNote = { title: '', content: '', variant: 0, color: '#ffef7f', isBlocked: false };
