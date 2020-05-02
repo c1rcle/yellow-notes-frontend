@@ -19,6 +19,10 @@
   overflow: hidden;
 }
 
+.modal-content .modal-header {
+  padding-bottom: 0;
+}
+
 .modal-content .form-control:focus {
   box-shadow: none;
 }

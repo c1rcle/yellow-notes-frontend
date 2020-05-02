@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
+import useNotes from '../../contexts/NotesContext';
 
 const NotFound = () => {
+  const [, dispatch, { dialogVisible, setDialogVisible }] = useNotes();
+
+  const clearNote = () => {
+    if (dialogVisible) {
+      dispatch({ type: 'CLEAR_NOTE' });
+      setDialogVisible(false);
+    }
+  };
+
+  useEffect(clearNote, [dialogVisible]);
+
   return (
     <Row className='justify-content-center'>
       <Col xs={11} className='my-4 text-center'>

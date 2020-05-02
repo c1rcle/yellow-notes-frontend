@@ -15,7 +15,7 @@ export function NotesProvider({ children }) {
     error: null
   });
 
-  const noteDialog = useNoteDialog();
+  const noteDialog = useNoteDialog(dispatchAsync(dispatch));
 
   return (
     <NotesContext.Provider value={[notes, dispatchAsync(dispatch), noteDialog]}>
