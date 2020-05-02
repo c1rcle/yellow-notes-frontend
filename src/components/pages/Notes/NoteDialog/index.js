@@ -19,7 +19,7 @@ const NoteDialog = () => {
 
   const updateNote = () => {
     if (dialogVisible) {
-      const { modificationDate, ...rest } = note;
+      const { modificationDate, ...rest } = note || {};
       setFormData(() => ({ ...emptyNote, ...rest }));
     }
   };
