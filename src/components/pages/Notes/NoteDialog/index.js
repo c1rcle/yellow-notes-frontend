@@ -18,7 +18,10 @@ const NoteDialog = () => {
   const isNoteNew = !note || note.noteId === undefined;
 
   const updateNote = () => {
-    dialogVisible && setFormData(() => ({ ...emptyNote, ...note }));
+    if (dialogVisible) {
+      const { modificationDate, ...rest } = note;
+      setFormData(() => ({ ...emptyNote, ...rest }));
+    }
   };
   useEffect(updateNote, [dialogVisible]);
 
