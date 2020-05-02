@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
+import InfiniteScroll from 'react-infinite-scroller';
 import Masonry from 'react-masonry-component';
 import useNotes from '../../../contexts/NotesContext';
 import Note from './Note';
-import InfiniteScroll from 'react-infinite-scroller';
 import EmptyContainer from './EmptyContainer';
-import { useRouteMatch } from 'react-router-dom';
-import Spinner from '../../common/Spinner';
+import NoteLoader from './NoteLoader';
 
 const NoteContainer = () => {
   const [
@@ -44,11 +44,7 @@ const NoteContainer = () => {
       datalength={notes.length}
       loadMore={loadNextNotes}
       hasMore={loadedCount < serverCount || serverCount === -1}
-      loader={
-        <Col lg={4} className='m-5' key={-1}>
-          <Spinner size='xl' />
-        </Col>
-      }>
+      loader={<NoteLoader key={-1} />}>
       {notes.length === 0 && !isLoading && <EmptyContainer />}
       <Masonry enableResizableChildren={true} className='pb-3'>
         {notes &&
