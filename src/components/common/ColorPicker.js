@@ -7,22 +7,22 @@ const ColorPicker = props => {
   const { children, show, setShow, color, onColorChange } = props;
 
   const defaultColors = [
-    '#ededed',
-    '#f1daf5',
-    '#72d6c9',
-    '#7189bf',
-    '#7258AA',
-    '#661F62',
-    '#ffc785',
-    '#ffef7f',
-    '#df7599',
-    '#D84447',
-    '#8f0018',
-    '#77da57',
-    '#4A5A12',
-    '#8F6132',
-    '#646464',
-    '#22222a'
+    '#E71F07',
+    '#680D0D',
+    '#740A58',
+    '#020147',
+    '#4948B3',
+    '#3898AC',
+    '#1A9658',
+    '#4FDB46',
+    '#F5FF11',
+    '#F8C805',
+    '#FF9700',
+    '#E05E0D',
+    '#663A1F',
+    '#B9A99E',
+    '#413E3E',
+    '#000000'
   ];
 
   const onChangeComplete = color => {
