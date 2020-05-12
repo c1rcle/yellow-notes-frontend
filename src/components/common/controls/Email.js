@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormGroup, InputGroup, Form } from 'react-bootstrap';
-import CustomTooltip from './CustomTooltip';
+import CustomTooltip from '../CustomTooltip';
 
 const Email = ({ state, onTextChanged, onBlur }) => {
   const emailError = 'Enter a valid e-mail address!';

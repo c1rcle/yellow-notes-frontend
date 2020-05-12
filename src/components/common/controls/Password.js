@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormGroup, InputGroup, Form } from 'react-bootstrap';
-import CustomTooltip from '../common/CustomTooltip';
+import CustomTooltip from '../CustomTooltip';
 
 const Password = ({ state, onTextChanged, onBlur }) => {
   const passwordError =

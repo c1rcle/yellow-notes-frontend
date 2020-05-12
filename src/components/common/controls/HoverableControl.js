@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { getFormColor } from '../../utility/colorUtility';
+import { getFormColor } from '../../../utility/colorUtility';
 
 const HoverableControl = React.forwardRef((props, ref) => {
   const [state, setState] = useState({ hover: false, focus: false });

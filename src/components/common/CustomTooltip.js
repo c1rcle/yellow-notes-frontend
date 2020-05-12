@@ -14,7 +14,7 @@ const CustomTooltip = props => {
           position={position}
           targetRect={targetRect}
           popoverRect={popoverRect}
-          arrowColor='#000000CC'>
+          arrowColor='#323232'>
           <div className='tooltip-content'>{text}</div>
         </ArrowContainer>
       )}>
