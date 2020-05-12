@@ -7,7 +7,7 @@ const HoverableControl = React.forwardRef((props, ref) => {
 
   return (
     <Form.Control
-      ref = {ref}
+      ref={ref}
       onMouseOver={() => setState({ ...state, hover: true })}
       onMouseOut={() => setState({ ...state, hover: false })}
       onFocus={() => setState({ ...state, focus: true })}
