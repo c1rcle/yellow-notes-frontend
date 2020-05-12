@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CustomTooltip from './CustomTooltip';
 
 const OverflowingTooltip = props => {
-  const [isOverflowing, setIsOverflowing] = useState(false);
+  const [overflow, setOverflow] = useState(false);
   const [hover, setHover] = useState(false);
 
   const { children, text } = props;
@@ -14,12 +14,12 @@ const OverflowingTooltip = props => {
 
   useEffect(() => {
     if (childRef.current.offsetWidth < childRef.current.scrollWidth) {
-      setIsOverflowing(true);
-    } else setIsOverflowing(false);
+      setOverflow(true);
+    } else setOverflow(false);
   }, [childRef, hover]);
 
   return (
-    <CustomTooltip show={hover && isOverflowing} text={text} {...props}>
+    <CustomTooltip show={hover && overflow} text={text} {...props}>
       {React.cloneElement(children, {
         onMouseOver: () => setHover(true),
         onMouseOut: () => setHover(false)
