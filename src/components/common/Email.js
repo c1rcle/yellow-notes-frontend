@@ -21,6 +21,7 @@ const Email = ({ state, onTextChanged, onBlur }) => {
             required
             id='email'
             type='email'
+            autoComplete='on'
             placeholder='Email address'
             ref={useRef()}
             value={state.email}

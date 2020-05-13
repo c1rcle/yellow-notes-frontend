@@ -24,6 +24,7 @@ const Password = ({ state, onTextChanged, onBlur }) => {
               required
               pattern='^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$'
               type='password'
+              autoComplete='off'
               placeholder='Password'
               ref={useRef()}
               value={state.value}
