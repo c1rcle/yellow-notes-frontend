@@ -51,16 +51,16 @@ const NoteDialog = () => {
     closeDialog();
   };
 
-  const onCtrlEnter = e => {
+  const onKeyDown = e => {
     if (e.ctrlKey && e.keyCode === 13) onSubmit(e);
+    else if (e.keyCode === 13 && e.target.name === 'title') {
+      e.preventDefault();
+      e.target.form[1].focus();
+    }
   };
 
   return (
-    <Modal
-      show={dialogVisible}
-      onHide={onHide}
-      onKeyDown={e => onCtrlEnter(e)}
-      enforceFocus={false}>
+    <Modal show={dialogVisible} onHide={onHide} onKeyDown={e => onKeyDown(e)} enforceFocus={false}>
       <NoteDialogForm
         isNoteNew={isNoteNew}
         dialogVisible={dialogVisible}
