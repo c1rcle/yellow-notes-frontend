@@ -21,7 +21,6 @@ const NoteDialog = () => {
   const { addNote, editNote, removeNote } = useNoteAction();
   const [, , { dialogVisible, closeDialog, note }] = useNotes();
   const [formData, setFormData] = useState({ ...emptyNote });
-  // const [imageUrl, setImageUrl] = useState('');
 
   const isNoteNew = !note || note.noteId === undefined;
 
@@ -49,8 +48,6 @@ const NoteDialog = () => {
       alert.show('Note title cannot be empty!');
       return;
     }
-    // formData.imageUrl = imageUrl;
-    console.log(formData);
     isNoteNew ? addNote(formData) : editNote(formData, note);
     closeDialog();
   };

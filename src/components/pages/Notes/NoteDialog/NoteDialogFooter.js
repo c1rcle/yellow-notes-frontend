@@ -40,12 +40,19 @@ const NoteDialogFooter = props => {
           <i className={`fas ${formData.isBlocked ? 'fa-lock-open' : 'fa-lock'} fa-fw`} />
         </Button>
       </ColorPicker>
-      <Button
-        disabled={formData.isBlocked}
-        variant='outline-success'
-        onClick={() => setShowImageInput(!showImageInput)}>
-        <i className='far fa-image' />
-      </Button>
+      <NoteImageInput
+        imageUrl={formData.imageUrl}
+        onChangeImageUrl={onChangeImageUrl}
+        showImageInput={showImageInput}
+        setShowImageInput={setShowImageInput}
+        placement='bottom'>
+        <Button
+          disabled={formData.isBlocked}
+          variant='outline-success'
+          onClick={() => setShowImageInput(!showImageInput)}>
+          <i className='far fa-image' />
+        </Button>
+      </NoteImageInput>
       {isNoteNew ? (
         <Button variant='outline-primary' type='submit' className='ml-auto' tabIndex='3'>
           Create
@@ -75,9 +82,6 @@ const NoteDialogFooter = props => {
             <Moment format='YYYY-MM-DD HH:mm'>{note.modificationDate}</Moment>
           </Form.Label>
         </>
-      )}
-      {showImageInput && (
-        <NoteImageInput onChangeImageUrl={onChangeImageUrl} imageUrl={formData.imageUrl} />
       )}
     </Modal.Footer>
   );
