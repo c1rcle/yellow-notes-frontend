@@ -8,7 +8,6 @@ const NoteDialogFooter = props => {
   const { isNoteNew, note, formData, setFormData, onDelete } = props;
   const [showPicker, setShowPicker] = useState(false);
   const [showImageInput, setShowImageInput] = useState(false);
-  // const [imageUrl, setImageUrl] = useState('');
 
   const onChangeImageUrl = imageUrl => {
     setFormData({ ...formData, imageUrl });
@@ -41,7 +40,10 @@ const NoteDialogFooter = props => {
           <i className={`fas ${formData.isBlocked ? 'fa-lock-open' : 'fa-lock'} fa-fw`} />
         </Button>
       </ColorPicker>
-      <Button variant='outline-success' onClick={() => setShowImageInput(true)}>
+      <Button
+        disabled={formData.isBlocked}
+        variant='outline-success'
+        onClick={() => setShowImageInput(!showImageInput)}>
         <i className='far fa-image' />
       </Button>
       {isNoteNew ? (
@@ -75,11 +77,7 @@ const NoteDialogFooter = props => {
         </>
       )}
       {showImageInput && (
-        <NoteImageInput
-          setShowImageInput={setShowImageInput}
-          onChangeImageUrl={onChangeImageUrl}
-          imageUrl={formData.imageUrl}
-        />
+        <NoteImageInput onChangeImageUrl={onChangeImageUrl} imageUrl={formData.imageUrl} />
       )}
     </Modal.Footer>
   );

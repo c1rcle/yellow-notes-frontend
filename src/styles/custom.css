@@ -30,3 +30,8 @@
 button#alert-button:focus {
   outline: 0;
 }
+
+button:disabled {
+  cursor: default;
+  pointer-events: all !important;
+}

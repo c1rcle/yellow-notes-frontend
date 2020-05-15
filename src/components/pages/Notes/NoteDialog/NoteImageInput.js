@@ -1,19 +1,12 @@
-import React, { useState } from 'react';
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
+import React from 'react';
+import { InputGroup, FormControl } from 'react-bootstrap';
 
-const NoteImageInput = ({ setShowImageInput, onChangeImageUrl, imageUrl }) => {
-  // const [imageUrl, setImageUrl] = useState('');
-
+const NoteImageInput = ({ onChangeImageUrl, imageUrl }) => {
   const onChange = e => onChangeImageUrl(e.target.value);
 
   return (
     <InputGroup className='mb-3'>
       <FormControl value={imageUrl} onChange={onChange} placeholder='Paste image URL here' />
-      <InputGroup.Append>
-        <Button onClick={() => setShowImageInput(false)} variant='outline-secondary'>
-          Save
-        </Button>
-      </InputGroup.Append>
     </InputGroup>
   );
 };

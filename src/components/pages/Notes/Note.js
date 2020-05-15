@@ -4,6 +4,7 @@ import Moment from 'react-moment';
 import useNotes from '../../../contexts/NotesContext';
 import { getVariant } from '../../../utility/colorUtility';
 import '../../../styles/notes.css';
+import NoteImage from './NoteDialog/NoteImage';
 
 const Note = ({ note }) => {
   const [, , dialog] = useNotes();
@@ -40,7 +41,12 @@ const Note = ({ note }) => {
 
   const contentDiv = note => {
     return (
-      <div className='content'>{note.variant === 0 ? note.content : todoListDiv(note.content)}</div>
+      <>
+        {note.imageUrl && <NoteImage imageUrl={note.imageUrl} dialog={false} />}
+        <div className='content'>
+          {note.variant === 0 ? note.content : todoListDiv(note.content)}
+        </div>
+      </>
     );
   };
 
