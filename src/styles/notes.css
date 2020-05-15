@@ -65,7 +65,7 @@ img.note-image {
   height: auto;
 }
 
-img.note-image#dialog {
+img.note-image-dialog {
   max-height: 350px;
 }
 
