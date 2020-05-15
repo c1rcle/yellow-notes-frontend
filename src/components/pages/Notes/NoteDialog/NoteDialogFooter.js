@@ -8,6 +8,11 @@ const NoteDialogFooter = props => {
   const { isNoteNew, note, formData, setFormData, onDelete } = props;
   const [showPicker, setShowPicker] = useState(false);
   const [showImageInput, setShowImageInput] = useState(false);
+  // const [imageUrl, setImageUrl] = useState('');
+
+  const onChangeImageUrl = imageUrl => {
+    setFormData({ ...formData, imageUrl });
+  };
 
   const onColorChange = color => {
     setFormData({ ...formData, color: color });
@@ -69,7 +74,13 @@ const NoteDialogFooter = props => {
           </Form.Label>
         </>
       )}
-      {showImageInput && <NoteImageInput setShowImageInput={setShowImageInput} />}
+      {showImageInput && (
+        <NoteImageInput
+          setShowImageInput={setShowImageInput}
+          onChangeImageUrl={onChangeImageUrl}
+          imageUrl={formData.imageUrl}
+        />
+      )}
     </Modal.Footer>
   );
 };

@@ -8,12 +8,20 @@ import NoteDialogForm from './NoteDialogForm';
 import NoteDialogFooter from './NoteDialogFooter';
 
 const NoteDialog = () => {
-  const emptyNote = { title: '', content: '', variant: 0, color: '#ffef7f', isBlocked: false };
+  const emptyNote = {
+    title: '',
+    content: '',
+    variant: 0,
+    color: '#ffef7f',
+    isBlocked: false,
+    imageUrl: ''
+  };
 
   const alert = useAlert();
   const { addNote, editNote, removeNote } = useNoteAction();
   const [, , { dialogVisible, closeDialog, note }] = useNotes();
   const [formData, setFormData] = useState({ ...emptyNote });
+  // const [imageUrl, setImageUrl] = useState('');
 
   const isNoteNew = !note || note.noteId === undefined;
 
@@ -41,7 +49,8 @@ const NoteDialog = () => {
       alert.show('Note title cannot be empty!');
       return;
     }
-
+    // formData.imageUrl = imageUrl;
+    console.log(formData);
     isNoteNew ? addNote(formData) : editNote(formData, note);
     closeDialog();
   };
