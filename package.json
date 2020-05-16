@@ -10,6 +10,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "bootswatch": "^4.4.1",
+    "dotenv": "^8.2.0",
     "gh-pages": "^2.2.0",
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
