@@ -44,6 +44,13 @@ export default (state, { type, payload }) => {
       };
     }
 
+    case 'CLEAR_NOTE': {
+      return {
+        ...state,
+        note: undefined
+      };
+    }
+
     case 'ERROR': {
       return {
         ...state,

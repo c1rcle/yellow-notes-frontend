@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
+import InfiniteScroll from 'react-infinite-scroller';
 import Masonry from 'react-masonry-component';
-import useUser from '../../../contexts/UserContext';
 import useNotes from '../../../contexts/NotesContext';
 import Note from './Note';
-import InfiniteScroll from 'react-infinite-scroller';
 import EmptyContainer from './EmptyContainer';
-import { useRouteMatch } from 'react-router-dom';
+import NoteLoader from './NoteLoader';
 
 const NoteContainer = () => {
-  const [user] = useUser();
   const [
     { notes, note, isLoading, loadedCount, serverCount },
     dispatch,
@@ -29,13 +28,6 @@ const NoteContainer = () => {
   };
   useEffect(openNote, [note]);
 
-  const initializeNotes = () => {
-    user.isUserLoggedIn
-      ? dispatch({ type: 'GET_NOTES', payload: { takeCount: 9, skipCount: 0 } })
-      : dispatch({ type: 'CLEAR_NOTES' });
-  };
-  useEffect(initializeNotes, [user.isUserLoggedIn]);
-
   const loadNextNotes = () => {
     if (isLoading) return;
 
@@ -51,9 +43,9 @@ const NoteContainer = () => {
     <InfiniteScroll
       datalength={notes.length}
       loadMore={loadNextNotes}
-      hasMore={loadedCount < serverCount}
-      loader={<div key={1}>loading...</div>}>
-      {notes.length === 0 && <EmptyContainer />}
+      hasMore={loadedCount < serverCount || serverCount === -1}
+      loader={<NoteLoader key={-1} />}>
+      {notes.length === 0 && !isLoading && <EmptyContainer />}
       <Masonry enableResizableChildren={true} className='pb-3'>
         {notes &&
           notes.map(note => (
