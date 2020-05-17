@@ -43,3 +43,7 @@ button#alert-button:focus {
   color: white;
   background-color: #323232;
 }
+
+button.tag-bar {
+  box-shadow: 0 0 2px 0 black;
+}
