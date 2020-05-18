@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, ListGroup } from 'react-bootstrap';
+import { Form, ListGroup, Container } from 'react-bootstrap';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const TagFiltersContainer = () => {
   const userTags = [
@@ -16,15 +17,17 @@ const TagFiltersContainer = () => {
   ];
 
   return (
-    <>
-      <ListGroup horizontal className='mx-auto p-0'>
-        {userTags.map(tagName => (
-          <ListGroup.Item className='m-0 p-0'>
-            <Form.Check inline className='p-2' type='checkbox' label={tagName} />
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
-    </>
+    <Container className='mx-auto p-0'>
+      <Scrollbars autoHide style={{ width: '100%', height: '3rem' }}>
+        <ListGroup horizontal className='mx-auto w-auto py-1'>
+          {userTags.map(tagName => (
+            <ListGroup.Item className='m-0 p-0'>
+              <Form.Check inline className='tag-item p-2' type='checkbox' label={tagName} />
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </Scrollbars>
+    </Container>
   );
 };
 

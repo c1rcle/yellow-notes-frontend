@@ -47,13 +47,9 @@ button#alert-button:focus {
 .tag-bar button {
   box-shadow: 0 0 2px 0 black;
 }
-
-.tag-bar .list-group {
-  overflow-x: auto;
-  overflow-y: hidden;
-  height: 3rem;
-  max-height: 3rem;
+.tag-bar .container {
+  max-width: 80% !important;
 }
-.tag-bar .list-group-item {
+.tag-item {
   white-space: nowrap;
 }
