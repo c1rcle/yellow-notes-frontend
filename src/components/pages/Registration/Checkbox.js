@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { FormGroup, Form } from 'react-bootstrap';
-import TooltipCustom from '../../common/TooltipCustom';
+import CustomTooltip from '../../common/CustomTooltip';
 
 const Checkbox = ({ onClick, tooltipText, tooltipEnabled }) => {
   return (
-    <TooltipCustom text={tooltipText} show={!!tooltipText && tooltipEnabled} placement='right'>
-      <FormGroup className='row justify-content-center my-4' ref={useRef()}>
+    <CustomTooltip text={tooltipText} show={!!tooltipText && tooltipEnabled} position='right'>
+      <FormGroup className='row justify-content-center my-4'>
         <Form.Check
           custom
           id='1'
@@ -14,7 +14,7 @@ const Checkbox = ({ onClick, tooltipText, tooltipEnabled }) => {
           onClick={onClick}
         />
       </FormGroup>
-    </TooltipCustom>
+    </CustomTooltip>
   );
 };
 

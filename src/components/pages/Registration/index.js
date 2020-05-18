@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
-import Email from '../../common/Email';
-import Password from '../../common/Password';
-import FormButton from '../../common/FormButton';
+import Email from '../../common/controls/Email';
+import Password from '../../common/controls/Password';
+import FormButton from '../../common/controls/FormButton';
 import PasswordRepeat from './PasswordRepeat';
 import Checkbox from './Checkbox';
 import useUser from '../../../contexts/UserContext';
