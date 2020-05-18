@@ -9,7 +9,7 @@ import NotFound from './components/pages/NotFound';
 import FadingRoute from './components/common/FadingRoute';
 import ErrorAlert from './components/common/ErrorAlert';
 import Provider from './contexts/Provider';
-import TagBar from './components/pages/Notes/TagBar/TagBar';
+import TagBar from './components/pages/Notes/TagBar';
 
 function App() {
   return (
