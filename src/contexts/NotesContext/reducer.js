@@ -51,6 +51,20 @@ export default (state, { type, payload }) => {
       };
     }
 
+    case 'GET_CATEGORIES': {
+      return { ...state, categories: [...payload], isLoading: false };
+    }
+
+    case 'ADD_CATEGORY': {
+      return { ...state, categories: [...state.categories, payload], isLoading: false };
+    }
+
+    case 'REMOVE_CATEGORY': {
+      if (!state.categories.some(c => c.categoryId === payload.categoryId)) return state;
+      const categories = state.categories.filter(c => c.categoryId !== payload.categoryId);
+      return { ...state, categories, isLoading: false };
+    }
+
     case 'ERROR': {
       return {
         ...state,
