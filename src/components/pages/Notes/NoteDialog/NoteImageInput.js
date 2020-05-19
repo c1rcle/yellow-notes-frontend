@@ -57,6 +57,7 @@ const NoteImageInput = ({
               value={url}
               onChange={onChange}
               placeholder='Paste image URL here'
+              style={{ boxShadow: 'none' }}
             />
             <InputGroup.Append>
               <Button
