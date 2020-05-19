@@ -29,14 +29,17 @@ const NoteImageInput = ({
   const onDelete = () => {
     setUrl('');
     onChangeImageUrl('');
+    setShowImageInput(false);
   };
 
   const onSubmit = () => {
     if (checkUrl(url)) {
       onChangeImageUrl(url);
     } else {
+      setUrl('');
       alert.show('Invalid URL!');
     }
+    setShowImageInput(false);
   };
 
   return (
@@ -53,7 +56,7 @@ const NoteImageInput = ({
           arrowColor='#adb5bd'>
           <InputGroup className='mb-3'>
             <FormControl
-              type='url'
+              disabled={imageUrl}
               value={url}
               onChange={onChange}
               placeholder='Paste image URL here'
@@ -63,7 +66,7 @@ const NoteImageInput = ({
               <Button
                 onClick={imageUrl ? onDelete : onSubmit}
                 variant={imageUrl ? 'danger' : 'success'}
-                style={{ borderRadius: '0 0.25rem 0.25rem 0' }}>
+                style={{ borderRadius: '0 0.25rem 0.25rem 0', boxShadow: 'none' }}>
                 {imageUrl ? (
                   <i className='fas fa-times-circle fa-fw' />
                 ) : (
