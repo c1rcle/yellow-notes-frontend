@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import Popover, { ArrowContainer } from 'react-tiny-popover';
+import checkUrl from '../../../../utility/checkUrl';
+import { useAlert } from 'react-alert';
 
 const NoteImageInput = ({
   children,
@@ -9,9 +11,33 @@ const NoteImageInput = ({
   setShowImageInput,
   imageUrl
 }) => {
-  const onChange = e => onChangeImageUrl(e.target.value);
+  const alert = useAlert();
+  const [url, setUrl] = useState('');
 
-  const onDelete = () => onChangeImageUrl('');
+  const urlDidMount = () => {
+    if (imageUrl) {
+      setUrl(imageUrl);
+    } else {
+      setUrl('');
+    }
+  };
+
+  useEffect(urlDidMount, [imageUrl]);
+
+  const onChange = e => setUrl(e.target.value);
+
+  const onDelete = () => {
+    setUrl('');
+    onChangeImageUrl('');
+  };
+
+  const onSubmit = () => {
+    if (checkUrl(url)) {
+      onChangeImageUrl(url);
+    } else {
+      alert.show('Invalid URL!');
+    }
+  };
 
   return (
     <Popover
@@ -28,20 +54,22 @@ const NoteImageInput = ({
           <InputGroup className='mb-3'>
             <FormControl
               type='url'
-              value={imageUrl}
+              value={url}
               onChange={onChange}
               placeholder='Paste image URL here'
             />
-            {imageUrl && (
-              <InputGroup.Append>
-                <Button
-                  onClick={onDelete}
-                  variant='danger'
-                  style={{ borderRadius: '0 0.25rem 0.25rem 0' }}>
+            <InputGroup.Append>
+              <Button
+                onClick={imageUrl ? onDelete : onSubmit}
+                variant={imageUrl ? 'danger' : 'success'}
+                style={{ borderRadius: '0 0.25rem 0.25rem 0' }}>
+                {imageUrl ? (
                   <i className='fas fa-times-circle fa-fw' />
-                </Button>
-              </InputGroup.Append>
-            )}
+                ) : (
+                  <i className='fas fa-check'></i>
+                )}
+              </Button>
+            </InputGroup.Append>
           </InputGroup>
         </ArrowContainer>
       )}>
