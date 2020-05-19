@@ -30,8 +30,8 @@ const NoteDialog = () => {
   };
   useTimeout(onNoteModified, formData, 1000);
 
-  const onHide = () => {
-    isNoteNew ? closeDialog() : onSubmit();
+  const onHide = e => {
+    isNoteNew ? closeDialog(e) : onSubmit(e);
   };
 
   const onSubmit = e => {
@@ -52,15 +52,23 @@ const NoteDialog = () => {
   };
 
   const onKeyDown = e => {
-    if (e.ctrlKey && e.keyCode === 13) onSubmit(e);
-    else if (e.keyCode === 13 && e.target.name === 'title') {
+    const enterKeyCode = 13;
+    const escKeyCode = 27;
+
+    if (e.ctrlKey && e.keyCode === enterKeyCode) onSubmit(e);
+    else if (e.keyCode === escKeyCode) onHide(e);
+    else if (e.keyCode === enterKeyCode && e.target.name === 'title') {
       e.preventDefault();
       e.target.form[1].focus();
     }
   };
 
   return (
-    <Modal show={dialogVisible} onHide={onHide} onKeyDown={e => onKeyDown(e)} enforceFocus={false}>
+    <Modal
+      show={dialogVisible}
+      onHide={e => onHide(e)}
+      onKeyDown={e => onKeyDown(e)}
+      enforceFocus={false}>
       <NoteDialogForm
         isNoteNew={isNoteNew}
         dialogVisible={dialogVisible}
