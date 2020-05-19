@@ -11,7 +11,6 @@ export function NotesProvider({ children }) {
     serverCount: -1,
     notes: [],
     note: undefined,
-    categories: [],
     isLoading: false,
     error: null
   });
