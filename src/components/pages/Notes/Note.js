@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Card } from 'react-bootstrap';
 import Moment from 'react-moment';
 import useNotes from '../../../contexts/NotesContext';
 import { getVariant } from '../../../utility/colorUtility';
 import '../../../styles/notes.css';
 import NoteImage from './NoteDialog/NoteImage';
+import OverflowingTooltip from '../../common/OverflowingTooltip';
 
 const Note = ({ note }) => {
   const [, , dialog] = useNotes();
@@ -56,7 +57,11 @@ const Note = ({ note }) => {
       className={`shadow-sm note-card text-${getVariant(note.color)}`}
       style={{ backgroundColor: note.color }}>
       <Card.Header className='d-flex justify-content-between'>
-        <Card.Title className='my-auto overflow-ellipsis p-1'>{note.title}</Card.Title>
+        <OverflowingTooltip text={note.title} position='top'>
+          <Card.Title className='my-auto overflow-ellipsis p-1' ref={useRef()}>
+            {note.title}
+          </Card.Title>
+        </OverflowingTooltip>
         {note.isBlocked && <i className='timestamp my-auto fas fa-lock fa-fw' />}
       </Card.Header>
       <Card.Body>{contentDiv(note)}</Card.Body>

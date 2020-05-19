@@ -35,3 +35,16 @@ button:disabled {
   cursor: default;
   pointer-events: all !important;
 }
+
+.custom-tooltip {
+  z-index: 1070;
+}
+
+.tooltip-content {
+  padding: 0.5rem;
+  max-width: 35vh;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  color: white;
+  background-color: #323232;
+}

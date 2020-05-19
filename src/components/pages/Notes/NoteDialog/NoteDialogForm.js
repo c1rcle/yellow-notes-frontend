@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Modal, Form } from 'react-bootstrap';
-import HoverableControl from '../../../common/HoverableControl';
+import HoverableControl from '../../../common/controls/HoverableControl';
 import Todo from '../Todo';
 import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 import NoteImage from './NoteImage';

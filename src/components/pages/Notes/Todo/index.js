@@ -53,10 +53,6 @@ const Todo = props => {
   return (
     <>
       <ListGroup variant='flush' className='pt-0'>
-        {tasks.filter(n => !n.checked).map(task => taskItem(task))}
-
-        {tasks.filter(n => n.checked).map(task => taskItem(task))}
-
         {(data.isBlocked && !isNoteNew) || (
           <ListGroup.Item style={{ backgroundColor: data.color }}>
             <Row>
@@ -86,6 +82,10 @@ const Todo = props => {
             </Row>
           </ListGroup.Item>
         )}
+
+        {tasks.filter(n => !n.checked).map(task => taskItem(task))}
+
+        {tasks.filter(n => n.checked).map(task => taskItem(task))}
       </ListGroup>
     </>
   );

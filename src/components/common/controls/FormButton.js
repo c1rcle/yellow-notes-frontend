@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import Spinner from './Spinner';
+import Spinner from '../Spinner';
 
 const FormButton = ({ disabled, icon, title, isLoading }) => {
   return (
