@@ -68,7 +68,3 @@ img.note-image {
 img.note-image-dialog {
   max-height: 350px;
 }
-
-img.note-image#dialog:hover {
-  cursor: pointer;
-}
