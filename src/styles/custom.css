@@ -48,8 +48,9 @@ button#alert-button:focus {
   box-shadow: 0 0 2px 0 black;
 }
 .tag-bar .container {
-  max-width: 80% !important;
+  max-width: 100% !important;
 }
 .tag-item {
+  width: 100px;
   white-space: nowrap;
 }
