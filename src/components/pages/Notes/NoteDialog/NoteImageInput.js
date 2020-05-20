@@ -61,23 +61,17 @@ const NoteImageInput = ({
           targetRect={targetRect}
           popoverRect={popoverRect}
           arrowColor='#adb5bd'>
-          <InputGroup className='mb-3'>
+          <InputGroup className='mb-3 img-input'>
             <FormControl
               disabled={imageUrl}
               value={url}
               onChange={onChange}
               placeholder='Paste image URL here'
-              style={{
-                boxShadow: 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.15) 0px 8px 16px',
-                border: 'none',
-                borderRadius: '0.25rem 0 0 0.25rem'
-              }}
             />
             <InputGroup.Append>
               <Button
                 onClick={imageUrl ? onDelete : onSubmit}
-                variant={imageUrl ? 'danger' : 'success'}
-                style={{ borderRadius: '0 0.25rem 0.25rem 0' }}>
+                variant={imageUrl ? 'danger' : 'success'}>
                 {imageUrl ? (
                   <i className='fas fa-times-circle fa-fw' />
                 ) : (
