@@ -1,35 +1,35 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { FormGroup, InputGroup, Form } from 'react-bootstrap';
-import TooltipCustom from '../../common/TooltipCustom';
+import CustomTooltip from '../../common/CustomTooltip';
 
 const PasswordRepeat = ({ state, pattern, onTextChanged, onBlur }) => {
   const passwordRepeatError = 'Passwords do not match!';
 
   return (
     <FormGroup className='row justify-content-center'>
-      <InputGroup>
-        <InputGroup.Prepend>
-          <InputGroup.Text className='bg-white'>
-            <i className='fas fa-redo fa-fw m-auto' />
-          </InputGroup.Text>
-        </InputGroup.Prepend>
-        <TooltipCustom
-          text={passwordRepeatError}
-          show={state.wasBlurred && !!state.value && pattern !== state.value}
-          placement='right'>
+      <CustomTooltip
+        text={passwordRepeatError}
+        show={state.wasBlurred && !!state.value && pattern !== state.value}
+        position='right'>
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text className='bg-white'>
+              <i className='fas fa-redo fa-fw m-auto' />
+            </InputGroup.Text>
+          </InputGroup.Prepend>
           <Form.Control
             required
             pattern={pattern}
             id='passwordRepeat'
             type='password'
+            autoComplete='off'
             placeholder='Repeat Password'
-            ref={useRef()}
             value={state.value}
             onChange={onTextChanged}
             onBlur={onBlur}
           />
-        </TooltipCustom>
-      </InputGroup>
+        </InputGroup>
+      </CustomTooltip>
     </FormGroup>
   );
 };

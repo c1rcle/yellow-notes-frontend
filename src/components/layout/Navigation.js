@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import useUser from '../../contexts/UserContext';
 import useNotes from '../../contexts/NotesContext';
+import OverflowingTooltip from '../common/OverflowingTooltip';
 
 const Navigation = () => {
   const [{ isUserLoggedIn, email }, dispatch] = useUser();
@@ -10,7 +11,7 @@ const Navigation = () => {
   const [, dispatchNotes, { openDialog }] = useNotes();
 
   const trimEmail = () => {
-    return email.split('@')[0];
+    return email?.split('@')[0];
   };
 
   const checkToken = () => {
@@ -22,13 +23,15 @@ const Navigation = () => {
     <>
       <Navbar variant='light' bg='light' expand='lg'>
         <Container className='justify-content-center lead '>
-          <Navbar.Brand className='w-50 mr-auto overflow-ellipsis'>
-            <i className='fas fa-quote-right text-primary' />{' '}
-            <span className={'lead font-weight-bold'}>
-              {isUserLoggedIn ? 'Hello' : 'Yellow Notes'}
-            </span>
-            {isUserLoggedIn && <span className='lead'>{', ' + trimEmail()}</span>}
-          </Navbar.Brand>
+          <OverflowingTooltip text={trimEmail()} position='bottom'>
+            <Navbar.Brand className='w-50 mr-auto overflow-ellipsis' ref={useRef()}>
+              <i className='fas fa-quote-right text-primary' />{' '}
+              <span className={'lead font-weight-bold'}>
+                {isUserLoggedIn ? 'Hello' : 'Yellow Notes'}
+              </span>
+              {isUserLoggedIn && <span className='lead'>{', ' + trimEmail()}</span>}
+            </Navbar.Brand>
+          </OverflowingTooltip>
 
           {isUserLoggedIn && (
             <>

@@ -39,6 +39,13 @@ const Todo = props => {
     setTasks(tasks.map(task => (task.id === id ? { ...task, checked: checked } : task)));
   };
 
+  const onKeyDown = e => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      addTaskPressed(e);
+    }
+  };
+
   const taskItem = task => (
     <TodoItem
       blocked={data.isBlocked && !isNoteNew}
@@ -53,21 +60,17 @@ const Todo = props => {
   return (
     <>
       <ListGroup variant='flush' className='pt-0'>
-        {tasks.filter(n => !n.checked).map(task => taskItem(task))}
-
-        {tasks.filter(n => n.checked).map(task => taskItem(task))}
-
         {(data.isBlocked && !isNoteNew) || (
           <ListGroup.Item style={{ backgroundColor: data.color }}>
             <Row>
               <Col className='pr-0'>
-                <div onSubmit={addTaskPressed}>
+                <div onKeyDown={e => onKeyDown(e)} onSubmit={addTaskPressed}>
                   <Form.Control
                     type='text'
                     placeholder='Enter a new task'
                     value={content}
                     onChange={e => setContent(e.target.value)}
-                    tabIndex='1'
+                    tabIndex='2'
                     className={`text-${getVariant(data.color)}
                     placeholder-${getVariant(data.color)}`}
                     style={{ backgroundColor: getFormColor(data.color), borderWidth: '0' }}
@@ -86,6 +89,10 @@ const Todo = props => {
             </Row>
           </ListGroup.Item>
         )}
+
+        {tasks.filter(n => !n.checked).map(task => taskItem(task))}
+
+        {tasks.filter(n => n.checked).map(task => taskItem(task))}
       </ListGroup>
     </>
   );
