@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import Popover, { ArrowContainer } from 'react-tiny-popover';
 import checkUrl from '../../../../utility/checkUrl';
+import testImage from '../../../../utility/testImage';
 import { useAlert } from 'react-alert';
 
 const NoteImageInput = ({
@@ -32,9 +33,14 @@ const NoteImageInput = ({
     setShowImageInput(false);
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (checkUrl(url)) {
-      onChangeImageUrl(url);
+      try {
+        await testImage(url);
+      } catch (err) {
+        setUrl('');
+        alert.show(err);
+      }
     } else {
       setUrl('');
       alert.show('Invalid URL!');
