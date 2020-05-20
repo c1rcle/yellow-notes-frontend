@@ -54,7 +54,7 @@ button:disabled {
 }
 
 .img-input {
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15), 0px 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px, rgba(0, 0, 0, 0.15) 0 8px 16px;
   border: none;
 }
 
