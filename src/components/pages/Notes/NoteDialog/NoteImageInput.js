@@ -37,6 +37,7 @@ const NoteImageInput = ({
     if (checkUrl(url)) {
       try {
         await testImage(url);
+        onChangeImageUrl(url);
       } catch (err) {
         setUrl('');
         alert.show(err);
