@@ -67,13 +67,17 @@ const NoteImageInput = ({
               value={url}
               onChange={onChange}
               placeholder='Paste image URL here'
-              style={{ boxShadow: 'none' }}
+              style={{
+                boxShadow: 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.15) 0px 8px 16px',
+                border: 'none',
+                borderRadius: '0.25rem 0 0 0.25rem'
+              }}
             />
             <InputGroup.Append>
               <Button
                 onClick={imageUrl ? onDelete : onSubmit}
                 variant={imageUrl ? 'danger' : 'success'}
-                style={{ borderRadius: '0 0.25rem 0.25rem 0', boxShadow: 'none' }}>
+                style={{ borderRadius: '0 0.25rem 0.25rem 0' }}>
                 {imageUrl ? (
                   <i className='fas fa-times-circle fa-fw' />
                 ) : (
