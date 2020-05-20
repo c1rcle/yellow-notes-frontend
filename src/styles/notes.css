@@ -58,3 +58,13 @@ div .note-card:hover {
 input.note-title.form-control {
   font-weight: bold;
 }
+
+img.note-image {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+img.note-image-dialog {
+  max-height: 350px;
+}

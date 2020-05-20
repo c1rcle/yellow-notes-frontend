@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import Moment from 'react-moment';
 import ColorPicker from '../../../common/ColorPicker';
+import NoteImageInput from './NoteImageInput';
 
 const NoteDialogFooter = props => {
   const { isNoteNew, note, formData, setFormData, onDelete } = props;
   const [showPicker, setShowPicker] = useState(false);
+  const [showImageInput, setShowImageInput] = useState(false);
+
+  const onChangeImageUrl = imageUrl => {
+    setFormData({ ...formData, imageUrl });
+  };
 
   const onColorChange = color => {
     setFormData({ ...formData, color: color });
@@ -34,6 +40,19 @@ const NoteDialogFooter = props => {
           <i className={`fas ${formData.isBlocked ? 'fa-lock-open' : 'fa-lock'} fa-fw`} />
         </Button>
       </ColorPicker>
+      <NoteImageInput
+        imageUrl={formData.imageUrl}
+        onChangeImageUrl={onChangeImageUrl}
+        showImageInput={showImageInput}
+        setShowImageInput={setShowImageInput}
+        placement='bottom'>
+        <Button
+          disabled={formData.isBlocked}
+          variant='outline-success'
+          onClick={() => setShowImageInput(!showImageInput)}>
+          <i className='far fa-image' />
+        </Button>
+      </NoteImageInput>
       {isNoteNew ? (
         <Button variant='outline-primary' type='submit' className='ml-auto' tabIndex='3'>
           Create

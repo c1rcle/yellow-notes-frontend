@@ -3,6 +3,7 @@ import { Modal, Form } from 'react-bootstrap';
 import HoverableControl from '../../../common/controls/HoverableControl';
 import Todo from '../Todo';
 import { getVariant, getFormColor } from '../../../../utility/colorUtility';
+import NoteImage from './NoteImage';
 
 const NoteDialogForm = props => {
   const { isNoteNew, children, onSubmit, formData, setFormData, dialogVisible } = props;
@@ -47,6 +48,7 @@ const NoteDialogForm = props => {
       </Modal.Header>
 
       <Modal.Body style={{ backgroundColor: color }}>
+        {formData.imageUrl && <NoteImage imageUrl={formData.imageUrl} dialog={true} />}
         {formData.variant === 0 ? (
           <Form.Control
             as='textarea'

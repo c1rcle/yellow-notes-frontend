@@ -8,7 +8,14 @@ import NoteDialogForm from './NoteDialogForm';
 import NoteDialogFooter from './NoteDialogFooter';
 
 const NoteDialog = () => {
-  const emptyNote = { title: '', content: '', variant: 0, color: '#ffef7f', isBlocked: false };
+  const emptyNote = {
+    title: '',
+    content: '',
+    variant: 0,
+    color: '#ffef7f',
+    isBlocked: false,
+    imageUrl: ''
+  };
 
   const alert = useAlert();
   const { addNote, editNote, removeNote } = useNoteAction();
@@ -41,7 +48,6 @@ const NoteDialog = () => {
       alert.show('Note title cannot be empty!');
       return;
     }
-
     isNoteNew ? addNote(formData) : editNote(formData, note);
     closeDialog();
   };
