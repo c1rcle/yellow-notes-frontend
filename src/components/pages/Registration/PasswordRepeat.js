@@ -22,6 +22,7 @@ const PasswordRepeat = ({ state, pattern, onTextChanged, onBlur }) => {
             pattern={pattern}
             id='passwordRepeat'
             type='password'
+            autoComplete='off'
             placeholder='Repeat Password'
             value={state.value}
             onChange={onTextChanged}
