@@ -34,7 +34,6 @@ const NoteDialogForm = props => {
   useEffect(focusTitle, [dialogVisible]);
 
   const getFocusedElement = () => {
-    console.log(focusedElement.name);
     if (focusedElement.name) {
       props.setFocusedElement(focusedElement.name);
     }
