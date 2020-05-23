@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import Moment from 'react-moment';
 import ColorPicker from '../../../common/ColorPicker';
+import EmojiPicker from '../../../common/EmojiPicker';
 import NoteImageInput from './NoteImageInput';
 
 const NoteDialogFooter = props => {
-  const { isNoteNew, note, formData, setFormData, onDelete } = props;
+  const { isNoteNew, note, formData, setFormData, onDelete, todoContent, setTodoContent } = props;
   const [showPicker, setShowPicker] = useState(false);
   const [showImageInput, setShowImageInput] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const onChangeImageUrl = imageUrl => {
     setFormData({ ...formData, imageUrl });
@@ -15,6 +17,16 @@ const NoteDialogFooter = props => {
 
   const onColorChange = color => {
     setFormData({ ...formData, color: color });
+  };
+
+  const addEmoji = emoji => {
+    if (props.focusedElement === 'todo-content') {
+      setTodoContent(todoContent + emoji);
+    } else if (props.focusedElement === 'title') {
+      setFormData({ ...formData, title: formData.title + emoji });
+    } else {
+      setFormData({ ...formData, content: formData.content + emoji });
+    }
   };
 
   const toggleBlocked = () => {
@@ -53,6 +65,19 @@ const NoteDialogFooter = props => {
           <i className='far fa-image' />
         </Button>
       </NoteImageInput>
+      <EmojiPicker
+        showEmojiPicker={showEmojiPicker}
+        setShowEmojiPicker={setShowEmojiPicker}
+        addEmoji={addEmoji}
+        content={formData.content}
+        placement='bottom'>
+        <Button
+          disabled={formData.isBlocked}
+          variant='outline-primary'
+          onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+          <i className='far fa-grin'></i>
+        </Button>
+      </EmojiPicker>
       {isNoteNew ? (
         <Button variant='outline-primary' type='submit' className='ml-auto' tabIndex='3'>
           Create

@@ -5,8 +5,7 @@ import { getVariant, getFormColor, getBlackOrWhiteColor } from '../../../../util
 
 const Todo = props => {
   const [tasks, setTasksState] = useState([]);
-  const [content, setContent] = useState('');
-  const { isNoteNew, onChange, data, name } = props;
+  const { isNoteNew, onChange, data, name, todoContent, setTodoContent } = props;
 
   const setTasks = tasks => {
     onChange({ target: { name, value: JSON.stringify(tasks) } });
@@ -20,15 +19,15 @@ const Todo = props => {
     }
   }, [data.content]);
 
-  const addTask = content => {
+  const addTask = todoContent => {
     let newId = tasks.length === 0 ? 0 : tasks[tasks.length - 1].id + 1;
-    setTasks([...tasks, { id: newId, content: content, checked: false }]);
+    setTasks([...tasks, { id: newId, content: todoContent, checked: false }]);
   };
 
   const addTaskPressed = event => {
     event.preventDefault();
-    if (content !== '') addTask(content);
-    setContent('');
+    if (todoContent !== '') addTask(todoContent);
+    setTodoContent('');
   };
 
   const removeTask = id => {
@@ -66,10 +65,11 @@ const Todo = props => {
               <Col className='pr-0'>
                 <div onKeyDown={e => onKeyDown(e)} onSubmit={addTaskPressed}>
                   <Form.Control
+                    name='todo-content'
                     type='text'
                     placeholder='Enter a new task'
-                    value={content}
-                    onChange={e => setContent(e.target.value)}
+                    value={todoContent}
+                    onChange={e => setTodoContent(e.target.value)}
                     tabIndex='2'
                     className={`text-${getVariant(data.color)}
                     placeholder-${getVariant(data.color)}`}
