@@ -36,7 +36,7 @@ const NoteDialogFooter = props => {
   return (
     <Modal.Footer className='justify-content-start'>
       <Button variant='outline-warning' onClick={toggleBlocked} tabIndex='4'>
-        <i className={`fas ${formData.isBlocked ? 'fa-lock-open' : 'fa-lock'} fa-fw`} />
+        <i className={`fas ${formData.isBlocked ? 'fa-lock' : 'fa-lock-open'} fa-fw`} />
       </Button>
       {isNoteNew || (
         <Button
