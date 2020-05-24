@@ -88,12 +88,6 @@ const NoteDialogFooter = props => {
           <i className='far fa-grin fa-fw'></i>
         </Button>
       </EmojiPicker>
-      <div className='d-block d-sm-none ml-auto'>
-        <Button variant='outline-primary' type='submit'>
-          <i className='fas fa-save fa-fw mr-1' />
-          Save
-        </Button>
-      </div>
       {isNoteNew && (
         <Button variant='outline-primary' className='ml-auto' type='submit' tabIndex='3'>
           Create
@@ -101,6 +95,12 @@ const NoteDialogFooter = props => {
       )}
       {isNoteNew || (
         <>
+          <div className='d-block d-sm-none ml-auto'>
+            <Button variant='outline-primary' type='submit'>
+              <i className='fas fa-save fa-fw mr-1' />
+              Save
+            </Button>
+          </div>
           <div className='d-block d-sm-none break' />
           <Form.Label className='ml-sm-auto d-flex flex-wrap' style={{ fontSize: '0.95rem' }}>
             <i className='my-auto far fa-calendar-alt pr-2' />
