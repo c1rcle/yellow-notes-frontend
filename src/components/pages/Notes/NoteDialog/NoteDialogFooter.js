@@ -35,6 +35,25 @@ const NoteDialogFooter = props => {
 
   return (
     <Modal.Footer className='justify-content-start'>
+      <Button variant='outline-warning' onClick={toggleBlocked} tabIndex='4'>
+        <i className={`fas ${formData.isBlocked ? 'fa-lock-open' : 'fa-lock'} fa-fw`} />
+      </Button>
+      {isNoteNew ? (
+        <Button variant='outline-primary' type='submit' tabIndex='3'>
+          Create
+        </Button>
+      ) : (
+        <>
+          <Button
+            disabled={formData.isBlocked}
+            variant='outline-danger'
+            onClick={onDelete}
+            tabIndex='5'>
+            <i className='fas fa-times-circle fa-fw' />
+          </Button>
+        </>
+      )}
+      <div className='break' />
       <ColorPicker
         color={formData.color}
         onColorChange={onColorChange}
@@ -48,9 +67,6 @@ const NoteDialogFooter = props => {
           tabIndex='3'>
           <i className='fas fa-eye-dropper fa-fw' />
         </Button>
-        <Button variant='outline-warning' onClick={toggleBlocked} tabIndex='4'>
-          <i className={`fas ${formData.isBlocked ? 'fa-lock-open' : 'fa-lock'} fa-fw`} />
-        </Button>
       </ColorPicker>
       <NoteImageInput
         imageUrl={formData.imageUrl}
@@ -59,10 +75,10 @@ const NoteDialogFooter = props => {
         setShowImageInput={setShowImageInput}
         placement='bottom'>
         <Button
-          disabled={formData.isBlocked}
+          disabled={formData.isBlocked && !isNoteNew}
           variant='outline-success'
           onClick={() => setShowImageInput(!showImageInput)}>
-          <i className='far fa-image' />
+          <i className='far fa-image fa-fw' />
         </Button>
       </NoteImageInput>
       <EmojiPicker
@@ -72,33 +88,18 @@ const NoteDialogFooter = props => {
         content={formData.content}
         placement='bottom'>
         <Button
-          disabled={formData.isBlocked}
+          disabled={formData.isBlocked && !isNoteNew}
           variant='outline-primary'
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
-          <i className='far fa-grin'></i>
+          <i className='far fa-grin fa-fw'></i>
         </Button>
       </EmojiPicker>
-      {isNoteNew ? (
-        <Button variant='outline-primary' type='submit' className='ml-auto' tabIndex='3'>
-          Create
+      <div className='d-block d-sm-none ml-auto'>
+        <Button variant='outline-primary' type='submit'>
+          <i className='fas fa-save fa-fw mr-1' />
+          Save
         </Button>
-      ) : (
-        <>
-          <Button
-            disabled={formData.isBlocked}
-            variant='outline-danger'
-            onClick={onDelete}
-            tabIndex='5'>
-            <i className='fas fa-times-circle fa-fw' />
-          </Button>
-          <div className='d-block d-sm-none ml-auto'>
-            <Button variant='outline-primary' type='submit'>
-              <i className='fas fa-save fa-fw mr-1' />
-              Save
-            </Button>
-          </div>
-        </>
-      )}
+      </div>
       {isNoteNew || (
         <>
           <div className='d-block d-sm-none break' />
