@@ -51,6 +51,6 @@ button#alert-button:focus {
   max-width: 100% !important;
 }
 .tag-item {
-  width: 100px;
+  max-width: 100px;
   white-space: nowrap;
 }

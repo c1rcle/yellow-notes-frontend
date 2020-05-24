@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Container } from 'react-bootstrap';
 import useUser from '../../../../contexts/UserContext';
 import TagFiltersContainer from './TagFiltersContainer';
 
