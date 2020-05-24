@@ -27,6 +27,13 @@
   box-shadow: none;
 }
 
+.autogrow-textarea {
+  border-radius: 0.25rem;
+  padding: 0.5rem 1.1rem;
+  width: 100%;
+  resize: none;
+}
+
 button#alert-button:focus {
   outline: 0;
 }
@@ -54,8 +61,8 @@ button:disabled {
 }
 
 .img-input {
-  box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px, rgba(0, 0, 0, 0.15) 0 8px 16px;
-  border: none;
+  border: solid rgba(0, 0, 0, 0.15) 1px;
+  border-radius: 0.25rem;
 }
 
 .input-group > .form-control:focus {
