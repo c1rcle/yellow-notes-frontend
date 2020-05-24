@@ -38,20 +38,14 @@ const NoteDialogFooter = props => {
       <Button variant='outline-warning' onClick={toggleBlocked} tabIndex='4'>
         <i className={`fas ${formData.isBlocked ? 'fa-lock-open' : 'fa-lock'} fa-fw`} />
       </Button>
-      {isNoteNew ? (
-        <Button variant='outline-primary' type='submit' tabIndex='3'>
-          Create
+      {isNoteNew || (
+        <Button
+          disabled={formData.isBlocked}
+          variant='outline-danger'
+          onClick={onDelete}
+          tabIndex='5'>
+          <i className='fas fa-times-circle fa-fw' />
         </Button>
-      ) : (
-        <>
-          <Button
-            disabled={formData.isBlocked}
-            variant='outline-danger'
-            onClick={onDelete}
-            tabIndex='5'>
-            <i className='fas fa-times-circle fa-fw' />
-          </Button>
-        </>
       )}
       <div className='break' />
       <ColorPicker
@@ -100,6 +94,11 @@ const NoteDialogFooter = props => {
           Save
         </Button>
       </div>
+      {isNoteNew && (
+        <Button variant='outline-primary' className='ml-auto' type='submit' tabIndex='3'>
+          Create
+        </Button>
+      )}
       {isNoteNew || (
         <>
           <div className='d-block d-sm-none break' />
