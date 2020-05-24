@@ -4,11 +4,22 @@ import HoverableControl from '../../../common/controls/HoverableControl';
 import Todo from '../Todo';
 import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 import NoteImage from './NoteImage';
+import useActiveElement from '../../../../hooks/useActiveElement';
 
 const NoteDialogForm = props => {
-  const { isNoteNew, children, onSubmit, formData, setFormData, dialogVisible } = props;
+  const {
+    isNoteNew,
+    children,
+    onSubmit,
+    formData,
+    setFormData,
+    dialogVisible,
+    todoContent,
+    setTodoContent
+  } = props;
   const { title, content, color, isBlocked } = formData;
 
+  const focusedElement = useActiveElement();
   const inputElement = useRef(null);
 
   const onChange = e => {
@@ -21,6 +32,14 @@ const NoteDialogForm = props => {
     }
   };
   useEffect(focusTitle, [dialogVisible]);
+
+  const getFocusedElement = () => {
+    if (focusedElement.name) {
+      props.setFocusedElement(focusedElement.name);
+    }
+  };
+
+  useEffect(getFocusedElement, [focusedElement.name]);
 
   return (
     <Form onSubmit={onSubmit}>
@@ -70,6 +89,8 @@ const NoteDialogForm = props => {
             onChange={e => onChange(e)}
             rows='3'
             tabIndex='2'
+            todoContent={todoContent}
+            setTodoContent={setTodoContent}
           />
         )}
       </Modal.Body>

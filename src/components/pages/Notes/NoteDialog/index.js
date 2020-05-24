@@ -21,6 +21,8 @@ const NoteDialog = () => {
   const { addNote, editNote, removeNote } = useNoteAction();
   const [, , { dialogVisible, closeDialog, note }] = useNotes();
   const [formData, setFormData] = useState({ ...emptyNote });
+  const [todoContent, setTodoContent] = useState('');
+  const [focusedElement, setFocusedElement] = useState(undefined);
 
   const isNoteNew = !note || note.noteId === undefined;
 
@@ -80,13 +82,19 @@ const NoteDialog = () => {
         dialogVisible={dialogVisible}
         onSubmit={onSubmit}
         formData={formData}
-        setFormData={setFormData}>
+        setFormData={setFormData}
+        todoContent={todoContent}
+        setTodoContent={setTodoContent}
+        setFocusedElement={setFocusedElement}>
         <NoteDialogFooter
           isNoteNew={isNoteNew}
           note={note}
           formData={formData}
           setFormData={setFormData}
           onDelete={onDelete}
+          focusedElement={focusedElement}
+          todoContent={todoContent}
+          setTodoContent={setTodoContent}
         />
       </NoteDialogForm>
     </Modal>
