@@ -31,6 +31,11 @@ button#alert-button:focus {
   outline: 0;
 }
 
+button:disabled {
+  cursor: default;
+  pointer-events: all !important;
+}
+
 .custom-tooltip {
   z-index: 1070;
 }
@@ -53,4 +58,17 @@ button#alert-button:focus {
 .tag-item {
   max-width: 100px;
   white-space: nowrap;
+}
+
+.input-group > .input-group-append > .btn {
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.img-input {
+  box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px, rgba(0, 0, 0, 0.15) 0 8px 16px;
+  border: none;
+}
+
+.input-group > .form-control:focus {
+  box-shadow: none;
 }

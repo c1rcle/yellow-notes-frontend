@@ -18,6 +18,7 @@ const Email = ({ state, onTextChanged, onBlur }) => {
             required
             id='email'
             type='email'
+            autoComplete='on'
             placeholder='Email address'
             value={state.email}
             onChange={onTextChanged}
