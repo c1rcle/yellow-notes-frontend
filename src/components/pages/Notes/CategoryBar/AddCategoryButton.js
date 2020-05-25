@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import useCategories from '../../../../contexts/CategoriesContext';
-import CategoryNameInput from './CategoryNameInput';
+import CategoryNameInput from './Dialogs/CategoryNameInput';
 
 const AddCategoryButton = () => {
   const [dialogVisible, setDialogVisible] = useState(false);
