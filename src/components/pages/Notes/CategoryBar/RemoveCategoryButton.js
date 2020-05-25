@@ -28,7 +28,7 @@ const RemoveCategoryButton = () => {
     });
     if (id !== -1) {
       dispatch({ type: 'REMOVE_CATEGORY', payload: { categoryId: id } });
-    } else console.log('cant u find?');
+    }
   };
 
   return (
