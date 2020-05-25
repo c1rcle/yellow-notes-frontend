@@ -19,7 +19,6 @@ const TagFiltersContainer = () => {
   const tagWidth = 100;
   const tagListWidth = tagWidth * userTags.length;
   return (
-    //item ma miec stala szerokosc
     //jak bedzie uciety to dac overflow tooltip
     //dac ladne checkboxy
     <Container className='mx-auto p-0 d-flex justify-content-center'>
