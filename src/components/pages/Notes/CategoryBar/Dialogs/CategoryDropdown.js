@@ -1,7 +1,6 @@
 import React from 'react';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { Dropdown, DropdownButton, FormControl } from 'react-bootstrap';
 import Popover, { ArrowContainer } from 'react-tiny-popover';
-import useCategories from '../../../../../contexts/CategoriesContext';
 
 const CategoryComboBox = ({ children, visible, setVisible, onOptionClick, options }) => {
   return (
@@ -16,17 +15,21 @@ const CategoryComboBox = ({ children, visible, setVisible, onOptionClick, option
           targetRect={targetRect}
           popoverRect={popoverRect}
           arrowColor='#adb5bd'>
-          <DropdownButton
-            id='dropdown-item-button'
-            title='Delete category'
-            variant='danger'
-            onClick={onOptionClick}>
-            {options.map(category => (
-              <Dropdown.Item as='button' key={category.categoryId} id={category.categoryId}>
-                {category.name}
-              </Dropdown.Item>
-            ))}
-          </DropdownButton>
+          {options.length > 0 ? (
+            <DropdownButton
+              id='dropdown-item-button'
+              title='Delete category'
+              variant='danger'
+              onClick={onOptionClick}>
+              {options.map(category => (
+                <Dropdown.Item as='button' key={category.categoryId} id={category.categoryId}>
+                  {category.name}
+                </Dropdown.Item>
+              ))}
+            </DropdownButton>
+          ) : (
+            <FormControl disabled className='nice-info' value='You have no categories' />
+          )}
         </ArrowContainer>
       )}>
       {children}
