@@ -49,13 +49,13 @@ button:disabled {
   background-color: #323232;
 }
 
-.tag-bar button {
+.category-bar button {
   box-shadow: 0 0 2px 0 black;
 }
-.tag-bar .container {
+.category-bar .container {
   max-width: 100% !important;
 }
-.tag-item {
+.category-item {
   max-width: 100px;
   white-space: nowrap;
 }

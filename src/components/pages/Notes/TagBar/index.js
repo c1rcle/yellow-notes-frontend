@@ -10,7 +10,7 @@ const TagBar = () => {
   return (
     <>
       {isUserLoggedIn && (
-        <Modal.Header className='tag-bar border-0 px-2 py-0'>
+        <Modal.Header className='.category-bar border-0 px-2 py-0'>
           <AddTagButton />
           <Button
             variant='danger'

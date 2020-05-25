@@ -14,18 +14,12 @@ const AddTagButton = () => {
     categories.forEach((element, index, array) => {
       if (element.name === name) {
         unique = false;
-        console.log('found non unique');
-        return;
       }
     });
-    console.log(categories);
     return unique;
   };
 
-  const addTag = tagName => {
-    dispatch('ADD_CATEGORY', [{ name: tagName }]);
-    console.log('added ' + tagName);
-  };
+  const addTag = tagName => dispatch({ type: 'ADD_CATEGORY', payload: { name: tagName } });
 
   return (
     <TagNameInput
