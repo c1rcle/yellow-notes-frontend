@@ -2,8 +2,10 @@ import React from 'react';
 import { ListGroup, Container } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 import TagFilter from './TagFilter';
+import useCategories from '../../../../contexts/CategoriesContext';
 
 const TagFiltersContainer = () => {
+  const [{ categories }] = useCategories();
   const userTags = [
     'tag1',
     'tag2',
@@ -17,7 +19,7 @@ const TagFiltersContainer = () => {
     'cos tam'
   ];
   const tagWidth = 100;
-  const tagListWidth = tagWidth * userTags.length;
+  const tagListWidth = tagWidth * categories.length;
   return (
     <Container className='mx-auto p-0 d-flex justify-content-center'>
       <Scrollbars
@@ -28,7 +30,7 @@ const TagFiltersContainer = () => {
           horizontal
           style={{ width: tagListWidth }}
           className='mx-auto  d-flex flex-row justify-content-around py-1'>
-          {userTags.map(tagName => (
+          {categories.map(tagName => (
             <TagFilter tagName={tagName} />
           ))}
         </ListGroup>

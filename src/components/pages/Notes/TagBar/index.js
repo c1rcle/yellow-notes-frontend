@@ -1,7 +1,8 @@
 import React from 'react';
-import { Modal, Button, Container } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import useUser from '../../../../contexts/UserContext';
 import TagFiltersContainer from './TagFiltersContainer';
+import AddTagButton from './AddTagButton';
 
 const TagBar = () => {
   const [{ isUserLoggedIn }] = useUser();
@@ -10,12 +11,7 @@ const TagBar = () => {
     <>
       {isUserLoggedIn && (
         <Modal.Header className='tag-bar border-0 px-2 py-0'>
-          <Button
-            variant='success'
-            // onClick={addTagPressed}
-            className='my-2 p-1 px-2'>
-            <i className={'fas fa-plus fa-fw'} />
-          </Button>
+          <AddTagButton />
           <Button
             variant='danger'
             // onClick={removeTagPressed}
