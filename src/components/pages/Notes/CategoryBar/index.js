@@ -1,28 +1,28 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import useUser from '../../../../contexts/UserContext';
-import TagFiltersContainer from './TagFiltersContainer';
-import AddTagButton from './AddTagButton';
+import CategoriesContainer from './CategoriesContainer';
+import AddCategoryButton from './AddCategoryButton';
 
-const TagBar = () => {
+const CategoryBar = () => {
   const [{ isUserLoggedIn }] = useUser();
 
   return (
     <>
       {isUserLoggedIn && (
         <Modal.Header className='.category-bar border-0 px-2 py-0'>
-          <AddTagButton />
+          <AddCategoryButton />
           <Button
             variant='danger'
-            // onClick={removeTagPressed}
+            // onClick={removecategoryPressed}
             className='my-2 ml-2 mr-3 p-1 px-2'>
             <i className={'fas fa-minus fa-fw'} />
           </Button>
-          <TagFiltersContainer />
+          <CategoriesContainer />
         </Modal.Header>
       )}
     </>
   );
 };
 
-export default TagBar;
+export default CategoryBar;

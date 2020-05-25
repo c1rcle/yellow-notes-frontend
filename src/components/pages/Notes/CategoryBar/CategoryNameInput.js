@@ -3,7 +3,7 @@ import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import Popover, { ArrowContainer } from 'react-tiny-popover';
 import { useAlert } from 'react-alert';
 
-const TagNameInput = ({
+const CategoryNameInput = ({
   children,
   visible,
   setVisible,
@@ -56,4 +56,4 @@ const TagNameInput = ({
   );
 };
 
-export default TagNameInput;
+export default CategoryNameInput;
