@@ -5,13 +5,16 @@ import { Form, ListGroup } from 'react-bootstrap';
 const TagFilter = props => {
   return (
     <OverflowingTooltip text={props.tagName} position='bottom'>
-      <ListGroup.Item className='m-0 mr-2 p-0 overflow-hidden' ref={useRef()}>
-        <Form.Check
-          inline
-          className='tag-item m-0 p-0 py-2'
-          type='checkbox'
-          label={props.tagName}
-        />
+      <ListGroup.Item className='m-0 mr-1 p-0 pl-1 overflow-hidden' ref={useRef()}>
+        <Form>
+          <Form.Check
+            custom
+            className='tag-item py-2'
+            type='checkbox'
+            id={`custom-checkbox ${props.tagName}`}
+            label={props.tagName}
+          />
+        </Form>
       </ListGroup.Item>
     </OverflowingTooltip>
   );
