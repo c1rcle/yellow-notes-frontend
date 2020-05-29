@@ -76,6 +76,3 @@ button:disabled {
 .category-dropdown {
   overflow: visible !important;
 }
-.category-dropdown button {
-  border-radius: 0;
-}

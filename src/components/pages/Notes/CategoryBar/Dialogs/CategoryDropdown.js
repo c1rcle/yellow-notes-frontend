@@ -2,7 +2,15 @@ import React from 'react';
 import { Dropdown, DropdownButton, FormControl } from 'react-bootstrap';
 import Popover, { ArrowContainer } from 'react-tiny-popover';
 
-const CategoryComboBox = ({ children, visible, setVisible, onOptionClick, options }) => {
+const CategoryComboBox = ({
+  children,
+  visible,
+  setVisible,
+  variant,
+  title,
+  onOptionClick,
+  options
+}) => {
   return (
     <Popover
       isOpen={visible}
@@ -18,8 +26,8 @@ const CategoryComboBox = ({ children, visible, setVisible, onOptionClick, option
           {options.length > 0 ? (
             <DropdownButton
               id='dropdown-item-button'
-              title='Delete category'
-              variant='danger'
+              title={title}
+              variant={variant}
               onClick={onOptionClick}>
               {options.map(category => (
                 <Dropdown.Item as='button' key={category.categoryId} id={category.categoryId}>
@@ -28,7 +36,7 @@ const CategoryComboBox = ({ children, visible, setVisible, onOptionClick, option
               ))}
             </DropdownButton>
           ) : (
-            <FormControl disabled className='nice-info' value='You have no categories' />
+            <FormControl disabled value='You have no categories' />
           )}
         </ArrowContainer>
       )}>

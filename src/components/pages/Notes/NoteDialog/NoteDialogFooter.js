@@ -3,6 +3,7 @@ import { Modal, Form, Button } from 'react-bootstrap';
 import Moment from 'react-moment';
 import ColorPicker from '../../../common/ColorPicker';
 import NoteImageInput from './NoteImageInput';
+import NoteCategoryButton from './NoteCategoryButton';
 
 const NoteDialogFooter = props => {
   const { isNoteNew, note, formData, setFormData, onDelete } = props;
@@ -19,6 +20,10 @@ const NoteDialogFooter = props => {
 
   const toggleBlocked = () => {
     setFormData({ ...formData, isBlocked: !formData.isBlocked });
+  };
+
+  const assignCategory = categoryId => {
+    setFormData({ ...formData, categoryId: categoryId });
   };
 
   return (
@@ -40,6 +45,7 @@ const NoteDialogFooter = props => {
           <i className={`fas ${formData.isBlocked ? 'fa-lock-open' : 'fa-lock'} fa-fw`} />
         </Button>
       </ColorPicker>
+      <NoteCategoryButton setCategoryId={assignCategory} disabled={formData.isBlocked} />
       <NoteImageInput
         imageUrl={formData.imageUrl}
         onChangeImageUrl={onChangeImageUrl}

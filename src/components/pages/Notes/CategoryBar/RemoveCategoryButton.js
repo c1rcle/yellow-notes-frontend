@@ -11,13 +11,18 @@ const RemoveCategoryButton = () => {
 
   const removeCategory = e => {
     const id = parseInt(e.target.id);
-    if (Number.isInteger(id)) dispatch({ type: 'REMOVE_CATEGORY', payload: { categoryId: id } });
+    if (Number.isInteger(id)) {
+      dispatch({ type: 'REMOVE_CATEGORY', payload: { categoryId: id } });
+      setDialogVisible(false);
+    }
   };
 
   return (
     <CategoryDropdown
       visible={dialogVisible}
       setVisible={setDialogVisible}
+      variant='danger'
+      title='Delete category'
       onOptionClick={removeCategory}
       options={categories}
       placement='bottom'>
