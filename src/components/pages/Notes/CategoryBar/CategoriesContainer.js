@@ -9,7 +9,7 @@ const CategoriesContainer = () => {
 
   useEffect(() => {
     dispatch({ type: 'GET_CATEGORIES' });
-  }, []);
+  });
 
   const categoryWidth = 100;
   const categoryListWidth = categoryWidth * categories.length;
