@@ -7,7 +7,6 @@ import useNotes from '../../../contexts/NotesContext';
 import Note from './Note';
 import EmptyContainer from './EmptyContainer';
 import NoteLoader from './NoteLoader';
-// import useFilters from '../../../hooks/useFilters';
 import useFilters from '../../../contexts/FiltersContext';
 
 const NoteContainer = () => {

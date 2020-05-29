@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import useCategories from '../../../../contexts/CategoriesContext';
 import CategoryDropdown from '../CategoryBar/Dialogs/CategoryDropdown';
+import useFilters from '../../../../contexts/FiltersContext';
 
 const NoteCategoryButton = ({ setCategoryId, disabled }) => {
   const [dialogVisible, setDialogVisible] = useState(false);
+  const [, dispatchFilters] = useFilters();
 
   const noneOption = { categoryId: -1, name: 'None' };
   const [{ categories }] = useCategories();
@@ -15,6 +17,7 @@ const NoteCategoryButton = ({ setCategoryId, disabled }) => {
       if (id === -1) setCategoryId(null);
       else setCategoryId(id);
 
+      dispatchFilters({ type: 'NEED_UPDATE', payload: true });
       setDialogVisible(false);
     }
   };
