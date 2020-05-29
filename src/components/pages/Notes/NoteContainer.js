@@ -7,6 +7,8 @@ import useNotes from '../../../contexts/NotesContext';
 import Note from './Note';
 import EmptyContainer from './EmptyContainer';
 import NoteLoader from './NoteLoader';
+// import useFilters from '../../../hooks/useFilters';
+import useFilters from '../../../contexts/FiltersContext';
 
 const NoteContainer = () => {
   const [
@@ -14,6 +16,7 @@ const NoteContainer = () => {
     dispatch,
     { openDialog }
   ] = useNotes();
+  const [{ filters, needUpdate }, dispatchFilters] = useFilters();
 
   const match = useRouteMatch('/notes/:noteId');
   const checkRouteMatch = () => {
@@ -23,20 +26,35 @@ const NoteContainer = () => {
   };
   useEffect(checkRouteMatch, [match]);
 
-  const openNote = () => {
-    note && openDialog(note);
-  };
+  const openNote = () => note && openDialog(note);
   useEffect(openNote, [note]);
 
-  const loadNextNotes = () => {
-    if (isLoading) return;
+  const onFilterChange = () => {
+    dispatch({ type: 'CLEAR_NOTES' });
+    dispatchFilters({ type: 'NEED_UPDATE', payload: false });
+  };
+  useEffect(onFilterChange, [needUpdate]);
+
+  const load = (takeCount, skipCount) => {
+    const filterCategories = filters.filter(f => f.checked).map(f => f.categoryId);
+
+    const payload =
+      filters.length > 0
+        ? { takeCount: takeCount, skipCount: skipCount, categories: filterCategories }
+        : { takeCount: takeCount, skipCount: skipCount };
 
     if (loadedCount < serverCount || serverCount === -1) {
       dispatch({
         type: 'GET_NOTES',
-        payload: { takeCount: 6, skipCount: loadedCount }
+        payload: payload
       });
     }
+  };
+
+  const loadNextNotes = () => {
+    if (isLoading) return;
+
+    load(6, loadedCount);
   };
 
   return (
