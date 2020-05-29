@@ -11,6 +11,7 @@ const CategoriesContainer = () => {
 
   useEffect(() => {
     dispatch({ type: 'GET_CATEGORIES' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const categoryWidth = 100;
