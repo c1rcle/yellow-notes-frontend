@@ -56,6 +56,20 @@ button:disabled {
   background-color: #323232;
 }
 
+.category-bar button {
+  box-shadow: 0 0 2px 0 black;
+}
+.category-bar .container {
+  max-width: 100% !important;
+}
+.category-item {
+  max-width: 100px;
+  white-space: nowrap;
+}
+.category-scrollbar {
+  overflow-y: hidden;
+}
+
 .input-group > .input-group-append > .btn {
   border-radius: 0 0.25rem 0.25rem 0;
 }
@@ -67,4 +81,8 @@ button:disabled {
 
 .input-group > .form-control:focus {
   box-shadow: none;
+}
+
+.category-dropdown {
+  overflow: visible !important;
 }

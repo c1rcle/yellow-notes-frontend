@@ -4,6 +4,7 @@ import Moment from 'react-moment';
 import ColorPicker from '../../../common/ColorPicker';
 import EmojiPicker from '../../../common/EmojiPicker';
 import NoteImageInput from './NoteImageInput';
+import NoteCategoryButton from './NoteCategoryButton';
 
 const NoteDialogFooter = props => {
   const { isNoteNew, note, formData, setFormData, onDelete, todoContent, setTodoContent } = props;
@@ -33,6 +34,10 @@ const NoteDialogFooter = props => {
     setFormData({ ...formData, isBlocked: !formData.isBlocked });
   };
 
+  const assignCategory = categoryId => {
+    setFormData({ ...formData, categoryId: categoryId });
+  };
+
   return (
     <Modal.Footer className='justify-content-start'>
       <Button variant='outline-warning' onClick={toggleBlocked} tabIndex='4'>
@@ -47,6 +52,11 @@ const NoteDialogFooter = props => {
           <i className='fas fa-times-circle fa-fw' />
         </Button>
       )}
+      <NoteCategoryButton
+        setCategoryId={assignCategory}
+        disabled={formData.isBlocked}
+        note={formData}
+      />
       <div className='break' />
       <ColorPicker
         color={formData.color}
