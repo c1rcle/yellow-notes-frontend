@@ -52,6 +52,7 @@ const NoteContainer = () => {
   useEffect(onFilterChange, [needUpdate]);
 
   const load = (takeCount, skipCount) => {
+    if (needUpdate) return;
     const filterCategories = filters.filter(f => f.checked).map(f => f.categoryId);
 
     const payload =

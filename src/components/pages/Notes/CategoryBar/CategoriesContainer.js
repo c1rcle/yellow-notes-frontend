@@ -19,7 +19,7 @@ const CategoriesContainer = () => {
   return (
     <Container className='mx-auto p-0 d-flex justify-content-center'>
       <Scrollbars
-        className='d-flex justify-content-center'
+        className='category-scrollbar d-flex justify-content-center'
         autoHide
         style={{ width: 'min(' + categoryListWidth.toString() + 'px, 100%)', height: '3rem' }}>
         <ListGroup
