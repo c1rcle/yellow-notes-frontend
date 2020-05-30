@@ -5,8 +5,7 @@ import { getVariant, getFormColor, getBlackOrWhiteColor } from '../../../../util
 
 const Todo = props => {
   const [tasks, setTasksState] = useState([]);
-  const [content, setContent] = useState('');
-  const { isNoteNew, onChange, data, name } = props;
+  const { isNoteNew, onChange, data, name, todoContent, setTodoContent } = props;
 
   const setTasks = tasks => {
     onChange({ target: { name, value: JSON.stringify(tasks) } });
@@ -20,15 +19,22 @@ const Todo = props => {
     }
   }, [data.content]);
 
-  const addTask = content => {
-    let newId = tasks.length === 0 ? 0 : tasks[tasks.length - 1].id + 1;
-    setTasks([...tasks, { id: newId, content: content, checked: false }]);
+  const addTask = todoContent => {
+    const uncheckedTasks = tasks.filter(t => !t.checked);
+    const checkedTasks = tasks.filter(t => t.checked);
+    let newId = 0;
+    tasks.forEach(t => (t.id >= newId ? (newId = t.id + 1) : null));
+    setTasks([
+      ...uncheckedTasks,
+      { id: newId, content: todoContent, checked: false },
+      ...checkedTasks
+    ]);
   };
 
   const addTaskPressed = event => {
     event.preventDefault();
-    if (content !== '') addTask(content);
-    setContent('');
+    if (todoContent !== '') addTask(todoContent);
+    setTodoContent('');
   };
 
   const removeTask = id => {
@@ -36,7 +42,23 @@ const Todo = props => {
   };
 
   const checkTask = (id, checked) => {
-    setTasks(tasks.map(task => (task.id === id ? { ...task, checked: checked } : task)));
+    let uncheckedTasks = tasks.filter(t => !t.checked);
+    let checkedTasks = tasks.filter(t => t.checked);
+
+    const task = tasks.find(t => t.id === id);
+    if (task === undefined) return;
+
+    if (!task.checked && checked) {
+      uncheckedTasks = uncheckedTasks.filter(task => task.id !== id);
+      task.checked = checked;
+      checkedTasks.unshift(task);
+    } else if (task.checked && !checked) {
+      checkedTasks = checkedTasks.filter(task => task.id !== id);
+      task.checked = checked;
+      uncheckedTasks.push(task);
+    } else return;
+
+    setTasks([...uncheckedTasks, ...checkedTasks]);
   };
 
   const onKeyDown = e => {
@@ -66,10 +88,11 @@ const Todo = props => {
               <Col className='pr-0'>
                 <div onKeyDown={e => onKeyDown(e)} onSubmit={addTaskPressed}>
                   <Form.Control
+                    name='todo-content'
                     type='text'
                     placeholder='Enter a new task'
-                    value={content}
-                    onChange={e => setContent(e.target.value)}
+                    value={todoContent}
+                    onChange={e => setTodoContent(e.target.value)}
                     tabIndex='2'
                     className={`text-${getVariant(data.color)}
                     placeholder-${getVariant(data.color)}`}
@@ -89,9 +112,7 @@ const Todo = props => {
             </Row>
           </ListGroup.Item>
         )}
-
         {tasks.filter(n => !n.checked).map(task => taskItem(task))}
-
         {tasks.filter(n => n.checked).map(task => taskItem(task))}
       </ListGroup>
     </>

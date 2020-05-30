@@ -4,6 +4,7 @@ import { NotesProvider } from './NotesContext';
 import { CategoriesProvider } from './CategoriesContext';
 import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from '../styles/AlertTemplate';
+import { FiltersProvider } from './FiltersContext';
 
 const alertOptions = {
   timeout: 3000,
@@ -18,9 +19,11 @@ function Provider({ children }) {
     <UserProvider>
       <NotesProvider>
         <CategoriesProvider>
-          <AlertProvider template={AlertTemplate} {...alertOptions}>
-            {children}
-          </AlertProvider>
+          <FiltersProvider>
+            <AlertProvider template={AlertTemplate} {...alertOptions}>
+              {children}
+            </AlertProvider>
+          </FiltersProvider>
         </CategoriesProvider>
       </NotesProvider>
     </UserProvider>

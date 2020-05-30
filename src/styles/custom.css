@@ -27,6 +27,13 @@
   box-shadow: none;
 }
 
+.autogrow-textarea {
+  border-radius: 0.25rem;
+  padding: 0.5rem 1.1rem;
+  width: 100%;
+  resize: none;
+}
+
 button#alert-button:focus {
   outline: 0;
 }
@@ -49,15 +56,33 @@ button:disabled {
   background-color: #323232;
 }
 
+.category-bar button {
+  box-shadow: 0 0 2px 0 black;
+}
+.category-bar .container {
+  max-width: 100% !important;
+}
+.category-item {
+  max-width: 100px;
+  white-space: nowrap;
+}
+.category-scrollbar {
+  overflow-y: hidden;
+}
+
 .input-group > .input-group-append > .btn {
   border-radius: 0 0.25rem 0.25rem 0;
 }
 
 .img-input {
-  box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px, rgba(0, 0, 0, 0.15) 0 8px 16px;
-  border: none;
+  border: solid rgba(0, 0, 0, 0.15) 1px;
+  border-radius: 0.25rem;
 }
 
 .input-group > .form-control:focus {
   box-shadow: none;
+}
+
+.category-dropdown {
+  overflow: visible !important;
 }

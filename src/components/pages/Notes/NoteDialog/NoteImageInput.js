@@ -61,12 +61,13 @@ const NoteImageInput = ({
           targetRect={targetRect}
           popoverRect={popoverRect}
           arrowColor='#adb5bd'>
-          <InputGroup className='mb-3 img-input'>
+          <InputGroup className='img-input'>
             <FormControl
               disabled={imageUrl}
               value={url}
               onChange={onChange}
               placeholder='Paste image URL here'
+              className='border-0'
             />
             <InputGroup.Append>
               <Button
@@ -75,7 +76,7 @@ const NoteImageInput = ({
                 {imageUrl ? (
                   <i className='fas fa-times-circle fa-fw' />
                 ) : (
-                  <i className='fas fa-check'></i>
+                  <i className='fas fa-check' />
                 )}
               </Button>
             </InputGroup.Append>

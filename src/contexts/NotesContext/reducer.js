@@ -59,7 +59,7 @@ export default (state, { type, payload }) => {
     }
 
     case 'CLEAR_ERROR': {
-      return { ...state, error: null };
+      return { ...state, error: null, isLoading: false };
     }
 
     default:
