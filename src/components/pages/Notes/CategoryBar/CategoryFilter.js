@@ -13,7 +13,7 @@ const CategoryFilter = ({ category }) => {
 
   return (
     <OverflowingTooltip text={category.name} position='bottom'>
-      <ListGroup.Item className='m-0 mr-1 p-0 pl-1 overflow-hidden' ref={useRef()}>
+      <ListGroup.Item className='m-0 mr-1 p-0 pl-1 overflow-ellipsis' ref={useRef()}>
         <Form>
           <Form.Check
             custom

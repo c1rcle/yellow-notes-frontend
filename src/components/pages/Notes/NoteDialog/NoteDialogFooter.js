@@ -52,6 +52,11 @@ const NoteDialogFooter = props => {
           <i className='fas fa-times-circle fa-fw' />
         </Button>
       )}
+      <NoteCategoryButton
+        setCategoryId={assignCategory}
+        disabled={formData.isBlocked}
+        note={formData}
+      />
       <div className='break' />
       <ColorPicker
         color={formData.color}
@@ -67,7 +72,6 @@ const NoteDialogFooter = props => {
           <i className='fas fa-eye-dropper fa-fw' />
         </Button>
       </ColorPicker>
-      <NoteCategoryButton setCategoryId={assignCategory} disabled={formData.isBlocked} />
       <NoteImageInput
         imageUrl={formData.imageUrl}
         onChangeImageUrl={onChangeImageUrl}

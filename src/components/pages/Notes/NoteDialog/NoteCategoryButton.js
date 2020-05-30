@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import useCategories from '../../../../contexts/CategoriesContext';
 import CategoryDropdown from '../CategoryBar/Dialogs/CategoryDropdown';
 import useFilters from '../../../../contexts/FiltersContext';
+import OverflowingTooltip from '../../../common/CustomTooltip';
 
-const NoteCategoryButton = ({ setCategoryId, disabled }) => {
+const NoteCategoryButton = ({ setCategoryId, disabled, note }) => {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [, dispatchFilters] = useFilters();
 
@@ -22,6 +23,14 @@ const NoteCategoryButton = ({ setCategoryId, disabled }) => {
     }
   };
 
+  const category = useRef();
+  const updateLocalCategory = () => {
+    category.current = categories.find(c => c.categoryId === note.categoryId);
+  };
+  useEffect(updateLocalCategory, [note.categoryId]);
+
+  const getCategoryName = () => (category.current !== undefined ? category.current.name : 'None');
+
   return (
     <CategoryDropdown
       visible={dialogVisible}
@@ -31,8 +40,17 @@ const NoteCategoryButton = ({ setCategoryId, disabled }) => {
       onOptionClick={assignCategory}
       options={[noneOption, ...categories]}
       placement='bottom'>
-      <Button variant='outline-primary' onClick={() => setDialogVisible(true)} disabled={disabled}>
+      <Button
+        className='overflow-ellipsis category-item'
+        variant='outline-primary'
+        onClick={() => setDialogVisible(true)}
+        disabled={disabled}>
         <i className='fas fa-tag' />
+        <OverflowingTooltip text={getCategoryName()} position='bottom'>
+          <div className='d-inline category-item mx-1 overflow-ellipsis' ref={useRef()}>
+            {getCategoryName()}
+          </div>
+        </OverflowingTooltip>
       </Button>
     </CategoryDropdown>
   );
