@@ -6,8 +6,11 @@ import useTimeout from '../../../../hooks/useTimeout';
 import useNotes from '../../../../contexts/NotesContext';
 import NoteDialogForm from './NoteDialogForm';
 import NoteDialogFooter from './NoteDialogFooter';
+import { useHistory } from 'react-router-dom';
 
 const NoteDialog = () => {
+  let history = useHistory();
+
   const emptyNote = {
     title: '',
     content: '',
@@ -21,6 +24,8 @@ const NoteDialog = () => {
   const { addNote, editNote, removeNote } = useNoteAction();
   const [, , { dialogVisible, closeDialog, note }] = useNotes();
   const [formData, setFormData] = useState({ ...emptyNote });
+  const [todoContent, setTodoContent] = useState('');
+  const [focusedElement, setFocusedElement] = useState(undefined);
 
   const isNoteNew = !note || note.noteId === undefined;
 
@@ -59,10 +64,8 @@ const NoteDialog = () => {
 
   const onKeyDown = e => {
     const enterKeyCode = 13;
-    const escKeyCode = 27;
 
     if (e.ctrlKey && e.keyCode === enterKeyCode) onSubmit(e);
-    else if (e.keyCode === escKeyCode) onHide(e);
     else if (e.keyCode === enterKeyCode && e.target.name === 'title') {
       e.preventDefault();
       e.target.form[1].focus();
@@ -74,19 +77,26 @@ const NoteDialog = () => {
       show={dialogVisible}
       onHide={e => onHide(e)}
       onKeyDown={e => onKeyDown(e)}
+      onEscapeKeyDown={() => history.replace('/notes')}
       enforceFocus={false}>
       <NoteDialogForm
         isNoteNew={isNoteNew}
         dialogVisible={dialogVisible}
         onSubmit={onSubmit}
         formData={formData}
-        setFormData={setFormData}>
+        setFormData={setFormData}
+        todoContent={todoContent}
+        setTodoContent={setTodoContent}
+        setFocusedElement={setFocusedElement}>
         <NoteDialogFooter
           isNoteNew={isNoteNew}
           note={note}
           formData={formData}
           setFormData={setFormData}
           onDelete={onDelete}
+          focusedElement={focusedElement}
+          todoContent={todoContent}
+          setTodoContent={setTodoContent}
         />
       </NoteDialogForm>
     </Modal>

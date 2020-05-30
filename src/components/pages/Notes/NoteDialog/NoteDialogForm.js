@@ -1,14 +1,26 @@
 import React, { useEffect, useRef } from 'react';
 import { Modal, Form } from 'react-bootstrap';
-import HoverableControl from '../../../common/controls/HoverableControl';
-import Todo from '../Todo';
-import { getVariant, getFormColor } from '../../../../utility/colorUtility';
+import TextareaAutosize from 'react-textarea-autosize';
 import NoteImage from './NoteImage';
+import Todo from '../Todo';
+import HoverableControl from '../../../common/controls/HoverableControl';
+import { getVariant, getFormColor } from '../../../../utility/colorUtility';
+import useActiveElement from '../../../../hooks/useActiveElement';
 
 const NoteDialogForm = props => {
-  const { isNoteNew, children, onSubmit, formData, setFormData, dialogVisible } = props;
+  const {
+    isNoteNew,
+    children,
+    onSubmit,
+    formData,
+    setFormData,
+    dialogVisible,
+    todoContent,
+    setTodoContent
+  } = props;
   const { title, content, color, isBlocked } = formData;
 
+  const focusedElement = useActiveElement();
   const inputElement = useRef(null);
 
   const onChange = e => {
@@ -21,6 +33,14 @@ const NoteDialogForm = props => {
     }
   };
   useEffect(focusTitle, [dialogVisible]);
+
+  const getFocusedElement = () => {
+    if (focusedElement.name) {
+      props.setFocusedElement(focusedElement.name);
+    }
+  };
+
+  useEffect(getFocusedElement, [focusedElement.name]);
 
   return (
     <Form onSubmit={onSubmit}>
@@ -50,16 +70,18 @@ const NoteDialogForm = props => {
       <Modal.Body style={{ backgroundColor: color }}>
         {formData.imageUrl && <NoteImage imageUrl={formData.imageUrl} dialog={true} />}
         {formData.variant === 0 ? (
-          <Form.Control
-            as='textarea'
+          <TextareaAutosize
             readOnly={isBlocked && !isNoteNew}
             name='content'
             value={content}
             placeholder='Note Content'
             onChange={e => onChange(e)}
-            rows='3'
             tabIndex='2'
-            className={`border-0 text-${getVariant(color)} placeholder-${getVariant(color)}`}
+            minRows={2}
+            maxRows={7}
+            className={`autogrow-textarea border-0 text-${getVariant(
+              color
+            )} placeholder-${getVariant(color)}`}
             style={{ backgroundColor: getFormColor(color) }}
           />
         ) : (
@@ -70,6 +92,8 @@ const NoteDialogForm = props => {
             onChange={e => onChange(e)}
             rows='3'
             tabIndex='2'
+            todoContent={todoContent}
+            setTodoContent={setTodoContent}
           />
         )}
       </Modal.Body>
