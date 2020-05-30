@@ -20,8 +20,15 @@ const Todo = props => {
   }, [data.content]);
 
   const addTask = todoContent => {
-    let newId = tasks.length === 0 ? 0 : tasks[tasks.length - 1].id + 1;
-    setTasks([...tasks, { id: newId, content: todoContent, checked: false }]);
+    const uncheckedTasks = tasks.filter(t => !t.checked);
+    const checkedTasks = tasks.filter(t => t.checked);
+    let newId = 0;
+    tasks.forEach(t => (t.id >= newId ? (newId = t.id + 1) : null));
+    setTasks([
+      ...uncheckedTasks,
+      { id: newId, content: todoContent, checked: false },
+      ...checkedTasks
+    ]);
   };
 
   const addTaskPressed = event => {
@@ -35,7 +42,23 @@ const Todo = props => {
   };
 
   const checkTask = (id, checked) => {
-    setTasks(tasks.map(task => (task.id === id ? { ...task, checked: checked } : task)));
+    let uncheckedTasks = tasks.filter(t => !t.checked);
+    let checkedTasks = tasks.filter(t => t.checked);
+
+    const task = tasks.find(t => t.id === id);
+    if (task === undefined) return;
+
+    if (!task.checked && checked) {
+      uncheckedTasks = uncheckedTasks.filter(task => task.id !== id);
+      task.checked = checked;
+      checkedTasks.unshift(task);
+    } else if (task.checked && !checked) {
+      checkedTasks = checkedTasks.filter(task => task.id !== id);
+      task.checked = checked;
+      uncheckedTasks.push(task);
+    } else return;
+
+    setTasks([...uncheckedTasks, ...checkedTasks]);
   };
 
   const onKeyDown = e => {
@@ -89,9 +112,7 @@ const Todo = props => {
             </Row>
           </ListGroup.Item>
         )}
-
         {tasks.filter(n => !n.checked).map(task => taskItem(task))}
-
         {tasks.filter(n => n.checked).map(task => taskItem(task))}
       </ListGroup>
     </>
