@@ -23,7 +23,7 @@ const CategoriesContainer = () => {
         <ListGroup
           horizontal
           style={{ width: categoryListWidth }}
-          className='mx-auto d-flex flex-row justify-content-evenly py-1'>
+          className='mx-auto d-flex flex-row justify-content-around py-1'>
           {categories.map(category => (
             <CategoryFilter category={category} key={category.categoryId} setFilter={setFilter} />
           ))}

@@ -95,7 +95,3 @@ button:disabled {
   display: flex;
   width: 25%;
 }
-
-.justify-content-evenly {
-  justify-content: space-evenly;
-}

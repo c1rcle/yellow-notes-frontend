@@ -14,10 +14,10 @@ const CategoryFilter = ({ category }) => {
 
   return (
     <OverflowingTooltip text={category.name} position='bottom'>
-      <ListGroup.Item className='mr-3 p-0 pl-1 overflow-ellipsis' ref={useRef()}>
+      <ListGroup.Item className='category-item mr-3 p-0 pl-1 overflow-ellipsis' ref={useRef()}>
         <Form.Check
           custom
-          className='category-item py-2'
+          className='py-2'
           type='checkbox'
           onChange={onChange}
           id={`custom-checkbox ${category.categoryId}`}

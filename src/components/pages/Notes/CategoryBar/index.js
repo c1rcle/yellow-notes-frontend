@@ -10,7 +10,7 @@ const CategoryBar = () => {
   return (
     <>
       {isUserLoggedIn && (
-        <div className='category-bar'>
+        <div className='category-bar px-3'>
           <div className='centered-container'>
             <AddCategoryButton />
             <RemoveCategoryButton />

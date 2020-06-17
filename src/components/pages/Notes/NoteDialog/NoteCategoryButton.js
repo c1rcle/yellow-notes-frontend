@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useState } from 'react';
 import useCategories from '../../../../contexts/CategoriesContext';
 import CategoryDropdown from '../CategoryBar/Dialogs/CategoryDropdown';
 import useFilters from '../../../../contexts/FiltersContext';
-import OverflowingTooltip from '../../../common/CustomTooltip';
+import SmallButton from '../../../common/SmallButton';
 
-const NoteCategoryButton = ({ setCategoryId, disabled, note }) => {
+const NoteCategoryButton = ({ setCategoryId, disabled }) => {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [, dispatchFilters] = useFilters();
 
@@ -23,14 +22,6 @@ const NoteCategoryButton = ({ setCategoryId, disabled, note }) => {
     }
   };
 
-  const category = useRef();
-  const updateLocalCategory = () => {
-    category.current = categories.find(c => c.categoryId === note.categoryId);
-  };
-  useEffect(updateLocalCategory, [note.categoryId]);
-
-  const getCategoryName = () => (category.current !== undefined ? category.current.name : 'None');
-
   return (
     <CategoryDropdown
       visible={dialogVisible}
@@ -40,18 +31,12 @@ const NoteCategoryButton = ({ setCategoryId, disabled, note }) => {
       onOptionClick={assignCategory}
       options={[noneOption, ...categories]}
       placement='bottom'>
-      <Button
-        className='overflow-ellipsis category-item'
+      <SmallButton
         variant='outline-primary'
-        onClick={() => setDialogVisible(true)}
+        onClick={() => setDialogVisible(!dialogVisible)}
         disabled={disabled}>
-        <i className='fas fa-tag' />
-        <OverflowingTooltip text={getCategoryName()} position='bottom'>
-          <div className='d-inline category-item mx-1 overflow-ellipsis' ref={useRef()}>
-            {getCategoryName()}
-          </div>
-        </OverflowingTooltip>
-      </Button>
+        <i className='fas fa-tag fa-fw' />
+      </SmallButton>
     </CategoryDropdown>
   );
 };

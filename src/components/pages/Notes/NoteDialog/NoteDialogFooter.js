@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import Moment from 'react-moment';
 import ColorPicker from '../../../common/ColorPicker';
 import EmojiPicker from '../../../common/EmojiPicker';
 import NoteImageInput from './NoteImageInput';
 import NoteCategoryButton from './NoteCategoryButton';
+import SmallButton from '../../../common/SmallButton';
 
 const NoteDialogFooter = props => {
   const { isNoteNew, note, formData, setFormData, onDelete, todoContent, setTodoContent } = props;
@@ -40,37 +41,19 @@ const NoteDialogFooter = props => {
 
   return (
     <Modal.Footer className='justify-content-start'>
-      <Button variant='outline-warning' onClick={toggleBlocked} tabIndex='4'>
-        <i className={`fas ${formData.isBlocked ? 'fa-lock' : 'fa-lock-open'} fa-fw`} />
-      </Button>
-      {isNoteNew || (
-        <Button
-          disabled={formData.isBlocked}
-          variant='outline-danger'
-          onClick={onDelete}
-          tabIndex='5'>
-          <i className='fas fa-times-circle fa-fw' />
-        </Button>
-      )}
-      <NoteCategoryButton
-        setCategoryId={assignCategory}
-        disabled={formData.isBlocked}
-        note={formData}
-      />
-      <div className='break' />
       <ColorPicker
         color={formData.color}
         onColorChange={onColorChange}
         show={showPicker}
         setShow={setShowPicker}
         placement='bottom'>
-        <Button
+        <SmallButton
           disabled={formData.isBlocked && !isNoteNew}
           variant='outline-secondary'
           onClick={() => setShowPicker(!showPicker)}
           tabIndex='3'>
           <i className='fas fa-eye-dropper fa-fw' />
-        </Button>
+        </SmallButton>
       </ColorPicker>
       <NoteImageInput
         imageUrl={formData.imageUrl}
@@ -78,12 +61,12 @@ const NoteDialogFooter = props => {
         showImageInput={showImageInput}
         setShowImageInput={setShowImageInput}
         placement='bottom'>
-        <Button
+        <SmallButton
           disabled={formData.isBlocked && !isNoteNew}
           variant='outline-success'
           onClick={() => setShowImageInput(!showImageInput)}>
           <i className='far fa-image fa-fw' />
-        </Button>
+        </SmallButton>
       </NoteImageInput>
       <EmojiPicker
         showEmojiPicker={showEmojiPicker}
@@ -91,25 +74,41 @@ const NoteDialogFooter = props => {
         addEmoji={addEmoji}
         content={formData.content}
         placement='bottom'>
-        <Button
+        <SmallButton
           disabled={formData.isBlocked && !isNoteNew}
           variant='outline-primary'
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
           <i className='far fa-grin fa-fw'></i>
-        </Button>
+        </SmallButton>
       </EmojiPicker>
+      <NoteCategoryButton setCategoryId={assignCategory} disabled={formData.isBlocked} />
+      <SmallButton variant='outline-warning' onClick={toggleBlocked} tabIndex='4'>
+        <i className={`fas ${formData.isBlocked ? 'fa-lock' : 'fa-lock-open'} fa-fw`} />
+      </SmallButton>
+      {isNoteNew || (
+        <SmallButton
+          disabled={formData.isBlocked}
+          variant='outline-danger'
+          onClick={onDelete}
+          tabIndex='5'>
+          <i className='fas fa-times-circle fa-fw' />
+        </SmallButton>
+      )}
       {isNoteNew && (
-        <Button variant='outline-primary' className='ml-auto' type='submit' tabIndex='3'>
+        <SmallButton
+          variant='outline-primary'
+          className='ml-auto small-button'
+          type='submit'
+          tabIndex='3'>
           Create
-        </Button>
+        </SmallButton>
       )}
       {isNoteNew || (
         <>
           <div className='d-block d-sm-none ml-auto'>
-            <Button variant='outline-primary' type='submit'>
-              <i className='fas fa-save fa-fw mr-1' />
-              Save
-            </Button>
+            <SmallButton variant='outline-primary' type='submit'>
+              <i className='fas fa-save fa-fw' />
+            </SmallButton>
           </div>
           <div className='d-block d-sm-none break' />
           <Form.Label className='ml-sm-auto d-flex flex-wrap' style={{ fontSize: '0.95rem' }}>
