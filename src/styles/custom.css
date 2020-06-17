@@ -56,16 +56,20 @@ button:disabled {
   background-color: #323232;
 }
 
+.category-bar {
+  display: flex;
+}
+
 .category-bar button {
   box-shadow: 0 0 2px 0 black;
+  position: relative;
 }
-.category-bar .container {
-  max-width: 100% !important;
-}
+
 .category-item {
   max-width: 100px;
   white-space: nowrap;
 }
+
 .category-scrollbar {
   overflow-y: hidden;
 }
@@ -85,4 +89,13 @@ button:disabled {
 
 .category-dropdown {
   overflow: visible !important;
+}
+
+.centered-container {
+  display: flex;
+  width: 25%;
+}
+
+.justify-content-evenly {
+  justify-content: space-evenly;
 }
