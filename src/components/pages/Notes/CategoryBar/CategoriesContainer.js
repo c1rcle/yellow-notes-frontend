@@ -9,23 +9,21 @@ const CategoriesContainer = () => {
   const [{ categories }, dispatch] = useCategories();
   const { setFilter } = useFilters();
 
-  useEffect(() => {
+  const getCategories = () => {
     dispatch({ type: 'GET_CATEGORIES' });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
+  useEffect(getCategories, []);
 
   const categoryWidth = 100;
   const categoryListWidth = categoryWidth * categories.length;
+
   return (
-    <Container className='mx-auto p-0 d-flex justify-content-center'>
-      <Scrollbars
-        className='category-scrollbar d-flex justify-content-center'
-        autoHide
-        style={{ width: 'min(' + categoryListWidth.toString() + 'px, 100%)', height: '3rem' }}>
+    <Container className='p-0 d-flex justify-content-center'>
+      <Scrollbars className='category-scrollbar d-flex justify-content-center' autoHide>
         <ListGroup
           horizontal
           style={{ width: categoryListWidth }}
-          className='mx-auto  d-flex flex-row justify-content-around py-1'>
+          className='mx-auto d-flex flex-row justify-content-around py-1'>
           {categories.map(category => (
             <CategoryFilter category={category} key={category.categoryId} setFilter={setFilter} />
           ))}

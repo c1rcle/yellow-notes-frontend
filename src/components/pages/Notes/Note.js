@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import { Card, Badge } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import Moment from 'react-moment';
 import useNotes from '../../../contexts/NotesContext';
 import { getVariant } from '../../../utility/colorUtility';
 import '../../../styles/notes.css';
 import NoteImage from './NoteDialog/NoteImage';
-import OverflowingTooltip from '../../common/OverflowingTooltip';
+import OverflowTooltip from '../../common/OverflowTooltip';
+import OverflowingBadge from '../../common/OverflowingBadge';
 import useCategories from '../../../contexts/CategoriesContext';
 
 const Note = ({ note }) => {
@@ -26,6 +27,10 @@ const Note = ({ note }) => {
     }
   };
   useEffect(updateDialog, [note]);
+
+  const getCategoryName = () => {
+    return categories.find(c => c.categoryId === note.categoryId)?.name;
+  };
 
   const todoListDiv = content => {
     let parsedContent;
@@ -65,16 +70,14 @@ const Note = ({ note }) => {
       className={`shadow-sm note-card text-${getVariant(note.color)}`}
       style={{ backgroundColor: note.color }}>
       <Card.Header className='d-flex justify-content-between'>
-        <OverflowingTooltip text={note.title} position='top'>
+        <OverflowTooltip text={note.title} position='top'>
           <Card.Title className='my-auto overflow-ellipsis p-1' ref={useRef()}>
             {note.title}
           </Card.Title>
-        </OverflowingTooltip>
+        </OverflowTooltip>
         <div className=''>
           {note.isBlocked && <i className='timestamp my-auto fas fa-lock fa-fw' />}
-          <Badge className='ml-2 my-auto py-1' variant='secondary'>
-            {categories.find(c => c.categoryId === note.categoryId)?.name}
-          </Badge>
+          <OverflowingBadge text={getCategoryName()} color={note.color} />
         </div>
       </Card.Header>
       <Card.Body>{contentDiv(note)}</Card.Body>

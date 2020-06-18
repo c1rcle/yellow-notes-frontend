@@ -7,7 +7,7 @@ const RemoveCategoryButton = () => {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [{ categories }, dispatch] = useCategories();
 
-  const onClick = () => setDialogVisible(true);
+  const onClick = () => setDialogVisible(!dialogVisible);
 
   const removeCategory = e => {
     const id = parseInt(e.target.id);
