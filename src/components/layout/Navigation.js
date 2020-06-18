@@ -3,7 +3,7 @@ import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import useUser from '../../contexts/UserContext';
 import useNotes from '../../contexts/NotesContext';
-import OverflowingTooltip from '../common/OverflowingTooltip';
+import OverflowTooltip from '../common/OverflowTooltip';
 
 const Navigation = () => {
   const [{ isUserLoggedIn, email }, dispatch] = useUser();
@@ -23,7 +23,7 @@ const Navigation = () => {
     <>
       <Navbar variant='light' bg='light' expand='lg'>
         <Container className='justify-content-center lead '>
-          <OverflowingTooltip text={trimEmail()} position='bottom'>
+          <OverflowTooltip text={trimEmail()} position='bottom'>
             <Navbar.Brand className='w-50 mr-auto overflow-ellipsis' ref={useRef()}>
               <i className='fas fa-quote-right text-primary' />{' '}
               <span className={'lead font-weight-bold'}>
@@ -31,7 +31,7 @@ const Navigation = () => {
               </span>
               {isUserLoggedIn && <span className='lead'>{', ' + trimEmail()}</span>}
             </Navbar.Brand>
-          </OverflowingTooltip>
+          </OverflowTooltip>
 
           {isUserLoggedIn && (
             <>

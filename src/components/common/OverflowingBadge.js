@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { Badge } from 'react-bootstrap';
-import OverflowingTooltip from './OverflowingTooltip';
+import OverflowTooltip from './OverflowTooltip';
 import { getVariant, getFormColor } from '../../utility/colorUtility';
 
 const OverflowingBadge = ({ text, color }) => {
   return (
-    <OverflowingTooltip text={text} position='top'>
+    <OverflowTooltip text={text} position='top'>
       <Badge
         pill
         ref={useRef()}
@@ -13,7 +13,7 @@ const OverflowingBadge = ({ text, color }) => {
         style={{ backgroundColor: getFormColor(color) }}>
         {text}
       </Badge>
-    </OverflowingTooltip>
+    </OverflowTooltip>
   );
 };
 

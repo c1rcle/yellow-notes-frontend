@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import OverflowingTooltip from '../../../common/OverflowingTooltip';
+import OverflowTooltip from '../../../common/OverflowTooltip';
 import { Form, ListGroup } from 'react-bootstrap';
 import useFilters from '../../../../contexts/FiltersContext';
 
@@ -13,7 +13,7 @@ const CategoryFilter = ({ category }) => {
     });
 
   return (
-    <OverflowingTooltip text={category.name} position='bottom'>
+    <OverflowTooltip text={category.name} position='bottom'>
       <ListGroup.Item className='category-item mr-3 p-0 pl-1 overflow-ellipsis' ref={useRef()}>
         <Form.Check
           custom
@@ -24,7 +24,7 @@ const CategoryFilter = ({ category }) => {
           label={category.name}
         />
       </ListGroup.Item>
-    </OverflowingTooltip>
+    </OverflowTooltip>
   );
 };
 
