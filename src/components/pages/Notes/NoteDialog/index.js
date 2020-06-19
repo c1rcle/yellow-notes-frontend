@@ -40,7 +40,10 @@ const NoteDialog = () => {
   useEffect(updateNote, [dialogVisible]);
 
   const onNoteModified = () => {
-    if (formData.title && !isNoteNew && dialogVisible) editNote(formData, note);
+    if (formData.title && !isNoteNew && dialogVisible) {
+      const checkedFilters = filters.filter(f => f.checked).map(f => f.categoryId);
+      editNote(formData, note, checkedFilters);
+    }
   };
   useTimeout(onNoteModified, formData, 1000);
 
@@ -56,13 +59,8 @@ const NoteDialog = () => {
       return;
     }
 
-    if (isNoteNew) {
-      addNote(
-        formData,
-        filters.filter(f => f.checked).map(f => f.categoryId)
-      );
-    } else editNote(formData, note);
-
+    const checkedFilters = filters.filter(f => f.checked).map(f => f.categoryId);
+    isNoteNew ? addNote(formData, checkedFilters) : editNote(formData, note, checkedFilters);
     closeDialog();
   };
 

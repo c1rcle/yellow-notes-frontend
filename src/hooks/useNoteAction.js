@@ -14,7 +14,7 @@ const useNoteAction = () => {
     });
   };
 
-  const editNote = (formData, note) => {
+  const editNote = (formData, note, filters) => {
     if (filterProperties(formData, note).length === 0) return;
 
     Object.keys(formData).length > 1 &&
@@ -22,11 +22,14 @@ const useNoteAction = () => {
       dispatch({
         type: 'EDIT_NOTE',
         payload: {
-          ...filterProperties(formData, note).reduce(
-            (res, key) => ({ ...res, [key]: formData[key] }),
-            {}
-          ),
-          noteId: note.noteId
+          note: {
+            ...filterProperties(formData, note).reduce(
+              (res, key) => ({ ...res, [key]: formData[key] }),
+              {}
+            ),
+            noteId: note.noteId
+          },
+          filters
         }
       });
   };

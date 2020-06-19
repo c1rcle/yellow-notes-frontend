@@ -3,22 +3,23 @@ import yellowNotesApiHandler from '../../../apis/yellowNotesApiHandler';
 import moment from 'moment';
 
 const editNoteAction = async (action, dispatch) => {
-  if (!action.payload || !action.payload.noteId)
-    throw new Error('Edit note request has invalid parameters!');
-
-  const note = { ...action.payload };
+  const note = action.payload.note;
+  if (!note || !note.noteId) throw new Error('Edit note request has invalid parameters!');
 
   dispatch({ type: 'LOADING_START' });
 
-  const response = await yellowNotesApiHandler(
-    yellowNotesApi().put('notes/' + action.payload.noteId, note),
-    { type: 'EDIT', msg: 'Error while editing note!' }
-  );
+  const response = await yellowNotesApiHandler(yellowNotesApi().put('notes/' + note.noteId, note), {
+    type: 'EDIT',
+    msg: 'Error while editing note!'
+  });
   if (response.type === 'ERROR') return response;
 
   note.modificationDate = moment().format();
+  const filters = action.payload.filters;
 
-  return { ...action, payload: note };
+  if (note.categoryId && filters.length > 0 && !filters.includes(note.categoryId))
+    return { ...action, payload: { note, hide: true } };
+  else return { ...action, payload: { note } };
 };
 
 export default editNoteAction;

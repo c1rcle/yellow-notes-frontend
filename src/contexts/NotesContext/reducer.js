@@ -23,10 +23,11 @@ export default (state, { type, payload }) => {
     }
 
     case 'EDIT_NOTE': {
-      if (!state.notes.some(n => n.noteId === payload.noteId)) return state;
-      const note = { ...state.notes.find(n => n.noteId === payload.noteId), ...payload };
-      const notes = state.notes.filter(n => n.noteId !== payload.noteId);
-      return { ...state, notes: [note, ...notes], isLoading: false };
+      if (!state.notes.some(n => n.noteId === payload.note.noteId)) return state;
+      const note = { ...state.notes.find(n => n.noteId === payload.note.noteId), ...payload.note };
+      const notes = state.notes.filter(n => n.noteId !== payload.note.noteId);
+      if (payload.hide) return { ...state, notes: [...notes], isLoading: false };
+      else return { ...state, notes: [note, ...notes], isLoading: false };
     }
 
     case 'REMOVE_NOTE': {
