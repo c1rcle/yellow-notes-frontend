@@ -93,5 +93,6 @@ button:disabled {
 
 .centered-container {
   display: flex;
+  flex-shrink: 0;
   width: 94px;
 }
