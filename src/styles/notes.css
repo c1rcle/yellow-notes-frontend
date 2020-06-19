@@ -61,6 +61,7 @@ div .note-card:hover {
 }
 
 .note-badge {
+  user-select: none;
   width: 80px;
   flex: 0 0 80px;
 }
