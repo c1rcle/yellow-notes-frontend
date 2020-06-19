@@ -4,7 +4,7 @@ import CategoryDropdown from '../CategoryBar/Dialogs/CategoryDropdown';
 import useFilters from '../../../../contexts/FiltersContext';
 import SmallButton from '../../../common/SmallButton';
 
-const NoteCategoryButton = ({ setCategoryId, disabled }) => {
+const NoteCategoryButton = ({ setCategoryId, isNoteNew, disabled }) => {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [, dispatchFilters] = useFilters();
 
@@ -17,7 +17,7 @@ const NoteCategoryButton = ({ setCategoryId, disabled }) => {
       if (id === -1) setCategoryId(null);
       else setCategoryId(id);
 
-      dispatchFilters({ type: 'NEED_UPDATE', payload: true });
+      if (!isNoteNew) dispatchFilters({ type: 'NEED_UPDATE', payload: true });
       setDialogVisible(false);
     }
   };

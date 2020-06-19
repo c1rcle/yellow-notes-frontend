@@ -83,6 +83,7 @@ const NoteDialogFooter = props => {
       </EmojiPicker>
       <NoteCategoryButton
         setCategoryId={assignCategory}
+        isNoteNew={isNoteNew}
         disabled={formData.isBlocked && !isNoteNew}
       />
       <SmallButton variant='outline-warning' onClick={toggleBlocked} tabIndex='4'>

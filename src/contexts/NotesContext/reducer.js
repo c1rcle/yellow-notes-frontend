@@ -18,7 +18,8 @@ export default (state, { type, payload }) => {
     }
 
     case 'ADD_NOTE': {
-      return { ...state, notes: [{ ...payload }, ...state.notes], isLoading: false };
+      if (payload) return { ...state, notes: [{ ...payload }, ...state.notes], isLoading: false };
+      else return { ...state, isLoading: false };
     }
 
     case 'EDIT_NOTE': {

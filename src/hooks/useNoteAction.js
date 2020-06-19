@@ -7,10 +7,10 @@ const useNoteAction = () => {
     return Object.keys(formData).filter(key => formData[key] !== note[key]);
   };
 
-  const addNote = formData => {
+  const addNote = (formData, filters) => {
     dispatch({
       type: 'ADD_NOTE',
-      payload: { ...formData }
+      payload: { formData, filters }
     });
   };
 
