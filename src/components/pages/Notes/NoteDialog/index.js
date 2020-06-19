@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import { useAlert } from 'react-alert';
 import useNoteAction from '../../../../hooks/useNoteAction';
 import useTimeout from '../../../../hooks/useTimeout';
 import useNotes from '../../../../contexts/NotesContext';
+import useFilters from '../../../../contexts/FiltersContext';
 import NoteDialogForm from './NoteDialogForm';
 import NoteDialogFooter from './NoteDialogFooter';
-import { useHistory } from 'react-router-dom';
 
 const NoteDialog = () => {
   let history = useHistory();
@@ -23,6 +24,7 @@ const NoteDialog = () => {
   const alert = useAlert();
   const { addNote, editNote, removeNote } = useNoteAction();
   const [, , { dialogVisible, closeDialog, note }] = useNotes();
+  const [{ filters }] = useFilters();
   const [formData, setFormData] = useState({ ...emptyNote });
   const [todoContent, setTodoContent] = useState('');
   const [focusedElement, setFocusedElement] = useState(undefined);
@@ -38,7 +40,10 @@ const NoteDialog = () => {
   useEffect(updateNote, [dialogVisible]);
 
   const onNoteModified = () => {
-    if (formData.title && !isNoteNew && dialogVisible) editNote(formData, note);
+    if (formData.title && !isNoteNew && dialogVisible) {
+      const checkedFilters = filters.filter(f => f.checked).map(f => f.categoryId);
+      editNote(formData, note, checkedFilters);
+    }
   };
   useTimeout(onNoteModified, formData, 1000);
 
@@ -53,7 +58,9 @@ const NoteDialog = () => {
       alert.show('Note title cannot be empty!');
       return;
     }
-    isNoteNew ? addNote(formData) : editNote(formData, note);
+
+    const checkedFilters = filters.filter(f => f.checked).map(f => f.categoryId);
+    isNoteNew ? addNote(formData, checkedFilters) : editNote(formData, note, checkedFilters);
     closeDialog();
   };
 

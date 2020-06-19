@@ -2,10 +2,9 @@ import yellowNotesApi from '../../../apis/yellowNotesApi';
 import yellowNotesApiHandler from '../../../apis/yellowNotesApiHandler';
 
 const addNoteAction = async (action, dispatch) => {
-  if (!action.payload || !action.payload.title || Object.keys(action.payload).length <= 1)
+  const note = action.payload.formData;
+  if (!note || !note.title || Object.keys(note).length <= 1)
     throw new Error('Note creation request has invalid parameters!');
-
-  const note = { ...action.payload };
 
   dispatch({ type: 'LOADING_START' });
 
@@ -13,7 +12,16 @@ const addNoteAction = async (action, dispatch) => {
     type: 'ADD',
     msg: 'Error while adding note!'
   });
-  return response.type === 'ERROR' ? response : { ...action, payload: response.data };
+
+  const filters = action.payload.filters;
+
+  return response.type === 'ERROR'
+    ? response
+    : {
+        ...action,
+        payload:
+          filters.includes(response.data.categoryId) || filters.length === 0 ? response.data : null
+      };
 };
 
 export default addNoteAction;
