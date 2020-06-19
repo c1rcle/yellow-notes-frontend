@@ -65,6 +65,10 @@ div .note-card:hover {
   flex: 0 0 80px;
 }
 
+.note-lock {
+  margin: auto 0.5rem auto auto;
+}
+
 input.note-title.form-control {
   font-weight: bold;
   min-width: 10%;

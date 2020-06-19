@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { Card } from 'react-bootstrap';
 import Moment from 'react-moment';
-import useNotes from '../../../contexts/NotesContext';
-import { getVariant } from '../../../utility/colorUtility';
-import '../../../styles/notes.css';
 import NoteImage from './NoteDialog/NoteImage';
 import OverflowTooltip from '../../common/OverflowTooltip';
 import OverflowingBadge from '../../common/OverflowingBadge';
+import useNotes from '../../../contexts/NotesContext';
 import useCategories from '../../../contexts/CategoriesContext';
+import { getVariant } from '../../../utility/colorUtility';
+import '../../../styles/notes.css';
 
 const Note = ({ note }) => {
   const [, , dialog] = useNotes();
@@ -69,15 +69,15 @@ const Note = ({ note }) => {
             {note.title}
           </Card.Title>
         </OverflowTooltip>
-        <div className=''>
-          {note.isBlocked && <i className='timestamp my-auto fas fa-lock fa-fw' />}
-          <OverflowingBadge text={getCategoryName()} color={note.color} />
-        </div>
+        <OverflowingBadge text={getCategoryName()} color={note.color} />
       </Card.Header>
       <Card.Body>{contentDiv(note)}</Card.Body>
-      <Card.Footer className='pb-2 pr-2'>
-        <div className='timestamp text-right'>
-          <Moment format='YYYY-MM-DD HH:mm'>{note.modificationDate}</Moment>
+      <Card.Footer className='pb-2 px-2 d-flex'>
+        <div className='d-flex ml-auto'>
+          {note.isBlocked && <i className='timestamp note-lock fas fa-lock fa-fw' />}
+          <div className='timestamp'>
+            <Moment format='YYYY-MM-DD HH:mm'>{note.modificationDate}</Moment>
+          </div>
         </div>
       </Card.Footer>
     </Card>
