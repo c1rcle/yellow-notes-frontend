@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import useCategories from '../../../../contexts/CategoriesContext';
+import useFilters from '../../../../contexts/FiltersContext';
 import CategoryDropdown from './Dialogs/CategoryDropdown';
 
 const RemoveCategoryButton = () => {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [{ categories }, dispatch] = useCategories();
+  const [{ filters }, dispatchFilters] = useFilters();
 
   const onClick = () => setDialogVisible(!dialogVisible);
 
@@ -14,6 +16,19 @@ const RemoveCategoryButton = () => {
     if (Number.isInteger(id)) {
       dispatch({ type: 'REMOVE_CATEGORY', payload: { categoryId: id } });
       setDialogVisible(false);
+    }
+
+    if (
+      filters
+        .filter(f => f.checked)
+        .map(f => f.categoryId)
+        .includes(id)
+    ) {
+      console.log('lol');
+      dispatchFilters({
+        type: 'REMOVE_FILTER',
+        payload: { categoryId: id }
+      });
     }
   };
 

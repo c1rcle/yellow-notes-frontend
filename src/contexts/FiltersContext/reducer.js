@@ -11,6 +11,12 @@ export default (state, { type, payload }) => {
       return { ...state, filters: state.filters, needUpdate: true };
     }
 
+    case 'REMOVE_FILTER': {
+      console.log('xd');
+      const filters = state.filters.filter(f => f.categoryId !== payload.categoryId);
+      return { ...state, filters: filters, needUpdate: true };
+    }
+
     default:
       return state;
   }
