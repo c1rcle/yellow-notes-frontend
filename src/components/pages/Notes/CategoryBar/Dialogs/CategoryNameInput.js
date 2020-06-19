@@ -42,11 +42,7 @@ const CategoryNameInput = ({
           popoverRect={popoverRect}
           arrowColor='#adb5bd'>
           <InputGroup className='mb-3 img-input'>
-            <FormControl
-              value={content}
-              onChange={onInputChange}
-              placeholder={inputPlaceholder}
-            />
+            <FormControl value={content} onChange={onInputChange} placeholder={inputPlaceholder} />
             <InputGroup.Append>
               <Button onClick={onSubmit} variant={buttonVariant}>
                 <i className={buttonIconClass}></i>

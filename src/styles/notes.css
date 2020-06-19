@@ -55,19 +55,8 @@ div .note-card:hover {
   height: 0;
 }
 
-.modal-title {
-  display: inherit;
-  align-items: center;
-}
-
-.note-badge {
-  width: 80px;
-  flex: 0 0 80px;
-}
-
 input.note-title.form-control {
   font-weight: bold;
-  min-width: 10%;
 }
 
 img.note-image {
@@ -78,8 +67,4 @@ img.note-image {
 
 img.note-image-dialog {
   max-height: 350px;
-}
-
-button.small-button {
-  padding: 0.25rem 0.5rem;
 }

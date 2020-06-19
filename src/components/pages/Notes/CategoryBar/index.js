@@ -1,4 +1,5 @@
 import React from 'react';
+import { Modal } from 'react-bootstrap';
 import useUser from '../../../../contexts/UserContext';
 import CategoriesContainer from './CategoriesContainer';
 import AddCategoryButton from './AddCategoryButton';
@@ -10,14 +11,11 @@ const CategoryBar = () => {
   return (
     <>
       {isUserLoggedIn && (
-        <div className='category-bar px-3'>
-          <div className='centered-container'>
-            <AddCategoryButton />
-            <RemoveCategoryButton />
-          </div>
+        <Modal.Header className='.category-bar border-0 px-2 py-0'>
+          <AddCategoryButton />
+          <RemoveCategoryButton />
           <CategoriesContainer />
-          <div className='centered-container d-none d-lg-block d-md-block' />
-        </div>
+        </Modal.Header>
       )}
     </>
   );

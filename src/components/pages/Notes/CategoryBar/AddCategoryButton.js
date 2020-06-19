@@ -7,11 +7,11 @@ const AddCategoryButton = () => {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [{ categories }, dispatch] = useCategories();
 
-  const onClick = () => setDialogVisible(!dialogVisible);
+  const onClick = () => setDialogVisible(true);
 
   const isCategoryNameUnique = name => {
     let unique = true;
-    categories.forEach(element => {
+    categories.forEach((element, index, array) => {
       if (element.name === name) {
         unique = false;
       }
@@ -19,9 +19,8 @@ const AddCategoryButton = () => {
     return unique;
   };
 
-  const addCategory = categoryName => {
+  const addCategory = categoryName =>
     dispatch({ type: 'ADD_CATEGORY', payload: { name: categoryName } });
-  };
 
   return (
     <CategoryNameInput

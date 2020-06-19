@@ -1,7 +1,7 @@
 export default (state, { type, payload }) => {
   switch (type) {
     case 'NEED_UPDATE': {
-      return { ...state, needUpdate: payload };
+      return { ...state, needUpdate: payload.needUpdate };
     }
 
     case 'SET_FILTER': {
