@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CustomTooltip from './CustomTooltip';
 
-const OverflowingTooltip = props => {
+const OverflowTooltip = props => {
   const [overflow, setOverflow] = useState(false);
   const [hover, setHover] = useState(false);
 
@@ -28,4 +28,4 @@ const OverflowingTooltip = props => {
   );
 };
 
-export default OverflowingTooltip;
+export default OverflowTooltip;

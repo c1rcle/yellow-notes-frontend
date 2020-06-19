@@ -3,9 +3,9 @@ import { Modal, Form } from 'react-bootstrap';
 import TextareaAutosize from 'react-textarea-autosize';
 import NoteImage from './NoteImage';
 import Todo from '../Todo';
-import HoverableControl from '../../../common/controls/HoverableControl';
 import { getVariant, getFormColor } from '../../../../utility/colorUtility';
 import useActiveElement from '../../../../hooks/useActiveElement';
+import DialogTitle from '../../../common/controls/DialogTitle';
 
 const NoteDialogForm = props => {
   const {
@@ -18,7 +18,7 @@ const NoteDialogForm = props => {
     todoContent,
     setTodoContent
   } = props;
-  const { title, content, color, isBlocked } = formData;
+  const { title, content, color, isBlocked, categoryId } = formData;
 
   const focusedElement = useActiveElement();
   const inputElement = useRef(null);
@@ -39,7 +39,6 @@ const NoteDialogForm = props => {
       props.setFocusedElement(focusedElement.name);
     }
   };
-
   useEffect(getFocusedElement, [focusedElement.name]);
 
   return (
@@ -49,11 +48,12 @@ const NoteDialogForm = props => {
           backgroundColor: color,
           borderBottom: 'none'
         }}>
-        <Modal.Title style={{ width: '100%' }}>
-          <HoverableControl
+        <div className='modal-title' style={{ width: '100%' }}>
+          <DialogTitle
             type='text'
             readOnly={isBlocked && !isNoteNew}
             ref={inputElement}
+            categoryId={categoryId}
             name='title'
             value={title}
             placeholder='Note Title'
@@ -64,7 +64,7 @@ const NoteDialogForm = props => {
               color
             )}`}
           />
-        </Modal.Title>
+        </div>
       </Modal.Header>
 
       <Modal.Body style={{ backgroundColor: color }}>

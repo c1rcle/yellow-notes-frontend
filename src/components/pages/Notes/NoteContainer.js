@@ -3,12 +3,13 @@ import { useRouteMatch } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 import InfiniteScroll from 'react-infinite-scroller';
 import Masonry from 'react-masonry-component';
-import useNotes from '../../../contexts/NotesContext';
 import ConnectionError from '../ConnectionError';
 import Note from './Note';
 import EmptyContainer from './EmptyContainer';
 import NoteLoader from './NoteLoader';
+import useNotes from '../../../contexts/NotesContext';
 import useFilters from '../../../contexts/FiltersContext';
+import useNoteLoading from '../../../hooks/useNoteLoading';
 
 const NoteContainer = () => {
   const [
@@ -16,7 +17,8 @@ const NoteContainer = () => {
     dispatch,
     { openDialog }
   ] = useNotes();
-  const [{ filters, needUpdate }, dispatchFilters] = useFilters();
+  const [{ needUpdate }, dispatchFilters] = useFilters();
+  const loadNotes = useNoteLoading();
 
   const [connectionError, setConnectionError] = useState(false);
   const [retry, setRetry] = useState(false);
@@ -51,29 +53,6 @@ const NoteContainer = () => {
   };
   useEffect(onFilterChange, [needUpdate]);
 
-  const load = (takeCount, skipCount) => {
-    if (needUpdate) return;
-    const filterCategories = filters.filter(f => f.checked).map(f => f.categoryId);
-
-    const payload =
-      filters.length > 0
-        ? { takeCount: takeCount, skipCount: skipCount, categories: filterCategories }
-        : { takeCount: takeCount, skipCount: skipCount };
-
-    if (loadedCount < serverCount || serverCount === -1) {
-      dispatch({
-        type: 'GET_NOTES',
-        payload: payload
-      });
-    }
-  };
-
-  const loadNextNotes = () => {
-    if (isLoading) return;
-
-    load(6, loadedCount);
-  };
-
   return (
     <>
       {connectionError ? (
@@ -81,7 +60,7 @@ const NoteContainer = () => {
       ) : (
         <InfiniteScroll
           datalength={notes.length}
-          loadMore={loadNextNotes}
+          loadMore={() => loadNotes(6, loadedCount)}
           hasMore={(loadedCount < serverCount || serverCount === -1) && !connectionError}
           loader={<NoteLoader key={-1} />}>
           {notes.length === 0 && !isLoading && <EmptyContainer />}
