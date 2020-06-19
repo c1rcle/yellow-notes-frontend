@@ -24,6 +24,21 @@ const useNoteLoading = () => {
     }
   };
 
+  const updateNotesOnCategoryDelete = () => {
+    notes.some(note => {
+      if (!categories.find(c => c.categoryId === note.categoryId)) {
+        const filterCategories = filters.filter(f => f.checked).map(f => f.categoryId);
+        const payloadData =
+          filters.length > 0
+            ? { takeCount: loadedCount, skipCount: 0, categories: filterCategories }
+            : { takeCount: loadedCount, skipCount: 0 };
+        setPayload(payloadData);
+        return true;
+      } else return false;
+    });
+  };
+  useEffect(updateNotesOnCategoryDelete, [categories.length]);
+
   const dispatchAction = () => {
     if (payload) {
       dispatch({
@@ -34,21 +49,6 @@ const useNoteLoading = () => {
     }
   };
   useEffect(dispatchAction, [payload]);
-
-  const updateNotesOnCategoryDelete = () => {
-    notes.some(note => {
-      if (!categories.find(c => c.categoryId === note.categoryId)) {
-        const filterCategories = filters.filter(f => f.checked).map(f => f.categoryId);
-        const payload =
-          filters.length > 0
-            ? { takeCount: loadedCount, skipCount: 0, categories: filterCategories }
-            : { takeCount: loadedCount, skipCount: 0 };
-        dispatch({ type: 'GET_NOTES', payload: payload });
-        return true;
-      } else return false;
-    });
-  };
-  useEffect(updateNotesOnCategoryDelete, [categories.length]);
 
   return loadNotes;
 };
