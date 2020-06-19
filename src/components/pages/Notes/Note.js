@@ -13,12 +13,6 @@ const Note = ({ note }) => {
   const [, , dialog] = useNotes();
   const { dialogVisible, openDialog, updateLink, setNote } = dialog;
   const [{ categories }] = useCategories();
-  const [{ loadedCount }, dispatch] = useNotes();
-
-  const reloadNotes = () =>
-    dispatch({ type: 'GET_NOTES', payload: { takeCount: loadedCount, skipCount: 0 } });
-
-  useEffect(reloadNotes, [categories.length]);
 
   const updateDialog = () => {
     if (dialogVisible && dialog.note.noteId === note.noteId) {
