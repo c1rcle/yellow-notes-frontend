@@ -5,11 +5,12 @@ import { getFormColor } from '../../../utility/colorUtility';
 import OverflowingBadge from '../OverflowingBadge';
 
 const DialogTitle = React.forwardRef((props, ref) => {
+  const { categoryId, color, ...rest } = props;
   const [state, setState] = useState({ hover: false, focus: false });
   const [{ categories }] = useCategories();
 
   const getCategoryName = () => {
-    return categories.find(c => c.categoryId === props.categoryId)?.name;
+    return categories.find(c => c.categoryId === categoryId)?.name;
   };
 
   return (
@@ -21,12 +22,12 @@ const DialogTitle = React.forwardRef((props, ref) => {
         onFocus={() => setState({ ...state, focus: true })}
         onBlur={() => setState({ ...state, focus: false })}
         style={{
-          backgroundColor: state.hover || state.focus ? getFormColor(props.color) : props.color
+          backgroundColor: state.hover || state.focus ? getFormColor(color) : color
         }}
-        {...props}
+        {...rest}
       />
       {!getCategoryName() || state.hover || state.focus || (
-        <OverflowingBadge text={getCategoryName()} color={props.color} />
+        <OverflowingBadge text={getCategoryName()} color={color} />
       )}
     </>
   );
