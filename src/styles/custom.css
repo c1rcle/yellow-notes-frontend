@@ -95,4 +95,11 @@ button:disabled {
   display: flex;
   flex-shrink: 0;
   width: 94px;
+  padding-top: 1px;
+}
+
+.category-caption {
+  display: inline-flex;
+  justify-content: center;
+  white-space: nowrap;
 }

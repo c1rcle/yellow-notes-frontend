@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { ListGroup, Container, Button } from 'react-bootstrap';
+import { ListGroup, Container } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 import CategoryFilter from './CategoryFilter';
+import CategoryCaption from './CategoryCaption';
 import useCategories from '../../../../contexts/CategoriesContext';
 import useFilters from '../../../../contexts/FiltersContext';
 
@@ -19,8 +20,11 @@ const CategoriesContainer = () => {
 
   return (
     <Container className='p-0 d-flex justify-content-center'>
-      {categories.length > 0 ? (
-        <Scrollbars className='category-scrollbar d-flex justify-content-center' autoHide>
+      <Scrollbars
+        className='category-scrollbar d-flex justify-content-center'
+        style={{ textAlign: 'center' }}
+        autoHide>
+        {categories.length > 0 ? (
           <ListGroup
             horizontal
             style={{ width: categoryListWidth }}
@@ -29,16 +33,10 @@ const CategoriesContainer = () => {
               <CategoryFilter category={category} key={category.categoryId} setFilter={setFilter} />
             ))}
           </ListGroup>
-        </Scrollbars>
-      ) : (
-        <div className='lead'>
-          <small>You have no categories. Click</small>
-          <Button disabled variant='success' className='m-2 p-1 px-2'>
-            <i className={'fas fa-plus fa-fw'} />
-          </Button>
-          <small>button to add one.</small>
-        </div>
-      )}
+        ) : (
+          <CategoryCaption />
+        )}
+      </Scrollbars>
     </Container>
   );
 };
