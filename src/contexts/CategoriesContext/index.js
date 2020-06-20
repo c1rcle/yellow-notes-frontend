@@ -6,7 +6,8 @@ const CategoriesContext = createContext();
 export function CategoriesProvider({ children }) {
   const [categories, dispatch] = useReducer(categoriesReducer, {
     categories: [],
-    isLoading: false
+    isLoading: false,
+    error: null
   });
 
   return (
